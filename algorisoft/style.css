@@ -53,18 +53,20 @@ details {
   width: 100vw;
 }
 .indice div {
-  width: 20%;
+  width: auto;
 }
-.indice div:nth-child(1) {
+/* .indice div:nth-child(1) {
   width: 38%;
-}
+} */
 .indice a,
 .link-videos {
   text-decoration: none;
   color: cornflowerblue;
+  padding: 1px;
 }
 .indice a:hover,
 .link-videos:hover {
+  padding: 0;
   color: red;
   border: 1px solid black;
   border-radius: 5px;
@@ -119,4 +121,7 @@ h2 {
 }
 .videos-titulo h2 {
   user-select: none;
+}
+ul ul {
+  list-style-type: square;
 }
