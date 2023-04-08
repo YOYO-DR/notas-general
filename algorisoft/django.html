@@ -122,7 +122,12 @@
                 parte II</a
               >
             </li>
-            <li><a href="#video-28">Video 28</a></li>
+            <li>
+              <a href="#video-28"
+                >Video 28: CreateView | Validaciones en nuestro formulario |
+                Parte III</a
+              >
+            </li>
             <li><a href="#video-29">Video 29</a></li>
             <li><a href="#video-30">Video 30</a></li>
             <li><a href="#video-31">Video 31</a></li>
@@ -305,10 +310,19 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
         </div>
         <li>
           Dentro del archivo <b>db.py</b> creamos una variable para crear la
-          conexión a la base de datos
+          conexión a la base de datos, y tambien la configuración de sqlite3 por
+          si se utiliza
         </li>
         <div class="codigo">
-          <pre><code id="conexion-db">MYSQL = {
+          <pre><code id="conexion-db">import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SQLITE={
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db/sqlite/db.sqlite3')
+    }
+}
+MYSQL = {
   'default':{
   'ENGINE':'django.db.backends.mysql',
   'NAME':'db', #nombre de la base de datos
@@ -534,7 +548,7 @@ date_joined = models.DateField(default=datetime.now, verbose_name='Fecha')</code
           <button onclick="copiar('file-cvitae','19')" id="19">Copiar</button>
         </div>
         <li>
-          La funcion <b>__str___</b> es para mostrar una representacion del
+          La función <b>__str___</b> es para mostrar una representacion del
           algún objeto de la clase o modelo, puede ser el nombre, categoria,
           etc, por ejemplo de la clase que estamos haciendo:
         </li>
@@ -681,7 +695,7 @@ date_joined = models.DateField(default=datetime.now, verbose_name='Fecha')</code
           foranea
         </li>
         <li>
-          <b>NOTA:</b> Despues de hacer un cambio en las clases/tablas siempre
+          <b>NOTA:</b> Después de hacer un cambio en las clases/tablas siempre
           hacer los <b>makemigrations</b> y el <b>migrate</b> con
           <b>manage.py</b>
         </li>
@@ -746,7 +760,7 @@ ModuleNotFoundError: No module named 'core.list_ope'</code></pre>
           </li>
           <li>
             Luego, en VScode, guardamos lo que tengamos y luego cerramos y
-            volvemos a abrir y funciona normal
+            volvemos a abrir y funcióna normal
           </li>
         </ul>
         <li>
@@ -760,7 +774,7 @@ ModuleNotFoundError: No module named 'core.list_ope'</code></pre>
           </button>
         </div>
         <li>
-          Consultar todo de una tabla, con esa funcion traigo todo lo de esa
+          Consultar todo de una tabla, con esa función traigo todo lo de esa
           clase/tabla <b>Type</b>, lo guardo en una variable y puedo imprimirlo
         </li>
         <div class="codigo">
@@ -869,7 +883,7 @@ tipe.delete()
           <b>name__</b>: es el nombre de la columna por la cual se va a filtrar
         </li>
         <li>
-          Despues de la busqueda, puedo accerder a los resultados, de la misma
+          Después de la busqueda, puedo accerder a los resultados, de la misma
           forma como hacedo a los valores de un arreglo, y como se obtienen como
           objetos, con el <b>"."</b> accedo a los valores de los registros
           extraidos, o aplicando un for
@@ -1124,7 +1138,7 @@ class DetSale(models.Model):
           </button>
         </div>
         <li>
-          Con el <b>admin.py</b> de mi app, puedo hacer diferentes funciones.
+          Con el <b>admin.py</b> de mi app, puedo hacer diferentes funciónes.
           Para ver el panel de administrador, primero debo haber hecho las
           migraciones, luego con el <b>manage.py</b> creo el super usuario
         </li>
@@ -1177,7 +1191,7 @@ class DetSale(models.Model):
         <li>
           Cuando inicie sesión en el login del admin, en el panel va a aparecer
           <b>Categorias</b>, porque es el <b>verbose_name_plural</b> que le
-          pusimos, esa es una de las funciones del <b>verbose_name_plural</b>
+          pusimos, esa es una de las funciónes del <b>verbose_name_plural</b>
         </li>
         <li>
           Y el <b>__str__</b> sera lo que se vera como principal de cada
@@ -1212,7 +1226,7 @@ class DetSale(models.Model):
         <li>
           El el archivo <b>views.py</b> de mi app, voy a configurar mis vistas,
           las vistas deben retornar un <b>HttpResponse</b> siempre, ahora la
-          crearemos como una funcion, más adelante se aprenderan otras formas
+          crearemos como una función, más adelante se aprenderan otras formas
           para crear las vistas o <b>views</b>
         </li>
         <li>Importamos la clase <b>HttpResponse</b></li>
@@ -1221,7 +1235,7 @@ class DetSale(models.Model):
           <button onclick="copiar('import-http','52')" id="52">Copiar</button>
         </div>
         <li>
-          Creamos la funcion, la cual retorna lo que queremos que se vea en el
+          Creamos la función, la cual retorna lo que queremos que se vea en el
           <b>html</b>
         </li>
         <div class="codigo">
@@ -1247,7 +1261,7 @@ def vista2(request):
           En el <b>urlpatterns</b>, agregamos la vista o vistas de la siguiente
           forma, en el primer parametro del <b>path</b>, pongo entre comillas la
           url la cual le voy a poner la vista, siempre temina en "<b>/</b>", y
-          en el segundo parametro, va a ir la funcion que va a mostrar lo que ya
+          en el segundo parametro, va a ir la función que va a mostrar lo que ya
           configuramos anteriormente, se pone sin paréntesis
         </li>
         <div class="codigo">
@@ -1370,10 +1384,10 @@ urlpatterns = [
         <li>
           En el archivo <b>views.py</b> de nuestra app, en la función que
           creamos, utilizamos la función <b>render</b> para utilizar el
-          <b>html</b>. La funcion, como siempre, debe recibir y retornar un
+          <b>html</b>. La función, como siempre, debe recibir y retornar un
           <b>request</b>, la variable <b>data</b> va a contener valores que
           queramos mostrar en el html, en el cual desde ahi llamaremos ese
-          valor, con una sintaxis, la cual la funcion <b>render</b>, renderiza
+          valor, con una sintaxis, la cual la función <b>render</b>, renderiza
           ese html, en el segundo parametro del render, debemos poner el nombre
           del html el cual vamos a renderizar, y el <b>data</b> de tercer
           parametro
@@ -1421,10 +1435,10 @@ def vista(request):
       <ul>
         <li>
           Gracias al <b>render</b>, puedo utilizar codigo python dentro del
-          <b>html</b>, utilizando los valores que le pase en la funcion
+          <b>html</b>, utilizando los valores que le pase en la función
         </li>
         <li>
-          Por ejemplo, En la funcion puedo parsarle los valores de mis productos
+          Por ejemplo, En la función puedo parsarle los valores de mis productos
           en la base de datos, importamos los modelos para poder utilizar el
           <b>ORM</b>, podemos insertar los datos con el <b>ORM</b> en el archivo
           de <b>test.py</b> o manual mente en la base de datos para hacer
@@ -1533,12 +1547,12 @@ lineas
         <li>
           Para ejemplo, en ese bloque de <b>index.html</b>, vamos a dejar el for
           recorriendo los productos, pero dentro del bloque que creamos, y vamos
-          a crear un segundo html llamado <b>second.html</b>, creamos la funcion
+          a crear un segundo html llamado <b>second.html</b>, creamos la función
           para ese html y le pasamos los valores que tenga nuestra clase/tabla
           categoria, de la misma forma en como hicimos los productos
         </li>
         <li>
-          <b>second.html</b>, en el data de la funcion de second.html, ponemos
+          <b>second.html</b>, en el data de la función de second.html, ponemos
           <b>categorias</b> donde vamos a poner las categorias llamadas. En el
           html, heredamos de <b>index.html</b>, toda su estructura, luego
           ponemos el bloque, el cual en el <b>index.html</b> estan los
@@ -1571,7 +1585,7 @@ lineas
           una vista de mis apps
         </li>
         <li>
-          En el tercer parametro de la funcion <b>path</b>, puedo ponerle un
+          En el tercer parametro de la función <b>path</b>, puedo ponerle un
           nombre para dirigirme mejor a esa vista
         </li>
         <div class="codigo">
@@ -1634,7 +1648,7 @@ lineas
         </li>
         <li>
           En el <b>settings.py</b> de nuestro proyecto, creamos una variable
-          para poner la ruta de nuestros archivos estaticos, despues de la
+          para poner la ruta de nuestros archivos estaticos, Después de la
           variable <b>STATIC_URL</b>
         </li>
         <div class="codigo">
@@ -1775,7 +1789,7 @@ src = "{% static 'media/video/hola.mp4' %}"</code></pre>
         <li>Utiliza un for para poner las categorias</li>
         <li>
           Crea tambien una carpeta <b>views</b> para las vistas de mi app, ahi
-          creo mis funciones o clases (que se vera más adelante) donde le pasare
+          creo mis funciónes o clases (que se vera más adelante) donde le pasare
           mis modelos, información y demás
         </li>
         <li>Lleno la tabla de categorias asi</li>
@@ -1847,8 +1861,8 @@ src = "{% static 'media/video/hola.mp4' %}"</code></pre>
           la recorreriamos asi, <b>for i in object_list</b>
         </li>
         <li>
-          Si quiero pasar más valores, modifico una de las funciones <b>get</b>,
-          dentro de la clase ListView creada, modificamos la funcion
+          Si quiero pasar más valores, modifico una de las funciónes <b>get</b>,
+          dentro de la clase ListView creada, modificamos la función
           <b>get_context_data</b>
         </li>
         <div class="codigo">
@@ -1895,8 +1909,8 @@ src = "{% static 'media/video/hola.mp4' %}"</code></pre>
         <li>
           En el archivo <b>urls.py</b> de mi app, debo importar mi clase o
           archivo donde este ubicado (views.py) y ponerlo en la misma parte
-          donde ponia las vistas basadas en funciones, pero ejecutando la
-          funcion <b>as_view()</b>
+          donde ponia las vistas basadas en funciónes, pero ejecutando la
+          función <b>as_view()</b>
         </li>
         <div class="codigo">
           <pre><code id="a2">path('category/list/', claseListView.as_view(),name='nombreVista')</code></pre>
@@ -1964,7 +1978,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
         </li>
         <li>
           en mi archivo base <b>list.html</b> que es para las listas, pongo al
-          fondo, en el bloque de js, la funcion la cual aplico la libreria
+          fondo, en el bloque de js, la función la cual aplico la libreria
           Datatable
         </li>
         <div class="codigo">
@@ -2020,7 +2034,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
           Preguntar que metodo del request se esta realizando, con ese if
           pregunto que metodo del request se esta realizando, y si es
           <b>GET</b>, con esa función redirect envio la pagina a otra que yo
-          quiera, en este caso, a la vista 2 de la app erp, despues de la
+          quiera, en este caso, a la vista 2 de la app erp, Después de la
           prueba, comentamos para seguir con el curso
         </li>
         <div class="codigo">
@@ -2046,11 +2060,11 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
       </summary>
       <ul>
         <li>
-          Los decoradores son funciones que modifican otras funciones,
+          Los decoradores son funciónes que modifican otras funciónes,
           dinamicamente.
         </li>
         <li>
-          Importo el metodo decorador de django y tambien importo la funcion de
+          Importo el metodo decorador de django y tambien importo la función de
           verificar login para prueba
         </li>
         <div class="codigo">
@@ -2120,7 +2134,7 @@ from django.contrib.auth.decorators import login_required
           <button onclick="copiar('a9','81')" id="81">Copiar</button>
         </div>
         <li>
-          Ante de todas las funciones, pongo el metodo para quitar la protección
+          Ante de todas las funciónes, pongo el metodo para quitar la protección
         </li>
         <div class="codigo">
           <pre><code id="b1">@method_decorator(csfr_exempt)</code></pre>
@@ -2152,7 +2166,7 @@ from django.contrib.auth.decorators import login_required
           <button onclick="copiar('b2','83')" id="83">Copiar</button>
         </div>
         <li>
-          En la parte del script, en la funcion principal, agrego el evento del
+          En la parte del script, en la función principal, agrego el evento del
           clic en ese boton
         </li>
 
@@ -2201,7 +2215,7 @@ return JsonResponse(data)
         <ul>
           <li>
             en el data le retornare el objeto de la base de datos que el pide
-            por id y lo convertimos en un archivo JSON (con la funcion
+            por id y lo convertimos en un archivo JSON (con la función
             <b>.toSTRING</b> que modifiquemos en los modelos) para poder
             retornarlo
           </li>
@@ -2212,7 +2226,7 @@ return JsonResponse(data)
         </ul>
         <li>
           En el archivo <b>models.py</b> de mi app, en mi clase Category,
-          despues de la función <b>__str__</b>, creo la función toJSON(),
+          Después de la función <b>__str__</b>, creo la función toJSON(),
           importo model_to_dict
         </li>
         <div class="codigo">
@@ -2232,7 +2246,7 @@ return JsonResponse(data)
             Al model_to_dict le paso el self, porque ahi es donde estan todos
             los valores de la tabla, porque hacerlo manual seria normal en
             proyectos pequeños, pero en un proyecto grande ya no es eficiente,
-            para eso esta esta funcion para los modelos
+            para eso esta esta función para los modelos
           </li>
         </ul>
 
@@ -2285,7 +2299,7 @@ from django.urls import reverse_lazy
           </li>
           <li>succes_url:</li>
           A donde direccionar cuando se envie correctamente el formulario, y la
-          funcion
+          función
           <b>reverse_lazy</b>
           convierte la url que le pase por el
           <b>name</b>
@@ -2293,7 +2307,7 @@ from django.urls import reverse_lazy
           <b>succes_url</b>
         </ul>
         <li>
-          Modifico la funcion <b>get_context_data</b> para enviar datos que
+          Modifico la función <b>get_context_data</b> para enviar datos que
           necesite
         </li>
         <div class="codigo">
@@ -2393,6 +2407,159 @@ from .models import Category
           parte II
         </h2>
       </summary>
+      <ul>
+        <li>
+          Para ejemplo, en el model <b>Category</b>, le agrego un campo para la
+          descripción
+        </li>
+        <div class="codigo">
+          <pre><code id="b15">desc = models.CharField(max_length=500,null=True,blank=True,verbose_name='Descripción')</code></pre>
+          <button onclick="copiar('b15','97')" id="97">Copiar</button>
+        </div>
+        <li>
+          En el archivo <b>forms.py</b>, en la clase <b>Meta</b> de mi
+          CategoryForm, con el atributo <b>labels</b> puedo ponerle o modificar
+          el <b>verbose_name</b> de los atributos del modelo el cual este
+          trabajando
+        </li>
+        <div class="codigo">
+          <pre><code id="b16">labels = {
+         'name':'Nombre',
+         'desc':'Descripción'
+         }</code></pre>
+          <button onclick="copiar('b16','98')" id="98">Copiar</button>
+        </div>
+        <li>
+          Con el atributo widgets puedo cambiar el tipo de input (por ahora se
+          el de TextInput para el input tipo texto, y TextTarea para el input
+          tipo comentario)
+        </li>
+        <div class="codigo">
+          <pre><code id="b17">widgets = {
+          'name':TextInput(attrs={
+            'class':'una-clase otra-clase',
+            'autocomplete':'off',
+            'placeholder':'el valor del placeholder'
+          }),
+          'desc':TextTarea(attrs={mas atributos})
+          }</code></pre>
+          <button onclick="copiar('b17','99')" id="99">Copiar</button>
+        </div>
+        <li>Puedo utilizar un for en el html para poner los inputs</li>
+        <div class="codigo">
+          <pre><code id="b18">{% for field in form.visible_fields %}
+&lt;label for=""&gt;{{field.label}}&lt;/label&gt;
+  {{field}}
+{% endfor %}
+</code></pre>
+          <button onclick="copiar('b18','100')" id="100">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            <b>form.visible_fields:</b>Me pasa los datos del formulario y poder
+            iterarlos y ponerlos por si son muchos campos
+          </li>
+          <li><b>{{field.label}}:</b>Pongo el nombre o "label" del input</li>
+          <li><b>{{field}}:</b>Pone el input</li>
+        </ul>
+        <li>
+          Puedo modificar la función <b>__init__</b> de mi clase de formulario
+          (en este caso, <b>CategoryForm</b>) para modificar los atributos de
+          mis <b>fields</b> por si todos o algunos atributos son iguales y no
+          repetir codigo en el atributo <b>widgets</b>
+        </li>
+        <p class="nota">
+          <b>Nota:</b>Fuera de la clase <b>Meta</b>, no dentro de ella
+        </p>
+        <div class="codigo">
+          <pre><code id="b19">def __init__(self,*args,**kwargs):
+  super().__init__(*args,**kwargs)
+  for form in self.visible_fields():
+    form.field.widget.attrs['class']='una-clase otra-clase'
+          </code></pre>
+          <button onclick="copiar('b19','101')" id="101">Copiar</button>
+        </div>
+        <li>O tambien para agregar varios atributos:</li>
+        <div class="codigo">
+          <pre><code id="b20">def __init__(self,*args,**kwargs):
+  super().__init__(*args,**kwargs)
+  for form in self.visible_fields():
+    form.field.widget.attrs.update({'class':'clase','id':'valor','otro-atributo':'valor'})
+    #atributos del label
+    form.label_attrs={'class':'clase','for':'id-o-valor'}
+          </code></pre>
+          <button onclick="copiar('b20','102')" id="102">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            Para poner ese valor del for que le puse al label, lo pongo asi en
+            el html
+          </li>
+          <div class="codigo">
+            <pre><code id="b21">&lt;label for="{{field.label_attrs.for}}"&gt;Label&lt;/label&gt;</code></pre>
+            <button onclick="copiar('b21','103')" id="103">Copiar</button>
+          </div>
+        </ul>
+        <li>
+          Modificar un solo campo o field, lo hago dentro del <b>__init__</b>
+        </li>
+        <div class="codigo">
+          <pre><code id="b22">self.fields['name'].widget.attrs['autofocus']=True</code></pre>
+          <button onclick="copiar('b22','104')" id="104">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            En este caso le pongo un atributo booleano, entonces lo pongo en
+            <b>True</b> o <b>False</b>, su mayoria de veces esta por defecto en
+            <b>False</b>, asi se veria en el hmtl ya renderizado
+          </li>
+          <div class="codigo">
+            <pre><code>&lt;input type="text" autofocus&gt;</code></pre>
+          </div>
+        </ul>
+      </ul>
+      <h3>Poner clases o atributos en el html con la libreria widget_tweaks</h3>
+      <ul>
+        <li>La instalo en mi entorno</li>
+        <div class="codigo">
+          <pre><code id="b23">pip install django-widget-tweaks</code></pre>
+          <button onclick="copiar('b23','105')" id="105">Copiar</button>
+        </div>
+        <li>
+          La agrego a la variable <b>INSTALLED_APPS</b>, del archivo
+          <b>settings.py</b> de mi configuración
+        </li>
+        <div class="codigo">
+          <pre><code id="b24">#libs
+'widget_tweaks'
+            </code></pre>
+          <button onclick="copiar('b24','106')" id="106">Copiar</button>
+        </div>
+        <li>
+          Lo cargo en el html en el cual lo vaya a utilizar (en este caso,
+          create.html)
+        </li>
+        <div class="codigo">
+          <pre><code id="b25">{% load widget_tweaks %}</code></pre>
+          <button onclick="copiar('b25','107')" id="107">Copiar</button>
+        </div>
+        <li>Para agregar clases o atributos</li>
+        <div class="codigo">
+          <pre><code id="b26">{{field|add_class:'una-clase otra-clase'|attr='autocomplete:off'|attr='autofocus'}}</code></pre>
+          <button onclick="copiar('b26','108')" id="108">Copiar</button>
+        </div>
+        <ul>
+          <li><b>add_class:</b> para agregar alguna clase o clases</li>
+          <li>
+            con el pleca ( | ) agrego los siguientes atributos que necesite, por
+            ejemplo si quiero quitar el autocomplete que es uno de tipo
+            booleano, le pongo el off, pero por ejemplo quiero poner uno
+            booleano, oase, activarlo, como se ve en el codigo, le pongo solo el
+            nombre, y tambien como es otro atributo, eso significa otro
+            <b>|attrs</b>
+          </li>
+        </ul>
+      </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
           ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
@@ -2402,7 +2569,156 @@ from .models import Category
     <details>
       <summary class="videos-titulo" id="video-28">
         <h2>
-          <i>Video 28</i>
+          <i>Video 28</i>: CreateView | Validaciones en nuestro formulario |
+          Parte III
+        </h2>
+      </summary>
+      <ul>
+        <li>
+          Modifico el post para ver como trabaja el post con los errores,
+          importo HttpResponseRedirect
+        </li>
+        <div class="codigo">
+          <pre><code id="b27">
+from django.http import HttpResponseRedirect
+def post(self,request,*args,**kwargs):
+  form = CategoryForm(request.POST)
+  if form.is_valid():
+    form.save()
+    return HttpResponseRedirect(self.succes_url)
+  self.object = None
+  context = self.get_context_data(**kwargs)
+  context['form']=form
+  return render(request,self.template_name,context)
+</code></pre>
+          <button onclick="copiar('b27','109')" id="109">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            Creo la variable <b>form</b> y le paso mi formulario y como
+            parametro, el <b>request.POST</b>
+          </li>
+          <li>
+            Con el <b>if form.is_valid()</b> verifico que el formulario sea
+            valido y lo retorno a la otra pagina, que en este caso es list.html,
+            que la ruta esta en la variable success_url
+          </li>
+          <li>
+            El <b>self.object</b> lo pongo en <b>None</b> porque si hay algun
+            error en la petición, va a buscar esta variable, y si no esta, se
+            cae el servidor en ese error
+          </li>
+          <li>
+            creo la variable <b>context</b> la cual va a almacenar los valores
+            que mandare al html, con la funcion <b>get_context_data</b> traigo
+            el diccionariocon los datos que ya estan, y le agrego lo que le
+            quiera manda, en este caso mi formulario
+          </li>
+        </ul>
+        <li>
+          Asi trabaja el post, los errores, validar si hay algun error o guardar
+          y retornar el resultado
+        </li>
+        <li>
+          Pero simplemente sin modificar la funcion post, con
+          <b>form.errors</b> en el html puedo verificar los errores que me
+          devuelve mi formulario
+        </li>
+        <li>
+          con el <b>{{form.errors}}</b> en el lugar que quiera ponerlo de mi
+          formulario
+        </li>
+        <li>
+          Esto pondra el nombre del campo del form y el error en un tipo de
+          lista, pero si quiero acmodarlo podria iterarlos
+        </li>
+        <div class="codigo">
+          <pre><code id="b28">{% if form.errors %}
+  {% for field in form %}
+    {% for error in field.errors%}
+      &lt;p&gt;{{error}}&lt;/p&gt;
+    {% endfor %}
+  {% endfor%}
+{% endif %}
+          </code></pre>
+          <button onclick="copiar('b28','110')" id="110">Copiar</button>
+        </div>
+        <ul>
+          <li>con el <b>if form.errors</b> pregunto hay errores</li>
+          <li>Si los hay, voy a recorrer todos los campos de mi formulario</li>
+          <li>
+            Y luego de cada campo imprimir los errores que tenga, si no los
+            tiene, solo saltara al siguiente
+          </li>
+        </ul>
+      </ul>
+      <h3>Implemetar la libreria <b>sweetalert2</b> para alertas animadas</h3>
+      <ul>
+        <li>Pongo la libreria en mi carpeta <b>static/lib</b></li>
+        <li>
+          En el archivo home.html o donde lo vaya a utilizar, lo importo al
+          final del body, ejemplo
+        </li>
+        <div class="codigo">
+          <pre><code id="b29">&lt;!--Sweetalert2--&gt;
+&lt;script src="{% static 'lib/sweetalert2/sweetalert2.all.min.js' %}"&gt;&lt;/script&gt;</code></pre>
+          <button onclick="copiar('b29','111')" id="111">Copiar</button>
+        </div>
+        <li>
+          Después de la tiqueta form (o mejor en mi bloque de js o scripts)
+        </li>
+        <div class="codigo">
+          <pre><code id="b30">{% block js %}
+  &lt;script&gt;
+    {% if form.errors %}
+      let errors = ''
+      {% for field in form %}
+        {% for error in field.errors %}
+          errors += '{{error}}\n'
+        {% endfor %}
+      {% endfor %}
+    Swal.fire({
+      title:'!Error¡',
+      text:errors,
+      icon:'error'
+    })
+    {% endif %}
+  &lt;/script&gt;
+{% endblock js %}
+          </code></pre>
+          <button onclick="copiar('b30','112')" id="112">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            abro el bloque, abro una etiqueta script para escribir el codigo js
+          </li>
+          <li>pregunto si hay errores en el form</li>
+          <li>Si los hay, creo una variable para guardarlos</li>
+          <li>
+            Recorro los campos de mi form y luego recorro cada campo obteniendo
+            su error si lo tiene y guardarlo en esa variable
+          </li>
+          <li>
+            Luego de guardarlos, utilizo una función Swal.fire y le paso los
+            valores correspondientes para mostrar el modal del error
+          </li>
+        </ul>
+        <li>
+          En los template principales puse un <b>form.html</b> y pongo todo ahi,
+          y en mi template de mi app, lo heredo de ese,
+          <b>{% extends 'form.html' %}</b>
+        </li>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+    <details>
+      <summary class="videos-titulo" id="video-29">
+        <h2>
+          <i>Video 29</i>
         </h2>
       </summary>
       <div class="flecha-arriba">
