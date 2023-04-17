@@ -139,7 +139,11 @@
                 >Video 30: UpdateView | Editando un registro</a
               >
             </li>
-            <li><a href="#video-31">Video 31</a></li>
+            <li>
+              <a href="#video-31"
+                >Video 31: DeleteView | Eliminando un registro</a
+              >
+            </li>
             <li><a href="#video-32">Video 32</a></li>
             <li><a href="#video-33">Video 33</a></li>
             <li><a href="#video-34">Videos 34</a></li>
@@ -2323,7 +2327,7 @@ from django.urls import reverse_lazy
   model = Category
   form_class = CategoryForm
   template_name = 'category/create.html'
-  succes_url = reverse_lazy('erp:category_list')
+  success_url = reverse_lazy('erp:category_list')
 </code></pre>
           <button onclick="copiar('b9','90')" id="90">Copiar</button>
         </div>
@@ -2336,14 +2340,14 @@ from django.urls import reverse_lazy
             <b>template_name:</b>Html el cual le pasare el formulario, lo creo
             en mi carpeta category y heredando del template principal
           </li>
-          <li>succes_url:</li>
+          <li>success_url:</li>
           A donde direccionar cuando se envie correctamente el formulario, y la
           función
           <b>reverse_lazy</b>
           convierte la url que le pase por el
           <b>name</b>
           de la url a una url a la cual pueda redireccionar el
-          <b>succes_url</b>
+          <b>success_url</b>
         </ul>
         <li>
           Modifico la función <b>get_context_data</b> para enviar datos que
@@ -2638,7 +2642,7 @@ def post(self,request,*args,**kwargs):
   form = CategoryForm(request.POST)
   if form.is_valid():
     form.save()
-    return HttpResponseRedirect(self.succes_url)
+    return HttpResponseRedirect(self.success_url)
   self.object = None
   context = self.get_context_data(**kwargs)
   context['form']=form
@@ -3119,8 +3123,147 @@ return false;
     </details>
     <details>
       <summary class="videos-titulo" id="video-31">
+        <h2><i>Video 31</i>: DeleteView | Eliminando un registro</h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=IYQFt8XJiIU&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=31"
+        >Link del video 31</a
+      >
+      <ul>
+        <li>Importamos la clase de la vista a utilizar</li>
+        <div class="codigo">
+          <pre><code id="b42">from django.views.generic import DeleteView</code></pre>
+          <button onclick="copiar('b42','124')" id="124">Copiar</button>
+        </div>
+        <li>Creamos la vista</li>
+        <div class="codigo">
+          <pre><code id="b43">class CategoryDeleteView(DeleteView):
+  model = Category
+  template_name = 'category/delete.html'
+  success_url = reverse_lazy('erp:category_list')
+
+  def get_context_data(self, **kwargs):
+     context = super().get_context_data(**kwargs)
+     context['title']='Eliminación de una categoria'
+     context['entity']='Categorias'
+     context['list_url']=reverse_lazy('erp:category_list')
+     return context</code></pre>
+          <button onclick="copiar('b43','125')" id="125">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            en esta clase, le pasamos el modelo, el template_name el cual ahora
+            crearemos, y el success_url el cual es la lista
+          </li>
+          <li>
+            Modificamos el get_context_data igual que el CategoryUpdateView solo
+            que le quitamos el action porque en este video no vamos a utilizar
+            ajax
+          </li>
+        </ul>
+        <li>Creamos la url para la vista, este tambien debe recibir el pk</li>
+        <div class="codigo">
+          <pre><code id="b44">path('category/delete/&lt;int:pk&gt;/',CategoryDeleteView.as_view(),name='category_delete')</code></pre>
+          <button onclick="copiar('b44','126')" id="126">Copiar</button>
+        </div>
+        <li>
+          modificamos el boton de borrar de la lista para poner el link hacia
+          nuestra lista, pasandole el id del registro
+        </li>
+        <div class="codigo">
+          <pre><code id="b45">&lt;a href="{% url 'erp:category_delete' c.id %}" class="btn btn-danger btn-xs"&gt;
+      &lt;i class="fas fa-trash-alt"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+</code></pre>
+          <button onclick="copiar('b45','127')" id="127">Copiar</button>
+        </div>
+        <li>
+          Creamos el delete.html para la vista del la clase DeleteVew, la cual
+          recibe un formulario de confirmación, copiamos y pegamos el template
+          de formulario, pero le agregamos un alert tipo card como advertencia y
+          quitamos lo que no vamos a utilizar
+        </li>
+        <div class="codigo">
+          <pre><code id="b46">{% extends 'body.html' %} {% load widget_tweaks %} {% block content %}
+&lt;form method="post"&gt;
+  &lt;div class="card card-default"&gt;
+    &lt;div class="card-header"&gt;
+      &lt;h3 class="card-title"&gt;
+        &lt;i class="fas fa-plus"&gt;&lt;/i&gt;
+        {{title}}
+      &lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="card-body"&gt;
+      {% csrf_token %}
+      &lt;input type="hidden" name="action" value="{{action}}" /&gt;
+      {% if form.errors %}
+      &lt;div class="alert alert-danger alert-dismissible"&gt;
+        &lt;button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-hidden="true"
+        &gt;
+          ×
+        &lt;/button&gt;
+        &lt;h5&gt;
+          &lt;i class="icon fas fa-ban"&gt;&lt;/i&gt; Ha ocurrido un error al querer guardar
+          el registro
+        &lt;/h5&gt;
+        &lt;ul&gt;
+          {% for field in form %} 
+            {% for error in field.errors %}
+              &lt;li&gt;{{error}}&lt;/li&gt;
+            {% endfor %} 
+          {% endfor %}
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      {% endif %}
+      
+      &lt;div class="alert alert-danger alert-dismissible"&gt;
+                  &lt;h5&gt;&lt;i class="icon fas fa-ban"&gt;&lt;/i&gt; ¡Notificación!&lt;/h5&gt;
+                  ¿Estas seguro de eliminar el registro Nro {{object.id}}?
+                &lt;/div&gt;
+      &lt;div class="cad-footer"&gt;
+        &lt;button type="submit" class="btn btn-primary" id="btnTest"&gt;
+          &lt;i class="fas fa-save"&gt;&lt;/i&gt;
+          Si, aceptar
+        &lt;/button&gt;
+        &lt;a href="{{list_url}}" type="submit" class="btn btn-info" id="btnTest"&gt;
+          &lt;i class="fas fa-times"&gt;&lt;/i&gt;
+          Cancelar
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+{% endblock content %}
+</code></pre>
+          <button onclick="copiar('b46','128')" id="128">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            En la variable <b>object</b> esta el registro, asi accedo a su id o
+            nombre tambien
+          </li>
+          <li>
+            Ya esperar que pasa en los siguientes videos para mejorar este
+            template y como se utilizara con ajax
+          </li>
+        </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+    <details>
+      <summary class="videos-titulo" id="video-32">
         <h2>
-          <i>Video 31</i>
+          <i>Video 32</i>
         </h2>
       </summary>
       <div class="flecha-arriba">
