@@ -128,7 +128,12 @@
                 Parte III</a
               >
             </li>
-            <li><a href="#video-29">Video 29</a></li>
+            <li>
+              <a href="#video-29"
+                >Video 29: CreateView | Implementando ajax para el envío de
+                datos</a
+              >
+            </li>
             <li><a href="#video-30">Video 30</a></li>
             <li><a href="#video-31">Video 31</a></li>
             <li><a href="#video-32">Video 32</a></li>
@@ -2400,6 +2405,7 @@ from .models import Category
         /></a>
       </div>
     </details>
+
     <details>
       <summary class="videos-titulo" id="video-27">
         <h2>
@@ -2566,6 +2572,7 @@ from .models import Category
         /></a>
       </div>
     </details>
+
     <details>
       <summary class="videos-titulo" id="video-28">
         <h2>
@@ -2715,10 +2722,235 @@ def post(self,request,*args,**kwargs):
         /></a>
       </div>
     </details>
+
     <details>
       <summary class="videos-titulo" id="video-29">
         <h2>
-          <i>Video 29</i>
+          <i>Video 29</i>: CreateView | Implementando ajax para el envío de
+          datos
+        </h2>
+      </summary>
+      <ul>
+        <li>
+          En el bloque script de mi <b>form.html</b> creo una funcion para
+          capturar el evento del submit del formulario y asi obtener los datos
+          de formulario
+        </li>
+        <div class="codigo">
+          <pre><code id="b31">$('form').on('submit', function (e){
+  e.preventDefault();
+  var parameters = $(this).serializeArray();
+  console.log(parameters);
+      $.ajax({
+            url:'{% url 'erp:category_create' %}',
+            type: 'POST',
+            data: parameters,
+            dataType: 'json'
+        }).done(function (data) {
+            if(!data.hasOwnProperty('error')){
+            location.href = '{{list_url}}'
+            return false;
+    }
+        }).fail(function (jqXHR,textStatus,errorThrown){
+  
+        }).always(function () {
+        })
+    })
+
+          </code></pre>
+          <button onclick="copiar('b31','113')" id="113">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            en el <b>$('form')</b> hago referencia al formulario que este en la
+            pagina
+          </li>
+          <li>
+            en el <b>e.preventDefault()</b> hago que no se envien los datos, ya
+            que lo hare con ajax
+          </li>
+          <li>
+            En la variable <b>parameters</b> pongo los datos de mi formulario en
+            un diccionario, <b>this</b> hace referencia al objeto actual, que en
+            este caso es el formulario y con la funcion
+            <b>serializeArray</b> obtengo los valores y los convierto en
+            diccionario
+          </li>
+          <li>
+            creo el ajax para la peticion, en <b>data</b> le paso el diccionario
+          </li>
+          <li>
+            En el if verifico si el diccionario que me retorna la petición post
+            no tiene un valor llamado error, si no lo tiene, lo redirecciono a
+            la vista del listado y el <b>return false</b> es para que salga de
+            esa ejecución
+          </li>
+        </ul>
+        <li>
+          Modifico el metodo <b>save</b> de mi clase <b>CategoryForm</b> en mi
+          archivo form.py, para validar el formulario desde ahi
+        </li>
+        <div class="codigo">
+          <pre><code id="b32">def save(self,commit=True):
+    data = {}
+    form = super()
+    try:
+        if form.is_valid():
+            form.save()
+        else:
+            data['error']=form.errors
+    except Exception as e:
+        data['errors']=str(e)
+    return data
+          </code></pre>
+          <button onclick="copiar('b32','114')" id="114">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            creo el data vacio, con la funcion <b>super()</b> obtengo el
+            formulario
+          </li>
+          <li>
+            en un try meto la validacion, si tiene errores los meto en una clave
+            <b>error</b> en el diccionario del data, sea un error del
+            diccionario o algun otro que atrape el try catch, sino, se guardan
+            los valores, y al final retorno el data
+          </li>
+        </ul>
+        <li>Modifico el metodo post de mi vista <b>CategoryCreateView</b></li>
+        <div class="codigo">
+          <pre><code id="b33">def post(self, request,*args, **kwargs):
+    data = {}
+    try:
+      action=request.POST['action']
+      if action=='add':
+        form=self.get_form()
+        data = form.save()
+      else:
+        data['error']='No ha ingresado a ninguna opción'
+    except Exception as e:
+       data['error']=str(e)
+       
+    return JsonResponse(data)</code></pre>
+          <button onclick="copiar('b33','115')" id="115">Copiar</button>
+        </div>
+        <ul>
+          <li>creo el diccionario data</li>
+          <li>
+            dentro de un try meto la ejecucion para capturar cualquier error
+          </li>
+          <li>
+            recupero el valor del input action,el cual lo agregare más adelante,
+            y pregunto si tiene el valor <b>add</b>
+          </li>
+          <li>
+            si tiene el valor add, obtengo el formulario, podria hacerlo asi
+            <b>form=CategoryForm(request.POST)</b>, pero si fuera un formulario
+            con archivos, eso van en el <b>request.FILES</b> pero con el
+            <b>self.get_form()</b> obtengo el formulario y todos los datos
+          </li>
+          <li>
+            como modifique el <b>save()</b> para que haga la verificacion, nomas
+            lo ejecuto y guardo en el data para capturar si esta vacio o con
+            errores y ya retorno la respuesta Json
+          </li>
+        </ul>
+        <li>
+          Dentro del formulario agrego un input escondido con un valor que sera
+          el del action para saber que acción va a realizar, en este caso, de
+          agregar una categoria
+        </li>
+        <div class="codigo">
+          <pre><code id="b34">&lt;input type="hidden" name="action" value="{{action}}"&gt;
+</code></pre>
+          <button onclick="copiar('b34','116')" id="116">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            la acción la obtengo de una variable que le pase en el
+            get_contex_data de mi CategoryCreateView para saber la accion
+            <b>context['action']='add'</b>
+          </li>
+        </ul>
+        <li>
+          Si llega a haber un error, puedo crear una función en un js en mi
+          carpeta static donde capture el error y cree una alerta para ello
+        </li>
+        <ul>
+          <li>
+            Primero, ya con la libreria de las alertas importada en home,
+            importamos tambien el archivo functions.js que pusimos en la carpeta
+            js de los static
+          </li>
+          <div class="codigo">
+            <pre><code id="b35">&lt;!--mis js--&gt;
+  &lt;script src="{% static 'js/functions.js' %}"&gt;&lt;/script&gt;</code></pre>
+            <button onclick="copiar('b35','117')" id="117">Copiar</button>
+          </div>
+          <li>
+            Ahi en ese archivo creamos una funcion para leer los errores que nos
+            retorna el post y ponerlos en una alerta, en la funcion comparamos
+            si llega como objeto, si llega asi, lo recorremos, de lo contrario
+            solo lo ponemosen una etiqueta p porque si no es objeto, es un
+            string
+          </li>
+          <div class="codigo">
+            <pre><code id="b36">function message_error(obj) {
+  var html = "";
+  if (typeof obj === "object") {
+    //si es un objeto, lo itero
+    html = '&lt;ul style="text-align: Left; "&gt;';
+    $.each(obj, function (key, value) {
+      html += "&lt;li&gt;" + key + ": " + value + "&lt;/li&gt;";
+    });
+    html += "&lt;/ul&gt;";
+  } else {
+    //sino, puede ser un string, solo se lo paso
+    html = "&lt;p&gt;" + obj + "&lt;/p&gt;";
+  }
+
+  Swal.fire({
+    title: "¡Error!",
+    html: html,
+    icon: "error",
+  });
+}
+</code></pre>
+            <button onclick="copiar('b36','118')" id="118">Copiar</button>
+          </div>
+          <li>
+            En el <b>Swal.fire</b> ya no le paso un "text", sino un "html"
+            porque construi uno para los errores
+          </li>
+          <li>
+            como los errores los estoy pasando por el data, ajax lo recibe por
+            el done, entones despues del if, ejecuto la funcion, porque si tiene
+            errores, no saldra de la pagina ejecutara esa alerta de error
+          </li>
+          <div class="codigo">
+            <pre><code id="b37">if(!data.hasOwnProperty('error')){
+location.href = '{{list_url}}'
+return false;
+    }
+    message_error(data.error);</code></pre>
+            <button onclick="copiar('b37','119')" id="119">Copiar</button>
+          </div>
+          <li>
+            En la funcion nomás le paso los erroes que vengan en el data y eso
+            generar la alerta de la libreria diciendole cual es el error
+          </li>
+        </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+    <details>
+      <summary class="videos-titulo" id="video-30">
+        <h2>
+          <i>Video 30</i>
         </h2>
       </summary>
       <div class="flecha-arriba">
