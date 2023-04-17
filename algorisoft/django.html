@@ -134,7 +134,11 @@
                 datos</a
               >
             </li>
-            <li><a href="#video-30">Video 30</a></li>
+            <li>
+              <a href="#video-30"
+                >Video 30: UpdateView | Editando un registro</a
+              >
+            </li>
             <li><a href="#video-31">Video 31</a></li>
             <li><a href="#video-32">Video 32</a></li>
             <li><a href="#video-33">Video 33</a></li>
@@ -2023,6 +2027,12 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
           en clases
         </h2>
       </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=tBPKpzQDXiU&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=22&pp=iAQB"
+        >Link del video 22</a
+      >
       <ul>
         <li>
           Con el metodo <b>dispatch</b> accedo al metodo del como se realizan
@@ -2063,6 +2073,12 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
           <i>Video 23</i>: Implementando decoradores | Vistas basadas en clases
         </h2>
       </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=1BwX5cAxSrc&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=23&pp=iAQB"
+        >Link del video 23</a
+      >
       <ul>
         <li>
           Los decoradores son funciónes que modifican otras funciónes,
@@ -2102,6 +2118,12 @@ from django.contrib.auth.decorators import login_required
           clases
         </h2>
       </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=yJMyXc2gaCo&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=24&pp=iAQB"
+        >Link del video 24</a
+      >
       <ul>
         <li>
           Este metodo envia una respuesta POST y por ejemplo hago un
@@ -2161,6 +2183,12 @@ from django.contrib.auth.decorators import login_required
       <summary class="videos-titulo" id="video-25">
         <h2><i>Video 25</i>: Ajax basico | post | vistas basadas en clases</h2>
       </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=GQmY_MFC2mE&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=25&pp=iAQB"
+        >Link del video 25</a
+      >
       <ul>
         <li>
           Pongo un id al boton que vaya a hacer la petición Ajax a mi url o
@@ -2271,6 +2299,12 @@ return JsonResponse(data)
           parte I
         </h2>
       </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=SocdFMxX7NA&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=26&pp=iAQB"
+        >Link del video 26</a
+      >
       <ul>
         <li>El CreateView es para manejar los formularios</li>
         <li>
@@ -2413,6 +2447,12 @@ from .models import Category
           parte II
         </h2>
       </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=FhcIuB_n1m8&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=27&pp=iAQB"
+        >Link del video 27</a
+      >
       <ul>
         <li>
           Para ejemplo, en el model <b>Category</b>, le agrego un campo para la
@@ -2580,6 +2620,12 @@ from .models import Category
           Parte III
         </h2>
       </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=w-f0yzfCLvo&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=28&pp=iAQB"
+        >Link del video 28</a
+      >
       <ul>
         <li>
           Modifico el post para ver como trabaja el post con los errores,
@@ -2730,6 +2776,12 @@ def post(self,request,*args,**kwargs):
           datos
         </h2>
       </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=4ZPE76U5EfQ&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=29&pp=iAQB"
+        >Link del video 29</a
+      >
       <ul>
         <li>
           En el bloque script de mi <b>form.html</b> creo una funcion para
@@ -2949,8 +3001,126 @@ return false;
     </details>
     <details>
       <summary class="videos-titulo" id="video-30">
+        <h2><i>Video 30</i>: UpdateView | Editando un registro</h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=_G6Puwr7b88&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=30&pp=iAQB"
+        >Link del video 30</a
+      >
+      <ul>
+        <li>Importamos la vista a trabajar</li>
+        <div class="codigo">
+          <pre><code id="b38">from django.views.generic import UpdateView</code></pre>
+          <button onclick="copiar('b38','120')" id="120">Copiar</button>
+        </div>
+        <li>Creamos la clase</li>
+        <div class="codigo">
+          <pre><code id="b39">class CategoryUpdateView(UpdateView):
+  model = Category
+  form_class = CategoryForm
+  template_name = 'category/create.html'
+  success_url = reverse_lazy('erp:category_list')
+
+  def dispatch(self, request, *args, **kwargs):
+    self.object = self.get_object()
+    return super().dispatch(request, *args, **kwargs)
+
+  def post(self, request,*args, **kwargs):
+    data = {}
+    try:
+      action=request.POST['action']
+      if action=='edit':
+        form=self.get_form()
+        data = form.save()
+      else:
+        data['error']='No ha ingresado a ninguna opción'
+    except Exception as e:
+       data['error']=str(e)
+       
+    return JsonResponse(data)
+
+  def get_context_data(self, **kwargs):
+     context = super().get_context_data(**kwargs)
+     context['title']='Edición de una categoria'
+     context['entity']='Categorias'
+     context['list_url']=reverse_lazy('erp:category_list')
+     context['action']='edit'
+     return context</code></pre>
+          <button onclick="copiar('b39','121')" id="121">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            los atributos son iguales al <b>CategoryCreateView</b>, porque vamos
+            a utilizar el mismo template de <b>create.html</b> para probar
+          </li>
+          <li>
+            el <b>get_context_data</b> es el mismo, solo cambia el action por
+            edit
+          </li>
+          <li>
+            Si las funciones post, el <b>dispatch</b>, el save del formulario y
+            el ajax del form lo comentamos y probamos (ahora despues de
+            configurar las <b>urls.py</b>), actualiza normalmente, pero si
+            queremos utilizar ajax para utilizar las alertas dejamos esos
+            metodos
+          </li>
+          <li>
+            En el <b>dispatch</b> del <b>CategoryUpdateView</b>, debemos pasarle
+            el objeto a modificar en el <b>self.object</b>, con la funcion
+            <b>get_object()</b>
+          </li>
+          <li>
+            en el post, ponemos lo mismo que en el <b>CategoryCreateView</b>,
+            solo cambiamos el action, de add a edit en la verificación. Si no
+            hubieramos hecho la modificación en el dispatch, al intentar
+            actualizar lanzaria un error, porque estariamos intentando crear un
+            objeto en vez de actualizarlo, porque encontraria el self.object
+            como None
+          </li>
+          <li>
+            Con el get_object() obtengo el objeto a modificar, y asi el get_form
+            ya no seria un tipo <b>CategoryForm(request.POST)</b> sino que crea
+            la instancia y deja actualizar
+            <b>CategoryForm(request.POST,instance=self.object)</b>, esto puedo
+            verlo en la documentacion
+          </li>
+        </ul>
+        <li>
+          En el <b>create.html</b>, en la url del ajax, utilizamos
+          <b>window.location.pathname</b> para capturar la ruta actual, la cual
+          es donde voy a enviar la petición
+        </li>
+        <li>
+          Agregamos la url de la vista <b>CategoryCreateView</b>, si o si debe
+          recibir el pk por la url
+        </li>
+        <div class="codigo">
+          <pre><code id="b40">path('category/edit/&lt;int:pk&gt;/',CategoryUpdateView.as_view(),name='category_update')</code></pre>
+          <button onclick="copiar('b40','122')" id="122">Copiar</button>
+        </div>
+        <li>
+          En la lista, pongo como url al boton de editar para editar cada
+          elemento, pasandole el respectivo parametro, el id del registro
+        </li>
+        <div class="codigo">
+          <pre><code id="b41">&lt;a href="{% url 'erp:category_update' c.id %}" class="btn btn-warning btn-xs"&gt;
+      &lt;i class="fas fa-edit"&gt;&lt;/i&gt;
+    &lt;/a&gt;</code></pre>
+          <button onclick="copiar('b41','123')" id="123">Copiar</button>
+        </div>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+    <details>
+      <summary class="videos-titulo" id="video-31">
         <h2>
-          <i>Video 30</i>
+          <i>Video 31</i>
         </h2>
       </summary>
       <div class="flecha-arriba">
