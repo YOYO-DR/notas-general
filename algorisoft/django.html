@@ -144,7 +144,7 @@
                 >Video 31: DeleteView | Eliminando un registro</a
               >
             </li>
-            <li><a href="#video-32">Video 32</a></li>
+            <li><a href="#video-32">Video 32: DeleteView | Implementando ajax para el eliminar un registro</a></li>
             <li><a href="#video-33">Video 33</a></li>
             <li><a href="#video-34">Videos 34</a></li>
             <li><a href="#video-35">Videos 35</a></li>
@@ -3263,7 +3263,95 @@ return false;
     <details>
       <summary class="videos-titulo" id="video-32">
         <h2>
-          <i>Video 32</i>
+          <i>Video 32</i>: DeleteView | Implementando ajax para el eliminar un registro
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=mKi-yPngFJE&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=32"
+        >Link del video 32</a
+      >
+      <ul>
+        <li>Como estoy utilizando el form para crear y editar, le cambio el icono dependiendo del <b>action</b> que le pase</li>
+        <div class="codigo">
+          <pre><code id="b47">&lt;h3 class="card-title"&gt;
+  {% if action == 'add' %}
+    &lt;i class="fas fa-plus"&gt;&lt;/i&gt;
+  {% else %}
+    &lt;i class="fas fa-edit"&gt;&lt;/i&gt;
+  {% endif %}
+  {{title}}
+&lt;/h3&gt;</code></pre><button onclick="copiar('b47','129')" id="129">Copiar</button>
+    </div>
+    <ul><li>Asi quedaria el <b>h3</b>, en el if, me da un error si lo hago asi <b>action=='add'</b>, debe tener sus espacion, <b>action == 'add'</b></li></ul>
+    <li>Al <b>delete.html</b> le modifico el icono por uno de basura, quedaria asi</li>
+    <div class="codigo">
+      <pre><code id="b48">&lt;h3 class="card-title"&gt;
+        &lt;i class="fas fa-trash"&gt;&lt;/i&gt;
+        {{title}}
+      &lt;/h3&gt;
+</code></pre>
+      <button onclick="copiar('b48','130')" id="130">Copiar</button>
+        </div>
+        <li>Copio el ajax que realice en el <b>form.html</b>, porque lo utilizaria de la misma forma</li>
+      <div class="codigo">
+        <pre><code id="b49">$('form').on('submit', function (e){
+      e.preventDefault();
+      var parameters = $(this).serializeArray();
+      $.ajax({
+            url:window.location.pathname,
+            type: 'POST',
+            data: parameters,
+            dataType: 'json'
+        }).done(function (data) { 
+    if(!data.hasOwnProperty('error')){
+location.href = '{{list_url}}'
+return false;
+    }
+    message_error(data.error);
+        }).fail(function (jqXHR,textStatus,errorThrown){
+  alert(`${textStatus} : ${errorThrown}`)
+        }).always(function () {
+        })
+    })
+</code></pre><button onclick="copiar('b49','131')" id="131">Copiar</button>
+      </div>
+      <ul><li>tiene la misma forma, la diferencia es que no tendria campos de formulario, solo la confirmación, pero ahi se envia el <b>csfr_token</b> para la seguridad, pero si quiero, no le envio parametros, pero tendria que en el <b>dispatch</b> debo poner el decorador <b>csfr_exempt</b> para que no necesite enviarle parametros</li></ul>
+      <li>Modificamos el <b>dispatch</b> porque necesitamos la instancia del objeto/registro a borrar y debemos ponerlo en el dispatch para que ahora que modifiquemos el post tenga esa instancia del objeto y poder borrarlo</li>
+      <div class="codigo">
+        <pre><code id="b50">def dispatch(self,request, *args, **kwargs):
+    self.object = self.get_object()
+    return super().dispatch(request, *args, **kwargs)
+        </code></pre><button onclick="copiar('b50','132')" id="132">Copiar</button>
+      </div>
+      <ul><li>Cuando sobre escribo el <b>post</b>, el <b>self.object</b> que tiene la instacia, queda vacio, asi que modifico el dispatch para capturar la instacia</li></ul>
+      <li>Ahora modificamos el post para eliminar el objeto o retornar los errores</li>
+      <div class="codigo">
+        <pre><code id="b51">def post(self, request, *args, **kwargs):
+    data = {}
+    try:
+      self.object.delete()
+    except Exception as e:
+      data['error']=str(e)
+    return JsonResponse(data)
+</code></pre><button onclick="copiar('b51','133')" id="133">Copiar</button>
+      </div>
+      <ul>
+        <li>ya como tengo la instancia (gracias al distpach), osea el <b>CategoryForm(request, instance=self.object)</b>, ya puedo aplicar su funcion <b>.delete()</b> y retorno la respuesta json</li>
+      </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-33">
+        <h2>
+          <i>Video 33</i>
         </h2>
       </summary>
       <div class="flecha-arriba">
