@@ -626,7 +626,7 @@ date_joined = models.DateField(default=datetime.now, verbose_name='Fecha')</code
       >
       <h3>Relacionar tablas</h3>
       <ul>
-        <li>Creo las tablas a relacionar (1 a 1)</li>
+        <li>Creo las tablas a relacionar (1 a muchos)</li>
         <div class="codigo">
           <pre><code id="type-rela-1a1">class Type(models.Model):
   name=models.CharField(max_length=150,verbose_name='Nombre')
@@ -691,7 +691,7 @@ date_joined = models.DateField(default=datetime.now, verbose_name='Fecha')</code
         </div>
         <li>
           Puedo poner el atributo <b>models.ManyToManyField</b> en cualquier de
-          las 2 tablas a relacionar, lo ppndre en el <b>Empleado</b>
+          las 2 tablas a relacionar, lo pondre en el <b>Empleado</b>
         </li>
         <div class="codigo">
           <pre><code id="class-emple-many">class Empleado(models.Model):
@@ -707,6 +707,7 @@ date_joined = models.DateField(default=datetime.now, verbose_name='Fecha')</code
           crear una clase para esa relacion, llamando cada clase con una llave
           foranea
         </li>
+        <li>Si quiero una relación de uno a uno (1 a 1), utilizo el <b>models.OneToOneField</b> lo pongo en la clase que necesite y no olvidar poner el <b>on_delete</b></li>
         <li>
           <b>NOTA:</b> Después de hacer un cambio en las clases/tablas siempre
           hacer los <b>makemigrations</b> y el <b>migrate</b> con
