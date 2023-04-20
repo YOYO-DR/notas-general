@@ -156,8 +156,14 @@
                 datatable</a
               >
             </li>
-            <li><a href="#video-34">Videos 34: Puliendo nuestro proyecto</a></li>
-            <li><a href="#video-35">Videos 35</a></li>
+            <li>
+              <a href="#video-34">Videos 34: Puliendo nuestro proyecto</a>
+            </li>
+            <li>
+              <a href="#video-35"
+                >Videos 35: TemplateView | Creando nuestro index</a
+              >
+            </li>
             <li><a href="#video-36">Videos 36</a></li>
             <li><a href="#video-37">Videos 37</a></li>
             <li><a href="#video-38">Videos 38</a></li>
@@ -3427,16 +3433,25 @@ return false;
         >Link del video 33</a
       >
       <ul>
-        <li>Primero eliminamos todo de la tabla <b>erp_category</b>, en este caso yo utilizo mysql y es de la siguiente manera</li>
+        <li>
+          Primero eliminamos todo de la tabla <b>erp_category</b>, en este caso
+          yo utilizo mysql y es de la siguiente manera
+        </li>
         <div class="codigo">
           <pre><code id="bb">DELETE FROM erp_category;
 ALTER TABLE erp_category AUTO_INCREMENT=1;
-</code></pre><button onclick="copiar('bb','b136')" id="b136">Copiar</button>
+</code></pre>
+          <button onclick="copiar('bb','b136')" id="b136">Copiar</button>
         </div>
         <ul>
-          <li>El alter table es para reiniciar el conteo a 1 con el auto_increment</li>
+          <li>
+            El alter table es para reiniciar el conteo a 1 con el auto_increment
+          </li>
         </ul>
-        <li>Con este codigo podemos generar esos 6000 registros sin que se repitan, lo ejecutamos en <b>test.py</b></li>
+        <li>
+          Con este codigo podemos generar esos 6000 registros sin que se
+          repitan, lo ejecutamos en <b>test.py</b>
+        </li>
         <div class="codigo">
           <pre><code id="z999">import random
 
@@ -3450,7 +3465,8 @@ for i in range(1,6000):
     while Category.objects.filter(name=name).exists():
         name = ''.join(random.choices(letters,k=5))
     Category(name=name).save()
-    print(f'Guardado registro {i}')</code></pre><button onclick="copiar('z999','z998')" id="z998">Copiar</button>
+    print(f'Guardado registro {i}')</code></pre>
+          <button onclick="copiar('z999','z998')" id="z998">Copiar</button>
         </div>
         <li>
           En el list.html de category, le comentamos el for porque ya vamos a
@@ -3659,9 +3675,7 @@ except Exception as e:
 
     <details>
       <summary class="videos-titulo" id="video-34">
-        <h2>
-          <i>Video 34</i>: Puliendo nuestro proyecto
-        </h2>
+        <h2><i>Video 34</i>: Puliendo nuestro proyecto</h2>
       </summary>
       <a
         target="_blank"
@@ -3670,14 +3684,34 @@ except Exception as e:
         >Link del video 34</a
       >
       <ul>
-        <li>En este video, el profe modifica algunos archivos para continuar con el proyecto, solo seria descargarlo y poner los cambios realizados y continuar</li>
+        <li>
+          En este video, el profe modifica algunos archivos para continuar con
+          el proyecto, solo seria descargarlo y poner los cambios realizados y
+          continuar
+        </li>
         <li><b>Cambios realizados:</b></li>
         <ul>
           <li>En el <b>settings.py</b> va a utilizar sqlite3</li>
-          <li>En la vistas de category quita la vista basada en clases y quita las importaciones que no se estan utilizando, yo comente todo lo que se iba a quitar</li>
-          <li>En las url quita la ruta de la vista basada en función que también la comenté</li>
-          <li>En los template los reorganiza, ahi si copie y peqgue porque cambio unas cosas del header, pero como tengo mi carpeta static diferente un poco las rutas, copie, pegué pero revise los llamados a los archivos estaticos para ver que se llamaran correctamente</li>
-          <li>Y creo un archivo <b>layout.html</b> para cambiar de vista rapidamente, la cual ya van a heredar form.html, list.html y delete.html</li>
+          <li>
+            En la vistas de category quita la vista basada en clases y quita las
+            importaciones que no se estan utilizando, yo comente todo lo que se
+            iba a quitar
+          </li>
+          <li>
+            En las url quita la ruta de la vista basada en función que también
+            la comenté
+          </li>
+          <li>
+            En los template los reorganiza, ahi si copie y peqgue porque cambio
+            unas cosas del header, pero como tengo mi carpeta static diferente
+            un poco las rutas, copie, pegué pero revise los llamados a los
+            archivos estaticos para ver que se llamaran correctamente
+          </li>
+          <li>
+            Y creo un archivo <b>layout.html</b> para cambiar de vista
+            rapidamente, la cual ya van a heredar form.html, list.html y
+            delete.html
+          </li>
         </ul>
       </ul>
       <div class="flecha-arriba">
@@ -3688,9 +3722,764 @@ except Exception as e:
     </details>
 
     <details>
-      <summary class="videos-titulo" id="video-34">
+      <summary class="videos-titulo" id="video-35">
+        <h2><i>Video 35</i>: TemplateView | Creando nuestro index</h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=JoSj9QjTITI&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=35"
+        >Link del video 35</a
+      >
+      <ul>
+        <li>
+          Creamos una app dentro de core llamada <b>homepage</b> para la vista
+          principal del proyecto
+        </li>
+        <li>
+          la registramos en el <b>INSTALLED_APPS</b> del <b>setting.py</b> y
+          dentro de la app, en el archivo <b>apps.py</b> poner el
+          <b>'core.homepage'</b> para que no haya errores
+        </li>
+        <li>
+          En el archivo <b>views.py</b> creamos la vista principal, con una
+          vista generica basada en clase llamada <b>TemplateView</b>
+        </li>
+        <div class="codigo">
+          <pre><code id="b55">from django.views.generic import TemplateView
+
+class IndexView(TemplateView):
+    template_name = 'index.html'</code></pre>
+          <button onclick="copiar('b55','137')" id="137">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            Le pasamos el <b>template_name</b> el cual estara en la carpeta
+            templates de la app (borramos el index.html que esta en el proyecto
+            principal porque no se esta utilizando)
+          </li>
+        </ul>
+        <li>
+          En el archivo <b>urls.py</b> del proyecto, importo las vistas de mi
+          app <b>homepage</b> y agrego la vista a la ruta principal, no creo el
+          urls.py dentro de la app porque solo es para la vista principal
+        </li>
+        <div class="codigo">
+          <pre><code id="b56">from django.contrib import admin
+from django.urls import path,include
+from core.homepage.views import IndexView
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('erp/',include('core.erp.urls')),
+    path('',IndexView.as_view())
+]</code></pre>
+          <button onclick="copiar('b56','138')" id="138">Copiar</button>
+        </div>
+        <li>
+          Vamos a descargar una plantilla de la pagina <b>BootstrapMade</b> para
+          utilizarla en el proyecto, la plantilla es
+          <b
+            ><a
+              target="_blank"
+              href="https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/"
+              >esta</a
+            ></b
+          >
+        </li>
+        <li>Se descarga el comprimido y se descomprime</li>
+        <li>
+          Copiamos todo el codigo del <b>index.html</b> de la plantilla lo
+          pegamos en el index.html de nuestra app
+        </li>
+        <li>Creamos una carpeta <b>static</b> en nuestra app</li>
+        <li>copiamos la carpeta <b>assets</b> dentro de la carpeta</li>
+        <li>
+          a la plantilla para que utilice sus archivos necesarios, toca cambiar
+          las rutas las cuales llama a los archivos que necesita (scr y href)
+          con la sintaxis <b>{% static '' %}</b>, es algo tedioso pero toca,
+          solo cortamos la ruta que esta utilizamos y pegamos en las comillas
+          del static
+        </li>
+        <div class="codigo codigo-largo">
+          <button onclick="copiar('b57','139')" id="139">Copiar</button>
+          <pre><code id="b57">{% load static %}
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta content="width=device-width, initial-scale=1.0" name="viewport"&gt;
+
+  &lt;title&gt;iPortfolio Bootstrap Template - Index&lt;/title&gt;
+  &lt;meta content="" name="description"&gt;
+  &lt;meta content="" name="keywords"&gt;
+
+  &lt;!-- Favicons --&gt;
+  &lt;link href="{% static 'assets/img/favicon.png' %}" rel="icon"&gt;
+  &lt;link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon"&gt;
+
+  &lt;!-- Google Fonts --&gt;
+  &lt;link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"&gt;
+
+  &lt;!-- Vendor CSS Files --&gt;
+  &lt;link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet"&gt;
+  &lt;link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"&gt;
+  &lt;link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet"&gt;
+  &lt;link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet"&gt;
+  &lt;link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet"&gt;
+  &lt;link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet"&gt;
+
+  &lt;!-- Template Main CSS File --&gt;
+  &lt;link href="{% static 'assets/css/style.css' %}" rel="stylesheet"&gt;
+
+  &lt;!-- =======================================================
+  * Template Name: iPortfolio
+  * Updated: Mar 10 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== --&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;!-- ======= Mobile nav toggle button ======= --&gt;
+  &lt;i class="bi bi-list mobile-nav-toggle d-xl-none"&gt;&lt;/i&gt;
+
+  &lt;!-- ======= Header ======= --&gt;
+  &lt;header id="header"&gt;
+    &lt;div class="d-flex flex-column"&gt;
+
+      &lt;div class="profile"&gt;
+        &lt;img src="{% static 'assets/img/profile-img.jpg' %}" alt="" class="img-fluid rounded-circle"&gt;
+        &lt;h1 class="text-light"&gt;&lt;a href="#"&gt;Alex Smith&lt;/a&gt;&lt;/h1&gt;
+        &lt;div class="social-links mt-3 text-center"&gt;
+          &lt;a href="#" class="twitter"&gt;&lt;i class="bx bxl-twitter"&gt;&lt;/i&gt;&lt;/a&gt;
+          &lt;a href="#" class="facebook"&gt;&lt;i class="bx bxl-facebook"&gt;&lt;/i&gt;&lt;/a&gt;
+          &lt;a href="#" class="instagram"&gt;&lt;i class="bx bxl-instagram"&gt;&lt;/i&gt;&lt;/a&gt;
+          &lt;a href="#" class="google-plus"&gt;&lt;i class="bx bxl-skype"&gt;&lt;/i&gt;&lt;/a&gt;
+          &lt;a href="#" class="linkedin"&gt;&lt;i class="bx bxl-linkedin"&gt;&lt;/i&gt;&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;nav id="navbar" class="nav-menu navbar"&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="#hero" class="nav-link scrollto active"&gt;&lt;i class="bx bx-home"&gt;&lt;/i&gt; &lt;span&gt;Home&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#about" class="nav-link scrollto"&gt;&lt;i class="bx bx-user"&gt;&lt;/i&gt; &lt;span&gt;About&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#resume" class="nav-link scrollto"&gt;&lt;i class="bx bx-file-blank"&gt;&lt;/i&gt; &lt;span&gt;Resume&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#portfolio" class="nav-link scrollto"&gt;&lt;i class="bx bx-book-content"&gt;&lt;/i&gt; &lt;span&gt;Portfolio&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#services" class="nav-link scrollto"&gt;&lt;i class="bx bx-server"&gt;&lt;/i&gt; &lt;span&gt;Services&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#contact" class="nav-link scrollto"&gt;&lt;i class="bx bx-envelope"&gt;&lt;/i&gt; &lt;span&gt;Contact&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;&lt;!-- .nav-menu --&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;&lt;!-- End Header --&gt;
+
+  &lt;!-- ======= Hero Section ======= --&gt;
+  &lt;section id="hero" class="d-flex flex-column justify-content-center align-items-center"&gt;
+    &lt;div class="hero-container" data-aos="fade-in"&gt;
+      &lt;h1&gt;Alex Smith&lt;/h1&gt;
+      &lt;p&gt;I'm &lt;span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;&lt;!-- End Hero --&gt;
+
+  &lt;main id="main"&gt;
+
+    &lt;!-- ======= About Section ======= --&gt;
+    &lt;section id="about" class="about"&gt;
+      &lt;div class="container"&gt;
+
+        &lt;div class="section-title"&gt;
+          &lt;h2&gt;About&lt;/h2&gt;
+          &lt;p&gt;Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="row"&gt;
+          &lt;div class="col-lg-4" data-aos="fade-right"&gt;
+            &lt;img src="{% static 'assets/img/profile-img.jpg' %}" class="img-fluid" alt=""&gt;
+          &lt;/div&gt;
+          &lt;div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left"&gt;
+            &lt;h3&gt;UI/UX Designer &amp; Web Developer.&lt;/h3&gt;
+            &lt;p class="fst-italic"&gt;
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            &lt;/p&gt;
+            &lt;div class="row"&gt;
+              &lt;div class="col-lg-6"&gt;
+                &lt;ul&gt;
+                  &lt;li&gt;&lt;i class="bi bi-chevron-right"&gt;&lt;/i&gt; &lt;strong&gt;Birthday:&lt;/strong&gt; &lt;span&gt;1 May 1995&lt;/span&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;i class="bi bi-chevron-right"&gt;&lt;/i&gt; &lt;strong&gt;Website:&lt;/strong&gt; &lt;span&gt;www.example.com&lt;/span&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;i class="bi bi-chevron-right"&gt;&lt;/i&gt; &lt;strong&gt;Phone:&lt;/strong&gt; &lt;span&gt;+123 456 7890&lt;/span&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;i class="bi bi-chevron-right"&gt;&lt;/i&gt; &lt;strong&gt;City:&lt;/strong&gt; &lt;span&gt;New York, USA&lt;/span&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/div&gt;
+              &lt;div class="col-lg-6"&gt;
+                &lt;ul&gt;
+                  &lt;li&gt;&lt;i class="bi bi-chevron-right"&gt;&lt;/i&gt; &lt;strong&gt;Age:&lt;/strong&gt; &lt;span&gt;30&lt;/span&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;i class="bi bi-chevron-right"&gt;&lt;/i&gt; &lt;strong&gt;Degree:&lt;/strong&gt; &lt;span&gt;Master&lt;/span&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;i class="bi bi-chevron-right"&gt;&lt;/i&gt; &lt;strong&gt;PhEmailone:&lt;/strong&gt; &lt;span&gt;email@example.com&lt;/span&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;i class="bi bi-chevron-right"&gt;&lt;/i&gt; &lt;strong&gt;Freelance:&lt;/strong&gt; &lt;span&gt;Available&lt;/span&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p&gt;
+              Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
+              Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis culpa magni laudantium dolores.
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/section&gt;&lt;!-- End About Section --&gt;
+
+    &lt;!-- ======= Facts Section ======= --&gt;
+    &lt;section id="facts" class="facts"&gt;
+      &lt;div class="container"&gt;
+
+        &lt;div class="section-title"&gt;
+          &lt;h2&gt;Facts&lt;/h2&gt;
+          &lt;p&gt;Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="row no-gutters"&gt;
+
+          &lt;div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up"&gt;
+            &lt;div class="count-box"&gt;
+              &lt;i class="bi bi-emoji-smile"&gt;&lt;/i&gt;
+              &lt;span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"&gt;&lt;/span&gt;
+              &lt;p&gt;&lt;strong&gt;Happy Clients&lt;/strong&gt; consequuntur quae&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100"&gt;
+            &lt;div class="count-box"&gt;
+              &lt;i class="bi bi-journal-richtext"&gt;&lt;/i&gt;
+              &lt;span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"&gt;&lt;/span&gt;
+              &lt;p&gt;&lt;strong&gt;Projects&lt;/strong&gt; adipisci atque cum quia aut&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200"&gt;
+            &lt;div class="count-box"&gt;
+              &lt;i class="bi bi-headset"&gt;&lt;/i&gt;
+              &lt;span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"&gt;&lt;/span&gt;
+              &lt;p&gt;&lt;strong&gt;Hours Of Support&lt;/strong&gt; aut commodi quaerat&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300"&gt;
+            &lt;div class="count-box"&gt;
+              &lt;i class="bi bi-people"&gt;&lt;/i&gt;
+              &lt;span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"&gt;&lt;/span&gt;
+              &lt;p&gt;&lt;strong&gt;Hard Workers&lt;/strong&gt; rerum asperiores dolor&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/section&gt;&lt;!-- End Facts Section --&gt;
+
+    &lt;!-- ======= Skills Section ======= --&gt;
+    &lt;section id="skills" class="skills section-bg"&gt;
+      &lt;div class="container"&gt;
+
+        &lt;div class="section-title"&gt;
+          &lt;h2&gt;Skills&lt;/h2&gt;
+          &lt;p&gt;Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="row skills-content"&gt;
+
+          &lt;div class="col-lg-6" data-aos="fade-up"&gt;
+
+            &lt;div class="progress"&gt;
+              &lt;span class="skill"&gt;HTML &lt;i class="val"&gt;100%&lt;/i&gt;&lt;/span&gt;
+              &lt;div class="progress-bar-wrap"&gt;
+                &lt;div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="progress"&gt;
+              &lt;span class="skill"&gt;CSS &lt;i class="val"&gt;90%&lt;/i&gt;&lt;/span&gt;
+              &lt;div class="progress-bar-wrap"&gt;
+                &lt;div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="progress"&gt;
+              &lt;span class="skill"&gt;JavaScript &lt;i class="val"&gt;75%&lt;/i&gt;&lt;/span&gt;
+              &lt;div class="progress-bar-wrap"&gt;
+                &lt;div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-6" data-aos="fade-up" data-aos-delay="100"&gt;
+
+            &lt;div class="progress"&gt;
+              &lt;span class="skill"&gt;PHP &lt;i class="val"&gt;80%&lt;/i&gt;&lt;/span&gt;
+              &lt;div class="progress-bar-wrap"&gt;
+                &lt;div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="progress"&gt;
+              &lt;span class="skill"&gt;WordPress/CMS &lt;i class="val"&gt;90%&lt;/i&gt;&lt;/span&gt;
+              &lt;div class="progress-bar-wrap"&gt;
+                &lt;div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="progress"&gt;
+              &lt;span class="skill"&gt;Photoshop &lt;i class="val"&gt;55%&lt;/i&gt;&lt;/span&gt;
+              &lt;div class="progress-bar-wrap"&gt;
+                &lt;div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/section&gt;&lt;!-- End Skills Section --&gt;
+
+    &lt;!-- ======= Resume Section ======= --&gt;
+    &lt;section id="resume" class="resume"&gt;
+      &lt;div class="container"&gt;
+
+        &lt;div class="section-title"&gt;
+          &lt;h2&gt;Resume&lt;/h2&gt;
+          &lt;p&gt;Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="row"&gt;
+          &lt;div class="col-lg-6" data-aos="fade-up"&gt;
+            &lt;h3 class="resume-title"&gt;Sumary&lt;/h3&gt;
+            &lt;div class="resume-item pb-0"&gt;
+              &lt;h4&gt;Alex Smith&lt;/h4&gt;
+              &lt;p&gt;&lt;em&gt;Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.&lt;/em&gt;&lt;/p&gt;
+              &lt;ul&gt;
+                &lt;li&gt;Portland par 127,Orlando, FL&lt;/li&gt;
+                &lt;li&gt;(123) 456-7891&lt;/li&gt;
+                &lt;li&gt;alice.barkley@example.com&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/div&gt;
+
+            &lt;h3 class="resume-title"&gt;Education&lt;/h3&gt;
+            &lt;div class="resume-item"&gt;
+              &lt;h4&gt;Master of Fine Arts &amp; Graphic Design&lt;/h4&gt;
+              &lt;h5&gt;2015 - 2016&lt;/h5&gt;
+              &lt;p&gt;&lt;em&gt;Rochester Institute of Technology, Rochester, NY&lt;/em&gt;&lt;/p&gt;
+              &lt;p&gt;Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="resume-item"&gt;
+              &lt;h4&gt;Bachelor of Fine Arts &amp; Graphic Design&lt;/h4&gt;
+              &lt;h5&gt;2010 - 2014&lt;/h5&gt;
+              &lt;p&gt;&lt;em&gt;Rochester Institute of Technology, Rochester, NY&lt;/em&gt;&lt;/p&gt;
+              &lt;p&gt;Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="col-lg-6" data-aos="fade-up" data-aos-delay="100"&gt;
+            &lt;h3 class="resume-title"&gt;Professional Experience&lt;/h3&gt;
+            &lt;div class="resume-item"&gt;
+              &lt;h4&gt;Senior graphic design specialist&lt;/h4&gt;
+              &lt;h5&gt;2019 - Present&lt;/h5&gt;
+              &lt;p&gt;&lt;em&gt;Experion, New York, NY &lt;/em&gt;&lt;/p&gt;
+              &lt;ul&gt;
+                &lt;li&gt;Lead in the design, development, and implementation of the graphic, layout, and production communication materials&lt;/li&gt;
+                &lt;li&gt;Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. &lt;/li&gt;
+                &lt;li&gt;Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design&lt;/li&gt;
+                &lt;li&gt;Oversee the efficient use of production project budgets ranging from $2,000 - $25,000&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class="resume-item"&gt;
+              &lt;h4&gt;Graphic design specialist&lt;/h4&gt;
+              &lt;h5&gt;2017 - 2018&lt;/h5&gt;
+              &lt;p&gt;&lt;em&gt;Stepping Stone Advertising, New York, NY&lt;/em&gt;&lt;/p&gt;
+              &lt;ul&gt;
+                &lt;li&gt;Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).&lt;/li&gt;
+                &lt;li&gt;Managed up to 5 projects or tasks at a given time while under pressure&lt;/li&gt;
+                &lt;li&gt;Recommended and consulted with clients on the most appropriate graphic design&lt;/li&gt;
+                &lt;li&gt;Created 4+ design presentations and proposals a month for clients and account managers&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/section&gt;&lt;!-- End Resume Section --&gt;
+
+    &lt;!-- ======= Portfolio Section ======= --&gt;
+    &lt;section id="portfolio" class="portfolio section-bg"&gt;
+      &lt;div class="container"&gt;
+
+        &lt;div class="section-title"&gt;
+          &lt;h2&gt;Portfolio&lt;/h2&gt;
+          &lt;p&gt;Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="row" data-aos="fade-up"&gt;
+          &lt;div class="col-lg-12 d-flex justify-content-center"&gt;
+            &lt;ul id="portfolio-flters"&gt;
+              &lt;li data-filter="*" class="filter-active"&gt;All&lt;/li&gt;
+              &lt;li data-filter=".filter-app"&gt;App&lt;/li&gt;
+              &lt;li data-filter=".filter-card"&gt;Card&lt;/li&gt;
+              &lt;li data-filter=".filter-web"&gt;Web&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100"&gt;
+
+          &lt;div class="col-lg-4 col-md-6 portfolio-item filter-app"&gt;
+            &lt;div class="portfolio-wrap"&gt;
+              &lt;img src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" class="img-fluid" alt=""&gt;
+              &lt;div class="portfolio-links"&gt;
+                &lt;a href="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"&gt;&lt;i class="bx bx-plus"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href="portfolio-details.html" title="More Details"&gt;&lt;i class="bx bx-link"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-4 col-md-6 portfolio-item filter-web"&gt;
+            &lt;div class="portfolio-wrap"&gt;
+              &lt;img src="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" class="img-fluid" alt=""&gt;
+              &lt;div class="portfolio-links"&gt;
+                &lt;a href="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"&gt;&lt;i class="bx bx-plus"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href="portfolio-details.html" title="More Details"&gt;&lt;i class="bx bx-link"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-4 col-md-6 portfolio-item filter-app"&gt;
+            &lt;div class="portfolio-wrap"&gt;
+              &lt;img src="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" class="img-fluid" alt=""&gt;
+              &lt;div class="portfolio-links"&gt;
+                &lt;a href="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"&gt;&lt;i class="bx bx-plus"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href="portfolio-details.html" title="More Details"&gt;&lt;i class="bx bx-link"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-4 col-md-6 portfolio-item filter-card"&gt;
+            &lt;div class="portfolio-wrap"&gt;
+              &lt;img src="{% static 'assets/img/portfolio/portfolio-4.jpg' %}" class="img-fluid" alt=""&gt;
+              &lt;div class="portfolio-links"&gt;
+                &lt;a href="{% static 'assets/img/portfolio/portfolio-4.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"&gt;&lt;i class="bx bx-plus"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href="portfolio-details.html" title="More Details"&gt;&lt;i class="bx bx-link"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-4 col-md-6 portfolio-item filter-web"&gt;
+            &lt;div class="portfolio-wrap"&gt;
+              &lt;img src="{% static 'assets/img/portfolio/portfolio-5.jpg' %}" class="img-fluid" alt=""&gt;
+              &lt;div class="portfolio-links"&gt;
+                &lt;a href="{% static 'assets/img/portfolio/portfolio-5.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"&gt;&lt;i class="bx bx-plus"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href="portfolio-details.html" title="More Details"&gt;&lt;i class="bx bx-link"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-4 col-md-6 portfolio-item filter-app"&gt;
+            &lt;div class="portfolio-wrap"&gt;
+              &lt;img src="{% static 'assets/img/portfolio/portfolio-6.jpg' %}" class="img-fluid" alt=""&gt;
+              &lt;div class="portfolio-links"&gt;
+                &lt;a href="{% static 'assets/img/portfolio/portfolio-6.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"&gt;&lt;i class="bx bx-plus"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href="portfolio-details.html" title="More Details"&gt;&lt;i class="bx bx-link"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-4 col-md-6 portfolio-item filter-card"&gt;
+            &lt;div class="portfolio-wrap"&gt;
+              &lt;img src="{% static 'assets/img/portfolio/portfolio-7.jpg' %}" class="img-fluid" alt=""&gt;
+              &lt;div class="portfolio-links"&gt;
+                &lt;a href="{% static 'assets/img/portfolio/portfolio-7.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"&gt;&lt;i class="bx bx-plus"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href="portfolio-details.html" title="More Details"&gt;&lt;i class="bx bx-link"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-4 col-md-6 portfolio-item filter-card"&gt;
+            &lt;div class="portfolio-wrap"&gt;
+              &lt;img src="{% static 'assets/img/portfolio/portfolio-8.jpg' %}" class="img-fluid" alt=""&gt;
+              &lt;div class="portfolio-links"&gt;
+                &lt;a href="{% static 'assets/img/portfolio/portfolio-8.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"&gt;&lt;i class="bx bx-plus"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href="portfolio-details.html" title="More Details"&gt;&lt;i class="bx bx-link"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-4 col-md-6 portfolio-item filter-web"&gt;
+            &lt;div class="portfolio-wrap"&gt;
+              &lt;img src="{% static 'assets/img/portfolio/portfolio-9.jpg' %}" class="img-fluid" alt=""&gt;
+              &lt;div class="portfolio-links"&gt;
+                &lt;a href="{% static 'assets/img/portfolio/portfolio-9.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"&gt;&lt;i class="bx bx-plus"&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href="portfolio-details.html" title="More Details"&gt;&lt;i class="bx bx-link"&gt;&lt;/i&gt;&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/section&gt;&lt;!-- End Portfolio Section --&gt;
+
+    &lt;!-- ======= Services Section ======= --&gt;
+    &lt;section id="services" class="services"&gt;
+      &lt;div class="container"&gt;
+
+        &lt;div class="section-title"&gt;
+          &lt;h2&gt;Services&lt;/h2&gt;
+          &lt;p&gt;Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="row"&gt;
+          &lt;div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up"&gt;
+            &lt;div class="icon"&gt;&lt;i class="bi bi-briefcase"&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;h4 class="title"&gt;&lt;a href=""&gt;Lorem Ipsum&lt;/a&gt;&lt;/h4&gt;
+            &lt;p class="description"&gt;Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100"&gt;
+            &lt;div class="icon"&gt;&lt;i class="bi bi-card-checklist"&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;h4 class="title"&gt;&lt;a href=""&gt;Dolor Sitema&lt;/a&gt;&lt;/h4&gt;
+            &lt;p class="description"&gt;Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200"&gt;
+            &lt;div class="icon"&gt;&lt;i class="bi bi-bar-chart"&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;h4 class="title"&gt;&lt;a href=""&gt;Sed ut perspiciatis&lt;/a&gt;&lt;/h4&gt;
+            &lt;p class="description"&gt;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300"&gt;
+            &lt;div class="icon"&gt;&lt;i class="bi bi-binoculars"&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;h4 class="title"&gt;&lt;a href=""&gt;Magni Dolores&lt;/a&gt;&lt;/h4&gt;
+            &lt;p class="description"&gt;Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400"&gt;
+            &lt;div class="icon"&gt;&lt;i class="bi bi-brightness-high"&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;h4 class="title"&gt;&lt;a href=""&gt;Nemo Enim&lt;/a&gt;&lt;/h4&gt;
+            &lt;p class="description"&gt;At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500"&gt;
+            &lt;div class="icon"&gt;&lt;i class="bi bi-calendar4-week"&gt;&lt;/i&gt;&lt;/div&gt;
+            &lt;h4 class="title"&gt;&lt;a href=""&gt;Eiusmod Tempor&lt;/a&gt;&lt;/h4&gt;
+            &lt;p class="description"&gt;Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/section&gt;&lt;!-- End Services Section --&gt;
+
+    &lt;!-- ======= Testimonials Section ======= --&gt;
+    &lt;section id="testimonials" class="testimonials section-bg"&gt;
+      &lt;div class="container"&gt;
+
+        &lt;div class="section-title"&gt;
+          &lt;h2&gt;Testimonials&lt;/h2&gt;
+          &lt;p&gt;Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100"&gt;
+          &lt;div class="swiper-wrapper"&gt;
+
+            &lt;div class="swiper-slide"&gt;
+              &lt;div class="testimonial-item" data-aos="fade-up"&gt;
+                &lt;p&gt;
+                  &lt;i class="bx bxs-quote-alt-left quote-icon-left"&gt;&lt;/i&gt;
+                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  &lt;i class="bx bxs-quote-alt-right quote-icon-right"&gt;&lt;/i&gt;
+                &lt;/p&gt;
+                &lt;img src="{% static 'assets/img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt=""&gt;
+                &lt;h3&gt;Saul Goodman&lt;/h3&gt;
+                &lt;h4&gt;Ceo &amp; Founder&lt;/h4&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;&lt;!-- End testimonial item --&gt;
+
+            &lt;div class="swiper-slide"&gt;
+              &lt;div class="testimonial-item" data-aos="fade-up" data-aos-delay="100"&gt;
+                &lt;p&gt;
+                  &lt;i class="bx bxs-quote-alt-left quote-icon-left"&gt;&lt;/i&gt;
+                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                  &lt;i class="bx bxs-quote-alt-right quote-icon-right"&gt;&lt;/i&gt;
+                &lt;/p&gt;
+                &lt;img src="{% static 'assets/img/testimonials/testimonials-2.jpg' %}" class="testimonial-img" alt=""&gt;
+                &lt;h3&gt;Sara Wilsson&lt;/h3&gt;
+                &lt;h4&gt;Designer&lt;/h4&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;&lt;!-- End testimonial item --&gt;
+
+            &lt;div class="swiper-slide"&gt;
+              &lt;div class="testimonial-item" data-aos="fade-up" data-aos-delay="200"&gt;
+                &lt;p&gt;
+                  &lt;i class="bx bxs-quote-alt-left quote-icon-left"&gt;&lt;/i&gt;
+                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                  &lt;i class="bx bxs-quote-alt-right quote-icon-right"&gt;&lt;/i&gt;
+                &lt;/p&gt;
+                &lt;img src="{% static 'assets/img/testimonials/testimonials-3.jpg' %}" class="testimonial-img" alt=""&gt;
+                &lt;h3&gt;Jena Karlis&lt;/h3&gt;
+                &lt;h4&gt;Store Owner&lt;/h4&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;&lt;!-- End testimonial item --&gt;
+
+            &lt;div class="swiper-slide"&gt;
+              &lt;div class="testimonial-item" data-aos="fade-up" data-aos-delay="300"&gt;
+                &lt;p&gt;
+                  &lt;i class="bx bxs-quote-alt-left quote-icon-left"&gt;&lt;/i&gt;
+                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                  &lt;i class="bx bxs-quote-alt-right quote-icon-right"&gt;&lt;/i&gt;
+                &lt;/p&gt;
+                &lt;img src="{% static 'assets/img/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt=""&gt;
+                &lt;h3&gt;Matt Brandon&lt;/h3&gt;
+                &lt;h4&gt;Freelancer&lt;/h4&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;&lt;!-- End testimonial item --&gt;
+
+            &lt;div class="swiper-slide"&gt;
+              &lt;div class="testimonial-item" data-aos="fade-up" data-aos-delay="400"&gt;
+                &lt;p&gt;
+                  &lt;i class="bx bxs-quote-alt-left quote-icon-left"&gt;&lt;/i&gt;
+                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                  &lt;i class="bx bxs-quote-alt-right quote-icon-right"&gt;&lt;/i&gt;
+                &lt;/p&gt;
+                &lt;img src="{% static 'assets/img/testimonials/testimonials-5.jpg' %}" class="testimonial-img" alt=""&gt;
+                &lt;h3&gt;John Larson&lt;/h3&gt;
+                &lt;h4&gt;Entrepreneur&lt;/h4&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;&lt;!-- End testimonial item --&gt;
+
+          &lt;/div&gt;
+          &lt;div class="swiper-pagination"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/section&gt;&lt;!-- End Testimonials Section --&gt;
+
+    &lt;!-- ======= Contact Section ======= --&gt;
+    &lt;section id="contact" class="contact"&gt;
+      &lt;div class="container"&gt;
+
+        &lt;div class="section-title"&gt;
+          &lt;h2&gt;Contact&lt;/h2&gt;
+          &lt;p&gt;Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="row" data-aos="fade-in"&gt;
+
+          &lt;div class="col-lg-5 d-flex align-items-stretch"&gt;
+            &lt;div class="info"&gt;
+              &lt;div class="address"&gt;
+                &lt;i class="bi bi-geo-alt"&gt;&lt;/i&gt;
+                &lt;h4&gt;Location:&lt;/h4&gt;
+                &lt;p&gt;A108 Adam Street, New York, NY 535022&lt;/p&gt;
+              &lt;/div&gt;
+
+              &lt;div class="email"&gt;
+                &lt;i class="bi bi-envelope"&gt;&lt;/i&gt;
+                &lt;h4&gt;Email:&lt;/h4&gt;
+                &lt;p&gt;info@example.com&lt;/p&gt;
+              &lt;/div&gt;
+
+              &lt;div class="phone"&gt;
+                &lt;i class="bi bi-phone"&gt;&lt;/i&gt;
+                &lt;h4&gt;Call:&lt;/h4&gt;
+                &lt;p&gt;+1 5589 55488 55s&lt;/p&gt;
+              &lt;/div&gt;
+
+              &lt;iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen&gt;&lt;/iframe&gt;
+            &lt;/div&gt;
+
+          &lt;/div&gt;
+
+          &lt;div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"&gt;
+            &lt;form action="forms/contact.php" method="post" role="form" class="php-email-form"&gt;
+              &lt;div class="row"&gt;
+                &lt;div class="form-group col-md-6"&gt;
+                  &lt;label for="name"&gt;Your Name&lt;/label&gt;
+                  &lt;input type="text" name="name" class="form-control" id="name" required&gt;
+                &lt;/div&gt;
+                &lt;div class="form-group col-md-6"&gt;
+                  &lt;label for="name"&gt;Your Email&lt;/label&gt;
+                  &lt;input type="email" class="form-control" name="email" id="email" required&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="form-group"&gt;
+                &lt;label for="name"&gt;Subject&lt;/label&gt;
+                &lt;input type="text" class="form-control" name="subject" id="subject" required&gt;
+              &lt;/div&gt;
+              &lt;div class="form-group"&gt;
+                &lt;label for="name"&gt;Message&lt;/label&gt;
+                &lt;textarea class="form-control" name="message" rows="10" required&gt;&lt;/textarea&gt;
+              &lt;/div&gt;
+              &lt;div class="my-3"&gt;
+                &lt;div class="loading"&gt;Loading&lt;/div&gt;
+                &lt;div class="error-message"&gt;&lt;/div&gt;
+                &lt;div class="sent-message"&gt;Your message has been sent. Thank you!&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="text-center"&gt;&lt;button type="submit"&gt;Send Message&lt;/button&gt;&lt;/div&gt;
+            &lt;/form&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/section&gt;&lt;!-- End Contact Section --&gt;
+
+  &lt;/main&gt;&lt;!-- End #main --&gt;
+
+  &lt;!-- ======= Footer ======= --&gt;
+  &lt;footer id="footer"&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="copyright"&gt;
+        &copy; Copyright &lt;strong&gt;&lt;span&gt;iPortfolio&lt;/span&gt;&lt;/strong&gt;
+      &lt;/div&gt;
+      &lt;div class="credits"&gt;
+        &lt;!-- All the links in the footer should remain intact. --&gt;
+        &lt;!-- You can delete the links only if you purchased the pro version. --&gt;
+        &lt;!-- Licensing information: https://bootstrapmade.com/license/ --&gt;
+        &lt;!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ --&gt;
+        Designed by &lt;a href="https://bootstrapmade.com/"&gt;BootstrapMade&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;&lt;!-- End  Footer --&gt;
+
+  &lt;a href="#" class="back-to-top d-flex align-items-center justify-content-center"&gt;&lt;i class="bi bi-arrow-up-short"&gt;&lt;/i&gt;&lt;/a&gt;
+
+  &lt;!-- Vendor JS Files --&gt;
+  &lt;script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"&gt;&lt;/script&gt;
+  &lt;script src="{% static 'assets/vendor/aos/aos.js' %}"&gt;&lt;/script&gt;
+  &lt;script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"&gt;&lt;/script&gt;
+  &lt;script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"&gt;&lt;/script&gt;
+  &lt;script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"&gt;&lt;/script&gt;
+  &lt;script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"&gt;&lt;/script&gt;
+  &lt;script src="{% static 'assets/vendor/typed.js/typed.min.js' %}"&gt;&lt;/script&gt;
+  &lt;script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"&gt;&lt;/script&gt;
+  &lt;script src="{% static 'assets/vendor/php-email-form/validate.js' %}"&gt;&lt;/script&gt;
+
+  &lt;!-- Template Main JS File --&gt;
+  &lt;script src="{% static 'assets/js/main.js' %}"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+        </div>
+        <li>Ahi ya esta modificado, solo es copiar y pegar</li>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-36">
         <h2>
-          <i>Video 34</i>
+          <i>Video 36</i>
         </h2>
       </summary>
       <div class="flecha-arriba">
