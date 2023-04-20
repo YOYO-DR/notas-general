@@ -165,7 +165,7 @@
               >
             </li>
             <li><a href="#video-36">Videos 36: FormView | Vistas basadas en clases</a></li>
-            <li><a href="#video-37">Videos 37</a></li>
+            <li><a href="#video-37">Videos 37: LoginView | Vistas basadas en clases</a></li>
             <li><a href="#video-38">Videos 38</a></li>
             <li><a href="#video-39">Videos 39</a></li>
             <li><a href="#video-40">Videos 40</a></li>
@@ -3001,7 +3001,7 @@ def post(self,request,*args,**kwargs):
           </li>
           <li>
             como los errores los estoy pasando por el data, ajax lo recibe por
-            el done, entones despues del if, ejecuto la función, porque si tiene
+            el done, entones después del if, ejecuto la función, porque si tiene
             errores, no saldra de la página ejecutara esa alerta de error
           </li>
           <div class="codigo">
@@ -3087,7 +3087,7 @@ return false;
           </li>
           <li>
             Si las funciónes post, el <b>dispatch</b>, el save del formulario y
-            el ajax del form lo comentamos y probamos (ahora despues de
+            el ajax del form lo comentamos y probamos (ahora después de
             configurar las <b>urls.py</b>), actualiza normalmente, pero si
             queremos utilizar ajax para utilizar las alertas dejamos esos
             metodos
@@ -4586,7 +4586,106 @@ urlpatterns = [
     <details>
       <summary class="videos-titulo" id="video-37">
         <h2>
-          <i>Video 37</i>
+          <i>Video 37</i>: LoginView | Vistas basadas en clases
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=VTAHgAnKjeo&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=37"
+        >Link del video 37</a
+      >
+      <ul>
+        <li>Creamos una app llamada <b>login</b> dentro de la carpeta core, que será para el inicio de sesión, ponerla en el <b>INSTALLED_APPS</b> con su core. y en el archivo apps.py de la app también</li>
+        <li>como solo será para una vista, no creamos una subcarpeta para las vistas</li>
+        <li>Dentro de <b>views.py</b> importamos la vista de <b>LoginView</b> y la función <b>redirect</b></li>
+        <div class="codigo">
+          <pre><code id="b66">from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect</code></pre><button onclick="copiar('b66','148')" id="148">Copiar</button>
+        </div>
+        <li>creamos la clase <b>LoginFormView</b> que va a heredar de <b>LoginView</b></li>
+        <div class="codigo">
+          <pre><code id="b67">class LoginFormView(LoginView):
+  template_name = 'login.html'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['title'] = 'Iniciar sesión'
+    return context</code></pre><button onclick="copiar('b67','149')" id="149">Copiar</button>
+        </div>
+        <ul>
+          <li>No le ponemos el atributo <b>form_class</b> porque si inspeccionamos la vista <b>LoginView</b> ya tiene el formulario de autenticación <b>AuthenticationForm</b> la cual recibe el <b>username</b> y <b>password</b></li>
+          <li>el pasamos el template el cual crearemos dentro de la carpeta template de la app</li>
+          <li>Modificamos la función <b>get_context_data</b> para pasarle el <b>title</b></li>
+        </ul>
+        <li>Lo agregamos a las <b>urls.py</b> de la carpeta de configuraciónporque solo es una ruta, y es la de logueo</li>
+        <div class="codigo">
+          <pre><code id="b68">path('login/',LoginFormView.as_view(),name='login'),</code></pre><button onclick="copiar('b68','150')" id="150">Copiar</button>
+        </div>
+        <li>El <b>login.html</b> que creamos en la carpeta templates de la app, utilizamos una plantilla de la libreria <b>AdminLte</b> que el solo es copiar y pega el code del login y con los estaticos ponemos los archivos requeridos</li>
+        <li>dentro del <b>form</b> del <b>login.html</b> el action lo ponemos con un "." porque mandara los datos a la misma vista</li>
+        <li>le ponemos el csrf_token</li>
+        <li>ponemos los inputs username y password, ya que son solo 2 podemos hacerlo sin un form, cargamos tambien los widget_tweaks</li>
+        <div class="codigo">
+          <pre><code id="b69">{{form.username|add_class:'form-control'|attr:'placeholder:Ingrese su username'|attr:'autocomplete:off'}}</code></pre><button onclick="copiar('b69','151')" id="151">Copiar</button>
+        </div>
+        <br>
+        <div class="codigo">
+          <pre><code id="b70">{{form.password|add_class:'form-control'|attr:'placeholder:Ingrese su password'}}</code></pre><button onclick="copiar('b70','152')" id="152">Copiar</button>
+        </div>
+        <li>Agregamos el javascript para la verificación de errores, sean del formulario o otro error, podemos copiar el del form.py</li>
+        <div class="codigo">
+          <pre><code id="b71">&lt;script type="application/javascript"&gt;
+      //manejo de errores
+      {% if form.errors %}
+            let errors = '';
+            {% for field in form %}
+              {% for error in field.errors %}
+                errors += '{{error}}\n';
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+            errors += '{{error}}\n';
+            {% endfor %}
+          Swal.fire({
+            title:'!Error¡',
+            text:errors,
+            icon:'error'
+          })
+          {% endif %}
+    &lt;/script&gt;</code></pre><button onclick="copiar('b71','153')" id="153">Copiar</button>
+        </div>
+        <li>Ya si probamos, erroneamente nos manda la alerta, pero si iniciamos sesión nos manda a una ruta que no tenemos, tenemos que configurar la ruta para cuando se inicie sesión en el <b>settings.py</b> y le especificamos cual es la ruta para iniciar sesión</li>
+        <div class="codigo">
+          <pre><code id="b72">#login
+LOGIN_REDIRECT_URL = '/erp/category/list/'
+LOGIN_URL = '/login/'</code></pre><button onclick="copiar('b72','154')" id="154">Copiar</button>
+        </div>
+        <ul>
+          <li>en este caso, le decimo que después de iniciar sesión le muestre el listado de categorias</li>
+        </ul>
+        <li>Si iniciamos sesión e intentamos entrar de nuevo al login, nos deja entrar, pero no deberia porque ya iniciamos sesión, para esto modificamos el metodo <b>dispatch</b> de nuestra vista <b>LoginFormView</b> para verificar si esta autenticado</li>
+        <div class="codigo">
+          <pre><code id="b73">def dispatch(self, request, *args, **kwargs):
+    if request.user.is_authenticated:
+      return redirect('erp:category_list')
+    return super().dispatch(request, *args, **kwargs)</code></pre><button onclick="copiar('b73','155')" id="155">Copiar</button>
+        </div>
+        <ul>
+          <li>con el if verificamos si esta autenticado (is_authenticated tendra True o False), si lo esta, lo redireccionamos a la vista de las categorias, si no, lo dejamos entrar normal al login</li>
+        </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-38">
+        <h2>
+          <i>Video 38</i>
         </h2>
       </summary>
       <div class="flecha-arriba">
