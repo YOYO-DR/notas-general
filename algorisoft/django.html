@@ -144,8 +144,18 @@
                 >Video 31: DeleteView | Eliminando un registro</a
               >
             </li>
-            <li><a href="#video-32">Video 32: DeleteView | Implementando ajax para el eliminar un registro</a></li>
-            <li><a href="#video-33">Video 33</a></li>
+            <li>
+              <a href="#video-32"
+                >Video 32: DeleteView | Implementando ajax para el eliminar un
+                registro</a
+              >
+            </li>
+            <li>
+              <a href="#video-33"
+                >Video 33: ListView | Cargar datos en mi tabla con ajax y
+                datatable</a
+              >
+            </li>
             <li><a href="#video-34">Videos 34</a></li>
             <li><a href="#video-35">Videos 35</a></li>
             <li><a href="#video-36">Videos 36</a></li>
@@ -707,7 +717,11 @@ date_joined = models.DateField(default=datetime.now, verbose_name='Fecha')</code
           crear una clase para esa relacion, llamando cada clase con una llave
           foranea
         </li>
-        <li>Si quiero una relación de uno a uno (1 a 1), utilizo el <b>models.OneToOneField</b> lo pongo en la clase que necesite y no olvidar poner el <b>on_delete</b></li>
+        <li>
+          Si quiero una relación de uno a uno (1 a 1), utilizo el
+          <b>models.OneToOneField</b> lo pongo en la clase que necesite y no
+          olvidar poner el <b>on_delete</b>
+        </li>
         <li>
           <b>NOTA:</b> Después de hacer un cambio en las clases/tablas siempre
           hacer los <b>makemigrations</b> y el <b>migrate</b> con
@@ -1332,7 +1346,7 @@ urlpatterns = [
         <li>
           También se podia, importar las vistas con el <b>from</b>, y agregarlos
           al <b>path</b>, pero es mejor de la forma anterior para cuando estemos
-          trabajando con varias apps en nuestro proyecto y tener el codigo de la
+          trabajando con varias apps en nuestro proyecto y tener el código de la
           mejor forma
         </li>
       </ul>
@@ -1448,7 +1462,7 @@ def vista(request):
       >
       <ul>
         <li>
-          Gracias al <b>render</b>, puedo utilizar codigo python dentro del
+          Gracias al <b>render</b>, puedo utilizar código python dentro del
           <b>html</b>, utilizando los valores que le pase en la función
         </li>
         <li>
@@ -1532,7 +1546,7 @@ lineas
         <h2>Herencia</h2>
         <li>
           Podemos heredar estructuras completas de otro html con la siguiente
-          sintaxis, y de es forma no necesito repetir codigo, solo heredarlo
+          sintaxis, y de es forma no necesito repetir código, solo heredarlo
         </li>
         <div class="codigo">
           <pre><code id="extends-index">{% extends 'index.html' %}</code></pre>
@@ -1699,7 +1713,7 @@ lineas
             descargar las librerias y no utilizarlas de forma remota, para
             trabajar siempre con una version y no tener problemas si llega a
             haber una actualización en la libreria y tengamos problemas internos
-            en nuestro codigo
+            en nuestro código
           </li>
         </ul>
         <li>
@@ -1716,7 +1730,7 @@ src = "{% static 'media/video/hola.mp4' %}"</code></pre>
 
       <p class="nota">
         <b>NOTA:</b> Cuando los estilos de css no se apliquen, solo presionar
-        <b>Ctrl + F5</b> en el navegador para limpiar el cache de la pagina y
+        <b>Ctrl + F5</b> en el navegador para limpiar el cache de la página y
         recargar, asi se aplicaran los estilos puestos
       </p>
       <div class="flecha-arriba">
@@ -1753,7 +1767,7 @@ src = "{% static 'media/video/hola.mp4' %}"</code></pre>
         <li>
           Es bueno separa el nsv, footer, header, contenido, etc, en diferentes
           archivos html y simplementes importarlos a los otros documentos o
-          nuevas paginas para ahorrar codigo y no repetirlo
+          nuevas paginas para ahorrar código y no repetirlo
         </li>
         <li>Asi importo un html a otro html</li>
         <div class="codigo">
@@ -1761,7 +1775,7 @@ src = "{% static 'media/video/hola.mp4' %}"</code></pre>
         </div>
         <li>
           En el contenido utilizo los bloques para cambiarlo dependiendo de la
-          pagina o vista
+          página o vista
         </li>
         <li>
           Al separar el nsv, footer, header, contenido, etc, en diferentes
@@ -1979,7 +1993,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
         <li>
           En el <b>home.html</b> o donde este el &lt;head&gt;, creo un bloque
           para poder poner las librerias que vaya a utilizar en cada pagina, asi
-          no duplico codigo innecesario, e igualmente un bloque para los scripts
+          no duplico código innecesario, e igualmente un bloque para los scripts
           de js antes del cierre del <b>body</b>
         </li>
         <li>
@@ -2041,7 +2055,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
       <ul>
         <li>
           Con el metodo <b>dispatch</b> accedo al metodo del como se realizan
-          las peticiones (get, pos, pull, delete)
+          las peticiónes (get, pos, pull, delete)
         </li>
         <li>Estructura basica del dispatch</li>
         <div class="codigo">
@@ -2053,7 +2067,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
         <li>
           Preguntar que metodo del request se esta realizando, con ese if
           pregunto que metodo del request se esta realizando, y si es
-          <b>GET</b>, con esa función redirect envio la pagina a otra que yo
+          <b>GET</b>, con esa función redirect envio la página a otra que yo
           quiera, en este caso, a la vista 2 de la app erp, Después de la
           prueba, comentamos para seguir con el curso
         </li>
@@ -2517,7 +2531,7 @@ from .models import Category
           Puedo modificar la función <b>__init__</b> de mi clase de formulario
           (en este caso, <b>CategoryForm</b>) para modificar los atributos de
           mis <b>fields</b> por si todos o algunos atributos son iguales y no
-          repetir codigo en el atributo <b>widgets</b>
+          repetir código en el atributo <b>widgets</b>
         </li>
         <p class="nota">
           <b>Nota:</b>Fuera de la clase <b>Meta</b>, no dentro de ella
@@ -2605,7 +2619,7 @@ from .models import Category
             con el pleca ( | ) agrego los siguientes atributos que necesite, por
             ejemplo si quiero quitar el autocomplete que es uno de tipo
             booleano, le pongo el off, pero por ejemplo quiero poner uno
-            booleano, oase, activarlo, como se ve en el codigo, le pongo solo el
+            booleano, oase, activarlo, como se ve en el código, le pongo solo el
             nombre, y tambien como es otro atributo, eso significa otro
             <b>|attrs</b>
           </li>
@@ -2668,7 +2682,7 @@ def post(self,request,*args,**kwargs):
           </li>
           <li>
             creo la variable <b>context</b> la cual va a almacenar los valores
-            que mandare al html, con la funcion <b>get_context_data</b> traigo
+            que mandare al html, con la función <b>get_context_data</b> traigo
             el diccionariocon los datos que ya estan, y le agrego lo que le
             quiera manda, en este caso mi formulario
           </li>
@@ -2678,7 +2692,7 @@ def post(self,request,*args,**kwargs):
           y retornar el resultado
         </li>
         <li>
-          Pero simplemente sin modificar la funcion post, con
+          Pero simplemente sin modificar la función post, con
           <b>form.errors</b> en el html puedo verificar los errores que me
           devuelve mi formulario
         </li>
@@ -2748,7 +2762,7 @@ def post(self,request,*args,**kwargs):
         </div>
         <ul>
           <li>
-            abro el bloque, abro una etiqueta script para escribir el codigo js
+            abro el bloque, abro una etiqueta script para escribir el código js
           </li>
           <li>pregunto si hay errores en el form</li>
           <li>Si los hay, creo una variable para guardarlos</li>
@@ -2789,7 +2803,7 @@ def post(self,request,*args,**kwargs):
       >
       <ul>
         <li>
-          En el bloque script de mi <b>form.html</b> creo una funcion para
+          En el bloque script de mi <b>form.html</b> creo una función para
           capturar el evento del submit del formulario y asi obtener los datos
           de formulario
         </li>
@@ -2829,12 +2843,12 @@ def post(self,request,*args,**kwargs):
           <li>
             En la variable <b>parameters</b> pongo los datos de mi formulario en
             un diccionario, <b>this</b> hace referencia al objeto actual, que en
-            este caso es el formulario y con la funcion
+            este caso es el formulario y con la función
             <b>serializeArray</b> obtengo los valores y los convierto en
             diccionario
           </li>
           <li>
-            creo el ajax para la peticion, en <b>data</b> le paso el diccionario
+            creo el ajax para la petición, en <b>data</b> le paso el diccionario
           </li>
           <li>
             En el if verifico si el diccionario que me retorna la petición post
@@ -2864,7 +2878,7 @@ def post(self,request,*args,**kwargs):
         </div>
         <ul>
           <li>
-            creo el data vacio, con la funcion <b>super()</b> obtengo el
+            creo el data vacio, con la función <b>super()</b> obtengo el
             formulario
           </li>
           <li>
@@ -2925,7 +2939,7 @@ def post(self,request,*args,**kwargs):
         <ul>
           <li>
             la acción la obtengo de una variable que le pase en el
-            get_contex_data de mi CategoryCreateView para saber la accion
+            get_contex_data de mi CategoryCreateView para saber la acción
             <b>context['action']='add'</b>
           </li>
         </ul>
@@ -2945,8 +2959,8 @@ def post(self,request,*args,**kwargs):
             <button onclick="copiar('b35','117')" id="117">Copiar</button>
           </div>
           <li>
-            Ahi en ese archivo creamos una funcion para leer los errores que nos
-            retorna el post y ponerlos en una alerta, en la funcion comparamos
+            Ahi en ese archivo creamos una función para leer los errores que nos
+            retorna el post y ponerlos en una alerta, en la función comparamos
             si llega como objeto, si llega asi, lo recorremos, de lo contrario
             solo lo ponemosen una etiqueta p porque si no es objeto, es un
             string
@@ -2981,8 +2995,8 @@ def post(self,request,*args,**kwargs):
           </li>
           <li>
             como los errores los estoy pasando por el data, ajax lo recibe por
-            el done, entones despues del if, ejecuto la funcion, porque si tiene
-            errores, no saldra de la pagina ejecutara esa alerta de error
+            el done, entones despues del if, ejecuto la función, porque si tiene
+            errores, no saldra de la página ejecutara esa alerta de error
           </li>
           <div class="codigo">
             <pre><code id="b37">if(!data.hasOwnProperty('error')){
@@ -2993,7 +3007,7 @@ return false;
             <button onclick="copiar('b37','119')" id="119">Copiar</button>
           </div>
           <li>
-            En la funcion nomás le paso los erroes que vengan en el data y eso
+            En la función nomás le paso los erroes que vengan en el data y eso
             generar la alerta de la libreria diciendole cual es el error
           </li>
         </ul>
@@ -3004,6 +3018,7 @@ return false;
         /></a>
       </div>
     </details>
+
     <details>
       <summary class="videos-titulo" id="video-30">
         <h2><i>Video 30</i>: UpdateView | Editando un registro</h2>
@@ -3065,7 +3080,7 @@ return false;
             edit
           </li>
           <li>
-            Si las funciones post, el <b>dispatch</b>, el save del formulario y
+            Si las funciónes post, el <b>dispatch</b>, el save del formulario y
             el ajax del form lo comentamos y probamos (ahora despues de
             configurar las <b>urls.py</b>), actualiza normalmente, pero si
             queremos utilizar ajax para utilizar las alertas dejamos esos
@@ -3073,7 +3088,7 @@ return false;
           </li>
           <li>
             En el <b>dispatch</b> del <b>CategoryUpdateView</b>, debemos pasarle
-            el objeto a modificar en el <b>self.object</b>, con la funcion
+            el objeto a modificar en el <b>self.object</b>, con la función
             <b>get_object()</b>
           </li>
           <li>
@@ -3122,6 +3137,7 @@ return false;
         /></a>
       </div>
     </details>
+
     <details>
       <summary class="videos-titulo" id="video-31">
         <h2><i>Video 31</i>: DeleteView | Eliminando un registro</h2>
@@ -3261,10 +3277,12 @@ return false;
         /></a>
       </div>
     </details>
+
     <details>
       <summary class="videos-titulo" id="video-32">
         <h2>
-          <i>Video 32</i>: DeleteView | Implementando ajax para el eliminar un registro
+          <i>Video 32</i>: DeleteView | Implementando ajax para el eliminar un
+          registro
         </h2>
       </summary>
       <a
@@ -3274,7 +3292,10 @@ return false;
         >Link del video 32</a
       >
       <ul>
-        <li>Como estoy utilizando el form para crear y editar, le cambio el icono dependiendo del <b>action</b> que le pase</li>
+        <li>
+          Como estoy utilizando el form para crear y editar, le cambio el icono
+          dependiendo del <b>action</b> que le pase
+        </li>
         <div class="codigo">
           <pre><code id="b47">&lt;h3 class="card-title"&gt;
   {% if action == 'add' %}
@@ -3283,21 +3304,34 @@ return false;
     &lt;i class="fas fa-edit"&gt;&lt;/i&gt;
   {% endif %}
   {{title}}
-&lt;/h3&gt;</code></pre><button onclick="copiar('b47','129')" id="129">Copiar</button>
-    </div>
-    <ul><li>Asi quedaria el <b>h3</b>, en el if, me da un error si lo hago asi <b>action=='add'</b>, debe tener sus espacion, <b>action == 'add'</b></li></ul>
-    <li>Al <b>delete.html</b> le modifico el icono por uno de basura, quedaria asi</li>
-    <div class="codigo">
-      <pre><code id="b48">&lt;h3 class="card-title"&gt;
+&lt;/h3&gt;</code></pre>
+          <button onclick="copiar('b47','129')" id="129">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            Asi quedaria el <b>h3</b>, en el if, me da un error si lo hago asi
+            <b>action=='add'</b>, debe tener sus espacion,
+            <b>action == 'add'</b>
+          </li>
+        </ul>
+        <li>
+          Al <b>delete.html</b> le modifico el icono por uno de basura, quedaria
+          asi
+        </li>
+        <div class="codigo">
+          <pre><code id="b48">&lt;h3 class="card-title"&gt;
         &lt;i class="fas fa-trash"&gt;&lt;/i&gt;
         {{title}}
       &lt;/h3&gt;
 </code></pre>
-      <button onclick="copiar('b48','130')" id="130">Copiar</button>
+          <button onclick="copiar('b48','130')" id="130">Copiar</button>
         </div>
-        <li>Copio el ajax que realice en el <b>form.html</b>, porque lo utilizaria de la misma forma</li>
-      <div class="codigo">
-        <pre><code id="b49">$('form').on('submit', function (e){
+        <li>
+          Copio el ajax que realice en el <b>form.html</b>, porque lo utilizaria
+          de la misma forma
+        </li>
+        <div class="codigo">
+          <pre><code id="b49">$('form').on('submit', function (e){
       e.preventDefault();
       var parameters = $(this).serializeArray();
       $.ajax({
@@ -3316,31 +3350,61 @@ return false;
         }).always(function () {
         })
     })
-</code></pre><button onclick="copiar('b49','131')" id="131">Copiar</button>
-      </div>
-      <ul><li>tiene la misma forma, la diferencia es que no tendria campos de formulario, solo la confirmación, pero ahi se envia el <b>csfr_token</b> para la seguridad, pero si quiero, no le envio parametros, pero tendria que en el <b>dispatch</b> debo poner el decorador <b>csfr_exempt</b> para que no necesite enviarle parametros</li></ul>
-      <li>Modificamos el <b>dispatch</b> porque necesitamos la instancia del objeto/registro a borrar y debemos ponerlo en el dispatch para que ahora que modifiquemos el post tenga esa instancia del objeto y poder borrarlo</li>
-      <div class="codigo">
-        <pre><code id="b50">def dispatch(self,request, *args, **kwargs):
+</code></pre>
+          <button onclick="copiar('b49','131')" id="131">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            tiene la misma forma, la diferencia es que no tendria campos de
+            formulario, solo la confirmación, pero ahi se envia el
+            <b>csfr_token</b> para la seguridad, pero si quiero, no le envio
+            parametros, pero tendria que en el <b>dispatch</b> debo poner el
+            decorador <b>csfr_exempt</b> para que no necesite enviarle
+            parametros
+          </li>
+        </ul>
+        <li>
+          Modificamos el <b>dispatch</b> porque necesitamos la instancia del
+          objeto/registro a borrar y debemos ponerlo en el dispatch para que
+          ahora que modifiquemos el post tenga esa instancia del objeto y poder
+          borrarlo
+        </li>
+        <div class="codigo">
+          <pre><code id="b50">def dispatch(self,request, *args, **kwargs):
     self.object = self.get_object()
     return super().dispatch(request, *args, **kwargs)
-        </code></pre><button onclick="copiar('b50','132')" id="132">Copiar</button>
-      </div>
-      <ul><li>Cuando sobre escribo el <b>post</b>, el <b>self.object</b> que tiene la instacia, queda vacio, asi que modifico el dispatch para capturar la instacia</li></ul>
-      <li>Ahora modificamos el post para eliminar el objeto o retornar los errores</li>
-      <div class="codigo">
-        <pre><code id="b51">def post(self, request, *args, **kwargs):
+        </code></pre>
+          <button onclick="copiar('b50','132')" id="132">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            Cuando sobre escribo el <b>post</b>, el <b>self.object</b> que tiene
+            la instacia, queda vacio, asi que modifico el dispatch para capturar
+            la instacia
+          </li>
+        </ul>
+        <li>
+          Ahora modificamos el post para eliminar el objeto o retornar los
+          errores
+        </li>
+        <div class="codigo">
+          <pre><code id="b51">def post(self, request, *args, **kwargs):
     data = {}
     try:
       self.object.delete()
     except Exception as e:
       data['error']=str(e)
     return JsonResponse(data)
-</code></pre><button onclick="copiar('b51','133')" id="133">Copiar</button>
-      </div>
-      <ul>
-        <li>ya como tengo la instancia (gracias al distpach), osea el <b>CategoryForm(request, instance=self.object)</b>, ya puedo aplicar su funcion <b>.delete()</b> y retorno la respuesta json</li>
-      </ul>
+</code></pre>
+          <button onclick="copiar('b51','133')" id="133">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            ya como tengo la instancia (gracias al distpach), osea el
+            <b>CategoryForm(request, instance=self.object)</b>, ya puedo aplicar
+            su función <b>.delete()</b> y retorno la respuesta json
+          </li>
+        </ul>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
@@ -3352,7 +3416,250 @@ return false;
     <details>
       <summary class="videos-titulo" id="video-33">
         <h2>
-          <i>Video 33</i>
+          <i>Video 33</i>: ListView | Cargar datos en mi tabla con ajax y
+          datatable
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=ec3xGLJnLcQ&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=33"
+        >Link del video 33</a
+      >
+      <ul>
+        <li>Primero eliminamos todo de la tabla <b>erp_category</b>, en este caso yo utilizo mysql y es de la siguiente manera</li>
+        <div class="codigo">
+          <pre><code id="bb">DELETE FROM erp_category;
+ALTER TABLE erp_category AUTO_INCREMENT=1;
+</code></pre><button onclick="copiar('bb','b136')" id="b136">Copiar</button>
+        </div>
+        <ul>
+          <li>El alter table es para reiniciar el conteo a 1 con el auto_increment</li>
+        </ul>
+        <li>Con este codigo podemos generar esos 6000 registros sin que se repitan, lo ejecutamos en <b>test.py</b></li>
+        <div class="codigo">
+          <pre><code id="z999">import random
+
+#creo el arreglos de letras
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+for i in range(1,6000):
+    #creo el registro aleatoriamente, k=5 osea de 5 letras
+    name=''.join(random.choices(letters,k=5))
+    #pregunto si existe, si existe creo otro hasta que no exista, guardo y repito
+    while Category.objects.filter(name=name).exists():
+        name = ''.join(random.choices(letters,k=5))
+    Category(name=name).save()
+    print(f'Guardado registro {i}')</code></pre><button onclick="copiar('z999','z998')" id="z998">Copiar</button>
+        </div>
+        <li>
+          En el list.html de category, le comentamos el for porque ya vamos a
+          cargar los datos con datatable, solo le dejamos las columnas y al
+          final llamamos el bloque <b>javascript</b> o en mi caso <b>js</b>, y
+          asi lo limpiamos porque de donde esta heredando esta ejecutando un
+          código ahi, y ya ahora vamos a cargar nuestro archivo .js para la
+          carga con datatable y ajax
+        </li>
+        <li>
+          en el <b>list.html</b> de los templates principales, creo un bloque
+          <b>head_list</b> dentro del bloque <b>head</b> para cargar los scripts
+          solo para ese template
+        </li>
+        <li>
+          creamos una carpeta <b>static</b> dentro de la app para mis archivos
+          estaticos solo para esa app, creo la carpeta js, y luego un archivo
+          llamado <b>list.js</b>
+        </li>
+        <li>Vamos al post de CategoryListView y lo modificamos</li>
+        <div class="codigo">
+          <pre><code id="b52">try:
+  action = request.POST['action']
+  if action == 'searchdata':
+    data = []
+    for i in Category.objects.all():
+      data.append(i.toJSON())
+  else:
+    data['error']='Ha ocurrido un error'
+except Exception as e:
+  data['error']=str(e)
+    return JsonResponse(data,safe=False)</code></pre>
+          <button onclick="copiar('b52','134')" id="134">Copiar</button>
+        </div>
+        <ul>
+          <li>quito la petición que estaba haciendo</li>
+          <li>recupero el action que venga en el post para saber la acción</li>
+          <li>
+            si es <b>searchdata</b> le envio todos los datos pero en data ya
+            seria un arreglo porque asi los va a recibir DataTable
+          </li>
+          <li>
+            recorro todos los registros y a cada registro lo guardo en el
+            arreglo conviertiendolo en un diccionario con la función que ya le
+            habiamos creado, <b>toJSON</b>
+          </li>
+          <li>
+            si no es <b>searchdata</b> le decimos en los errores del data, que
+            ha ocurrido un error, o si sale algun otro error, lo capturamos y
+            retornamos
+          </li>
+        </ul>
+        <li>
+          Ahora en el archivo <b>list.js</b> de nuestra app, lo importamos en el
+          bloque <b>head_list</b>
+        </li>
+        <div class="codigo">
+          <pre><code id="b53">{% block head_list %}
+&lt;script src="{% static 'category/js/list.js' %}"&gt;&lt;/script&gt;
+{% endblock head_list %}</code></pre>
+          <button onclick="copiar('b53','135')" id="135">Copiar</button>
+        </div>
+        <li>Ahora dentro de ese archivo agregamos el siguiente código</li>
+        <div class="codigo">
+          <pre><code id="b54">$(function () {
+  $("#data").DataTable({
+    responsive: true,
+    autoWidth: false,
+    destroy: true,
+    deferRender: true,
+    ajax: {
+      url: window.location.pathname,
+      type: "POST",
+      data: {
+        action: "searchdata",
+      },
+      dataSrc: "",
+    },
+    columns: [
+      { data: "id" },
+      { data: "name" },
+      { data: "desc" },
+      { data: "desc" },
+    ],
+    columnDefs: [
+      {
+        targets: [-1],
+        class: "text-center",
+        orderable: true,
+        render: function (data, type, row) {
+          var botones = `&lt;a href="/erp/category/update/${row.id}" class="btn btn-warning btn-xs"&gt;&lt;i class="fas fa-edit"&gt;&lt;/i&gt;&lt;/a&gt; `;
+          botones += `&lt;a href="/erp/category/delete/${row.id}" class="btn btn-danger btn-xs"&gt;&lt;i class="fas fa-trash-alt"&gt;&lt;/i&gt;`;
+          return botones;
+        },
+      },
+    ],
+    initComplete: function (settings, json) {},
+  });
+});
+</code></pre>
+          <button onclick="copiar('b54','136')" id="136">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            el <b>$(function () {toda la ejecución});</b> es para que se ejecute
+            apenas cargue la página
+          </li>
+          <li>El <b>responive</b> le digo que si va a ser responsivo</li>
+          <li>El <b>autoWidt</b> que respete el ancho que yo le ponga</li>
+          <li>
+            el <b>destroy</b> por si quiero reinicializar la tabla con otro
+            proceso
+          </li>
+          <li>
+            el <b>deferRender</b> hagiliza la carga de los datos si superan los
+            50k registros
+          </li>
+          <li>En el ajax le paso la configuración para el envio de datos</li>
+          <ul>
+            <li>
+              en <b>url</b> le pongo a donde va a hacer la petición, que en este
+              caso es a la misma vista
+            </li>
+            <li>en <b>type</b> el tipo de petición</li>
+            <li>
+              en <b>data</b> le paso los parametros, en este caso solo el
+              <b>action</b> para que sepa que accion va a realizar
+            </li>
+            <li>
+              en <b>dataSrc</b> como no meti los arreglos que pido a la vista en
+              un diccionario donde vaya el arreglo, entonces dejo esto vacio, le
+              pondria data si hubiera mandando los datos asi: data =
+              {'data':[...todos los registros...]}
+            </li>
+          </ul>
+          <li>
+            en <b>columns</b>, van las columnas a mostrar, como llegan los datos
+            por diccionarios dentro del arreglo que DataTable recorre, entonces
+            accedo a cada valor y duplico el ultimo porque tengo una columna de
+            opciones
+          </li>
+          <li>
+            el ultimo lo duplico para que aparezca otra columna, en este caso la
+            de opciones, y pues igual puedo modificarlo para ponerle los botones
+          </li>
+          <li>
+            En <b>columnDefs</b> aqui personalizo cada columna o una en
+            especifico
+          </li>
+          <ul>
+            <li>
+              en <b>targets</b> el -1 hace referencia a la ultima fila, si lo
+              pusiera -2, al penultimo y asi, o de arriba hacia abajo iniciando
+              con 0
+            </li>
+            <li>
+              en <b>class</b> van las clases que quiero ponerle o necesito
+              ponerle
+            </li>
+            <li>El <b>orderable</b> viene por defecto</li>
+            <li>
+              en <b>render</b> va las modificaciones que le voy a hacer a las
+              tablas
+            </li>
+            <ul>
+              <li>
+                en los parametros que recibe la funcion de <b>render</b>, data
+                hace referencia al valor de la columna, si lo retorno,
+                retornaria la descripción si la tiene, pero puedo retornar
+                cualquier otra cosa, y el row hace referencia a todo el objeto,
+                puedo accedes hasta el id, name, etc
+              </li>
+              <li>
+                si en return le pongo &lt;b&gt;hola&lt;/b&gt; en esa columna se
+                va a poner solo eso (en el list.html donde estan las columnas,
+                agrego el de descripción que me falta)
+              </li>
+              <li>
+                En este caso, voy a enviarles una variable con los botones, en
+                este caso, los botones de borrar y editar
+              </li>
+              <li>
+                Para poner el link de cada elemento, como ya aqui no lo
+                renderiza jinja, pongo la rutas como son, y sabemos que reciben
+                ids, y gracias a row, puedo acceder a modo de diccionario al id
+                correspondiente
+              </li>
+              <li>
+                el <b>initComplete</b> se ejecuta cuando la tabla se haya
+                cargado por completo, en este caso, no voy a ejecutar nada
+              </li>
+            </ul>
+          </ul>
+        </ul>
+        <li>
+          De esta forma los registros se cargan aun más rapido y eso que estoy
+          utilizando la base de datos en la nube
+        </li>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+    <details>
+      <summary class="videos-titulo" id="video-34">
+        <h2>
+          <i>Video 34</i>
         </h2>
       </summary>
       <div class="flecha-arriba">
@@ -3361,6 +3668,7 @@ return false;
         /></a>
       </div>
     </details>
+
     <script>
       function copiar(idValor, idBoton) {
         let valor = document.getElementById(idValor).textContent;
