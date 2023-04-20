@@ -164,7 +164,7 @@
                 >Videos 35: TemplateView | Creando nuestro index</a
               >
             </li>
-            <li><a href="#video-36">Videos 36</a></li>
+            <li><a href="#video-36">Videos 36: FormView | Vistas basadas en clases</a></li>
             <li><a href="#video-37">Videos 37</a></li>
             <li><a href="#video-38">Videos 38</a></li>
             <li><a href="#video-39">Videos 39</a></li>
@@ -2927,7 +2927,7 @@ def post(self,request,*args,**kwargs):
             <b>self.get_form()</b> obtengo el formulario y todos los datos
           </li>
           <li>
-            como modifique el <b>save()</b> para que haga la verificacion, nomas
+            como modifique el <b>save()</b> para que haga la verificación, nomas
             lo ejecuto y guardo en el data para capturar si esta vacio o con
             errores y ya retorno la respuesta Json
           </li>
@@ -2945,7 +2945,7 @@ def post(self,request,*args,**kwargs):
         <ul>
           <li>
             la acción la obtengo de una variable que le pase en el
-            get_contex_data de mi CategoryCreateView para saber la acción
+            get_context_data de mi CategoryCreateView para saber la acción
             <b>context['action']='add'</b>
           </li>
         </ul>
@@ -3633,7 +3633,7 @@ except Exception as e:
             </li>
             <ul>
               <li>
-                en los parametros que recibe la funcion de <b>render</b>, data
+                en los parametros que recibe la función de <b>render</b>, data
                 hace referencia al valor de la columna, si lo retorno,
                 retornaria la descripción si la tiene, pero puedo retornar
                 cualquier otra cosa, y el row hace referencia a todo el objeto,
@@ -4479,7 +4479,114 @@ urlpatterns = [
     <details>
       <summary class="videos-titulo" id="video-36">
         <h2>
-          <i>Video 36</i>
+          <i>Video 36</i>: FormView | Vistas basadas en clases
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=QprvsvT5l94&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=36"
+        >Link del video 36</a
+      >
+      <ul>
+        <li>En el <b>views.py</b> de mi app category, importo la vista generica <b>FormView</b></li>
+        <div class="codigo">
+          <pre><code id="b58">from django.views.generic import FormView
+          </code></pre><button onclick="copiar('b58','140')" id="140">Copiar</button>
+        </div>
+        <li>creo la clase CategoryFormView, heredo de la clase generica que importe, y como voy a simular una creación de una categoria para probar eñ formulario, copio el <b>get_context_data</b> del <b>CategoryCreateView</b> y solo le cambio el title para identificarlos</li>
+        <div class="codigo">
+          <pre><code id="b59">class CategoryFormView(FormView):
+  form_class = CategoryForm
+  template_name = 'category/create.html'
+  success_url = reverse_lazy('erp:category_list')
+
+  def get_context_data(self, **kwargs):
+     context = super().get_context_data(**kwargs)
+     context['title']='Form | Creación de una categoria'
+     context['entity']='Categorias'
+     context['list_url']=reverse_lazy('erp:category_list')
+     context['action']='add'
+     return context
+</code></pre><button onclick="copiar('b59','141')" id="141">Copiar</button>
+        </div>
+        <ul>
+          <li>en el <b>form_class</b> le paso el mismo formulario del <b>CategoryCreateView</b></li>
+          <li>Le pasamos el mismo template</li>
+          <li>y el <b>success_url</b> a donde lo mandos a mandar si el formulario es correcto o valido</li>
+          <li>en el <b>get_context_data</b> le cambiamos el nombre para diferenciarlo</li>
+        </ul>
+        <li>En el <b>form.html</b> comentamos la función ajax, osea el que inicia como <b>$('form')</b> porque no vamos a utilizar ajax por ahora en esta vista</li>
+        <li>agregamos la vista a las urls</li>
+        <div class="codigo">
+          <pre><code id="b60">path('category/form/',CategoryFormView.as_view(),name='category_form')</code></pre><button onclick="copiar('b60','142')" id="142">Copiar</button>
+        </div>
+        <li>Ahi ya podemos probar que si intentamos guardar, no guardar pero retorna a la vista de las categorias, y si intetnamos enviar un dato repetido nos lanza la alarma porque solo comentamos la petición ajax y no la verificación de los errores con las alertas</li>
+        <li>el <b>FormView</b> tiene 2 funciones, el form_invalid(self, form) y el form_valid(self,form)</li>
+        <li>En el <b>form_invalid</b> vamos a poder ver los errores que pase con el formulario</li>
+        <div class="codigo">
+          <pre><code id="b61">def form_invalid(self, form):
+    print(form.errors)
+    print(form.is_valid())
+    return super().form_invalid(form)</code></pre><button onclick="copiar('b61','143')" id="143">Copiar</button>
+        </div>
+        <li>con el <b>form.errors</b> puedo ver en consola cual es el error si lo hay, y con el <b>is_valid()</b>, va a retornar false porque hay errores y aqui puedo ejecutar cierto codigo si nceesito hacer algo si el formulario es invalido o saber cual es el error</li>
+        <li>En el <b>form_valid</b> vamos a poder hacer cierta acciones si el formulario es valido</li>
+        <div class="codigo">
+          <pre><code id="b62">def form_valid(self, form):
+    print(form.is_valid())
+    print(form)
+    return super().form_valid(form)</code></pre><button onclick="copiar('b62','144')" id="144">Copiar</button>
+        </div>
+        <li>aqui puedo ver que la función <b>is_valid()</b> retorna <b>True</b> porque es valido, ya si quiero guardar un registro, le agrego lo necesario que seria el form.save()</li>
+        <li>Si le quiero agregar otras verificaciones, en la clase del formulario podemos sobreescribir la función <b>clean</b></li>
+        <div class="codigo">
+          <pre><code id="b63">def clean(self):
+        cleaned = super().clean() 
+        if len(cleaned['name']) <= 50: 
+            self.add_error('name','Le faltan caracteres')
+        return cleaned</code></pre><button onclick="copiar('b63','145')" id="145">Copiar</button>
+        </div>
+        <ul>
+          <li>obtengo el valor de clea en una varuable con la funcion <b>super</b></li>
+          <li>en esa variable esta el diccionario con los valores de mi formulario y puedo hacer verificaciones</li>
+          <li>En este caso le mando un error si el name tiene menos de 50 caracteres</li>
+          <li>con la función <b>.add_error</b> de los componentes que estan en el self, agrego el error que saldra en el <b>form.errors</b>, el primer parametro es el nombre del componente (porque los errores se guardan en cada componente) y el segundo parametro el error</li>
+          <li>Si intento agregar un valor en el formulario con pocos caracteres, osea, menos de 50 me lanza la alerta que tengo controlada en el form.html con sweetalert</li>
+          <li>Tambien puedo crear un error o excepción manual mente pero no se guarda en el <b>form.errors</b> porque ahi debo guardar los errores de formulario, para otro tipo de error, creo la excepción o la guardo de la siguiente forma</li>
+          <div class="codigo">
+            <pre><code id="b64">def clean(self):
+        cleaned = super().clean() 
+        if len(cleaned['name']) <= 50: 
+            raise forms.ValidationError('Validation xxx')
+        return cleaned</code></pre><button onclick="copiar('b64','146')" id="146">Copiar</button>
+          </div>
+          <p class="nota"><b>NOTA:</b> Si al poner forms no lo reconoce, verifica que en las importaciones este asi <b>from django.forms import *</b></p>
+          <ul>
+            <li>la palabra reservada <b>raise</b> es para crear errores o excepciones intencionales, en este caso creo una con la clase <b>forms.ValidationError</b> y recibe como palametro el mensaje de error</li>
+            <li>En el fomrulario para ver este tipo de error, porque no va a estar en el <b>form.errors</b>, lo vemos en <b>form.non_field_errors</b> que hace referencia a los errores que no son de los formularios</li>
+            <li>y de la siguiente forma lo verifico con las alertas</li>
+            <div class="codigo">
+              <pre><code id="b65">{% for error in form.non_field_errors %}
+      errors += '{{error}}\n';
+      {% endfor %}
+</code></pre><button onclick="copiar('b65','147')" id="147">Copiar</button>
+            </div>
+            <li>simplemente creo un for (fuera de los 2 for anteriores pero dentro del if y antes de la ejecucion de la función Swal.fire) y asi si ejecutamos, comentando el error en <b>add_error</b> al ejecutar nos mandara el valor que le pasamos en la excepción que creamos y asi manejamos mejor los errores en formularios</li>
+          </ul>
+        </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-37">
+        <h2>
+          <i>Video 37</i>
         </h2>
       </summary>
       <div class="flecha-arriba">
