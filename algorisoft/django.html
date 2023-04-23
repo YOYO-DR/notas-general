@@ -177,7 +177,7 @@
             <li>
               <a href="#video-38">Videos 38: FormView | Inicio de sesión</a>
             </li>
-            <li><a href="#video-39">Videos 39</a></li>
+            <li><a href="#video-39">Videos 39: LogoutView | RedirectView | Vistas basadas en clases</a></li>
             <li><a href="#video-40">Videos 40</a></li>
             <li><a href="#video-41">Videos 41</a></li>
             <li><a href="#video-42">Videos 42</a></li>
@@ -4915,7 +4915,7 @@ from django.contrib.auth import login</code></pre><button onclick="copiar('b74',
     <details>
       <summary class="videos-titulo" id="video-39">
         <h2>
-          <i>Video 39</i>
+          <i>Video 39</i>: LogoutView | RedirectView | Vistas basadas en clases
         </h2>
       </summary>
       <a
@@ -4923,6 +4923,84 @@ from django.contrib.auth import login</code></pre><button onclick="copiar('b74',
         class="link-videos"
         href="https://www.youtube.com/watch?v=BA_Qv1Jk10A&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=39"
         >Link del video 39</a
+      >
+      <ul>
+        <li>Importamos en el <b>views.py</b> lo que vamos a utilizar</li>
+        <div class="codigo">
+          <pre><code id="b76">from django.views.generic import RedirectView
+from django.contrib.auth.views import LogoutView
+from django.contrib.auth import logout</code></pre><button onclick="copiar('b76','158')" id="158">Copiar</button>
+        </div>
+        <li>Creamos un archivo <b>uls.py</b> en la app <b>login</b> ya que vamos a manejar más de una url</li>
+        <div class="codigo">
+          <pre><code id="b77">from django.urls import path
+from core.login.views import *
+
+urlpatterns = [
+    path('',LoginFormView.as_view(),name='login'),
+    path('logout/',LogoutView.as_view(),name='logout'),
+]</code></pre><button onclick="copiar('b77','159')" id="159">Copiar</button>
+        </div>
+        <ul>
+          <li>Al importar la vista <b>LogoutView</b> en el 
+          <b>views.py</b>, puedo utilizarla si importo todo en el archivo <b>ulrs.py</b></li>
+          <li>No necesito crear y heredar una clase para utilizarla, solo la pongo como url en las urls con su función <b>as_view</b> pero se le pasa un parametro <b>next_page='nombre_url'</b> para que apenas cierre sesión lo redireccione, pero si no se lo ponemos va a ir a buscar la variable <b>LOGOUT_REDIRECT_URL</b> del <b>settings.py</b> y si no esta, como 3° opción el Django utiliza una vista para eso</li>
+          <li>En este caso no le pasaremos el parametro <b>next_page</b> sino que crearemos la variable en el <b>settings.py</b></li>
+          <div class="codigo">
+            <pre><code id="b78">LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b78','160')" id="160">Copiar</button>
+          </div>
+          <li>La incluimos en el <b>urls.py</b> de la config, y el <b>urlpatterns</b> quedaria asi</li>
+          <div class="codigo">
+            <pre><code id="b79">urlpatterns = [
+    path('',IndexView.as_view(),name='index'),
+    path('login/',include('core.login.urls')),
+    path('admin/', admin.site.urls),
+    path('erp/',include('core.erp.urls')),
+]</code></pre><button onclick="copiar('b79','161')" id="161">Copiar</button>
+          </div>
+          </ul>
+          <li>Ahora haremos la misma funcion utilizando la vista de <b>RedirectView</b></li>
+          <li>Creamos la vista en el <b>views.py</b> de la app de inicio de sesión</li>
+          <div class="codigo">
+            <pre><code id="b80">class LogoutRedirectView(RedirectView):
+  pattern_name = 'login'
+
+  def dispatch(self, request, *args, **kwargs):logout solo pasandole el request
+    logout(request)
+    return super().dispatch(request, *args, **kwargs)</code></pre><button onclick="copiar('b80','162')" id="162">Copiar</button>
+          </div>
+          <ul>
+            <li>El <b>pattern_name</b> es la ruta a la cual va a ir cuando cierre sesión, y utiliza el nombre de la url</li>
+            <li>Como la vista es solo para redireccionar, entonces modificamos el <b>distpach</b> para que cuando entre a la pagina, capturamos el request y con la función <b>logout</b> cerramos sesión solo pasandole el request</li>
+            <li>La agregamos a la urls.py de la app, comentamos la otra vista para probar y quedaria asi</li>
+            <div class="codigo">
+              <pre><code id="b81">urlpatterns = [
+    path('',LoginFormView.as_view(),name='login'),
+    # path('logout/',LogoutView.as_view(),name='logout'),
+    path('logout/',LogoutRedirectView.as_view(),name='logout'),
+]</code></pre><button onclick="copiar('b81','163')" id="163">Copiar</button>
+            </div>
+          </ul>
+          <li>En el video el profe le hace unas modificaciones al <b>login.html, index.html, header.html</b> (los 2)</li>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-40">
+        <h2>
+          <i>Video 40</i>
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=iRmKCuz4ro0&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=40"
+        >Link del video 40</a
       >
       <div class="flecha-arriba">
         <a href="#inicio"
