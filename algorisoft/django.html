@@ -164,9 +164,19 @@
                 >Videos 35: TemplateView | Creando nuestro index</a
               >
             </li>
-            <li><a href="#video-36">Videos 36: FormView | Vistas basadas en clases</a></li>
-            <li><a href="#video-37">Videos 37: LoginView | Vistas basadas en clases</a></li>
-            <li><a href="#video-38">Videos 38</a></li>
+            <li>
+              <a href="#video-36"
+                >Videos 36: FormView | Vistas basadas en clases</a
+              >
+            </li>
+            <li>
+              <a href="#video-37"
+                >Videos 37: LoginView | Vistas basadas en clases</a
+              >
+            </li>
+            <li>
+              <a href="#video-38">Videos 38: FormView | Inicio de sesión</a>
+            </li>
             <li><a href="#video-39">Videos 39</a></li>
             <li><a href="#video-40">Videos 40</a></li>
             <li><a href="#video-41">Videos 41</a></li>
@@ -4478,9 +4488,7 @@ urlpatterns = [
 
     <details>
       <summary class="videos-titulo" id="video-36">
-        <h2>
-          <i>Video 36</i>: FormView | Vistas basadas en clases
-        </h2>
+        <h2><i>Video 36</i>: FormView | Vistas basadas en clases</h2>
       </summary>
       <a
         target="_blank"
@@ -4489,12 +4497,22 @@ urlpatterns = [
         >Link del video 36</a
       >
       <ul>
-        <li>En el <b>views.py</b> de mi app category, importo la vista generica <b>FormView</b></li>
+        <li>
+          En el <b>views.py</b> de mi app category, importo la vista generica
+          <b>FormView</b>
+        </li>
         <div class="codigo">
           <pre><code id="b58">from django.views.generic import FormView
-          </code></pre><button onclick="copiar('b58','140')" id="140">Copiar</button>
+          </code></pre>
+          <button onclick="copiar('b58','140')" id="140">Copiar</button>
         </div>
-        <li>creo la clase CategoryFormView, heredo de la clase generica que importe, y como voy a simular una creación de una categoria para probar eñ formulario, copio el <b>get_context_data</b> del <b>CategoryCreateView</b> y solo le cambio el title para identificarlos</li>
+        <li>
+          creo la clase CategoryFormView, heredo de la clase generica que
+          importe, y como voy a simular una creación de una categoria para
+          probar eñ formulario, copio el <b>get_context_data</b> del
+          <b>CategoryCreateView</b> y solo le cambio el title para
+          identificarlos
+        </li>
         <div class="codigo">
           <pre><code id="b59">class CategoryFormView(FormView):
   form_class = CategoryForm
@@ -4508,71 +4526,158 @@ urlpatterns = [
      context['list_url']=reverse_lazy('erp:category_list')
      context['action']='add'
      return context
-</code></pre><button onclick="copiar('b59','141')" id="141">Copiar</button>
+</code></pre>
+          <button onclick="copiar('b59','141')" id="141">Copiar</button>
         </div>
         <ul>
-          <li>en el <b>form_class</b> le paso el mismo formulario del <b>CategoryCreateView</b></li>
+          <li>
+            en el <b>form_class</b> le paso el mismo formulario del
+            <b>CategoryCreateView</b>
+          </li>
           <li>Le pasamos el mismo template</li>
-          <li>y el <b>success_url</b> a donde lo mandos a mandar si el formulario es correcto o valido</li>
-          <li>en el <b>get_context_data</b> le cambiamos el nombre para diferenciarlo</li>
+          <li>
+            y el <b>success_url</b> a donde lo mandos a mandar si el formulario
+            es correcto o valido
+          </li>
+          <li>
+            en el <b>get_context_data</b> le cambiamos el nombre para
+            diferenciarlo
+          </li>
         </ul>
-        <li>En el <b>form.html</b> comentamos la función ajax, osea el que inicia como <b>$('form')</b> porque no vamos a utilizar ajax por ahora en esta vista</li>
+        <li>
+          En el <b>form.html</b> comentamos la función ajax, osea el que inicia
+          como <b>$('form')</b> porque no vamos a utilizar ajax por ahora en
+          esta vista
+        </li>
         <li>agregamos la vista a las urls</li>
         <div class="codigo">
-          <pre><code id="b60">path('category/form/',CategoryFormView.as_view(),name='category_form')</code></pre><button onclick="copiar('b60','142')" id="142">Copiar</button>
+          <pre><code id="b60">path('category/form/',CategoryFormView.as_view(),name='category_form')</code></pre>
+          <button onclick="copiar('b60','142')" id="142">Copiar</button>
         </div>
-        <li>Ahi ya podemos probar que si intentamos guardar, no guardar pero retorna a la vista de las categorias, y si intetnamos enviar un dato repetido nos lanza la alarma porque solo comentamos la petición ajax y no la verificación de los errores con las alertas</li>
-        <li>el <b>FormView</b> tiene 2 funciones, el form_invalid(self, form) y el form_valid(self,form)</li>
-        <li>En el <b>form_invalid</b> vamos a poder ver los errores que pase con el formulario</li>
+        <li>
+          Ahi ya podemos probar que si intentamos guardar, no guardar pero
+          retorna a la vista de las categorias, y si intetnamos enviar un dato
+          repetido nos lanza la alarma porque solo comentamos la petición ajax y
+          no la verificación de los errores con las alertas
+        </li>
+        <li>
+          el <b>FormView</b> tiene 2 funciones, el form_invalid(self, form) y el
+          form_valid(self,form)
+        </li>
+        <li>
+          En el <b>form_invalid</b> vamos a poder ver los errores que pase con
+          el formulario
+        </li>
         <div class="codigo">
           <pre><code id="b61">def form_invalid(self, form):
     print(form.errors)
     print(form.is_valid())
-    return super().form_invalid(form)</code></pre><button onclick="copiar('b61','143')" id="143">Copiar</button>
+    return super().form_invalid(form)</code></pre>
+          <button onclick="copiar('b61','143')" id="143">Copiar</button>
         </div>
-        <li>con el <b>form.errors</b> puedo ver en consola cual es el error si lo hay, y con el <b>is_valid()</b>, va a retornar false porque hay errores y aqui puedo ejecutar cierto codigo si nceesito hacer algo si el formulario es invalido o saber cual es el error</li>
-        <li>En el <b>form_valid</b> vamos a poder hacer cierta acciones si el formulario es valido</li>
+        <li>
+          con el <b>form.errors</b> puedo ver en consola cual es el error si lo
+          hay, y con el <b>is_valid()</b>, va a retornar false porque hay
+          errores y aqui puedo ejecutar cierto codigo si nceesito hacer algo si
+          el formulario es invalido o saber cual es el error
+        </li>
+        <li>
+          En el <b>form_valid</b> vamos a poder hacer cierta acciones si el
+          formulario es valido
+        </li>
         <div class="codigo">
           <pre><code id="b62">def form_valid(self, form):
     print(form.is_valid())
     print(form)
-    return super().form_valid(form)</code></pre><button onclick="copiar('b62','144')" id="144">Copiar</button>
+    return super().form_valid(form)</code></pre>
+          <button onclick="copiar('b62','144')" id="144">Copiar</button>
         </div>
-        <li>aqui puedo ver que la función <b>is_valid()</b> retorna <b>True</b> porque es valido, ya si quiero guardar un registro, le agrego lo necesario que seria el form.save()</li>
-        <li>Si le quiero agregar otras verificaciones, en la clase del formulario podemos sobreescribir la función <b>clean</b></li>
+        <li>
+          aqui puedo ver que la función <b>is_valid()</b> retorna
+          <b>True</b> porque es valido, ya si quiero guardar un registro, le
+          agrego lo necesario que seria el form.save()
+        </li>
+        <li>
+          Si le quiero agregar otras verificaciones, en la clase del formulario
+          podemos sobreescribir la función <b>clean</b>
+        </li>
         <div class="codigo">
           <pre><code id="b63">def clean(self):
         cleaned = super().clean() 
         if len(cleaned['name']) <= 50: 
             self.add_error('name','Le faltan caracteres')
-        return cleaned</code></pre><button onclick="copiar('b63','145')" id="145">Copiar</button>
+        return cleaned</code></pre>
+          <button onclick="copiar('b63','145')" id="145">Copiar</button>
         </div>
         <ul>
-          <li>obtengo el valor de clea en una varuable con la funcion <b>super</b></li>
-          <li>en esa variable esta el diccionario con los valores de mi formulario y puedo hacer verificaciones</li>
-          <li>En este caso le mando un error si el name tiene menos de 50 caracteres</li>
-          <li>con la función <b>.add_error</b> de los componentes que estan en el self, agrego el error que saldra en el <b>form.errors</b>, el primer parametro es el nombre del componente (porque los errores se guardan en cada componente) y el segundo parametro el error</li>
-          <li>Si intento agregar un valor en el formulario con pocos caracteres, osea, menos de 50 me lanza la alerta que tengo controlada en el form.html con sweetalert</li>
-          <li>Tambien puedo crear un error o excepción manual mente pero no se guarda en el <b>form.errors</b> porque ahi debo guardar los errores de formulario, para otro tipo de error, creo la excepción o la guardo de la siguiente forma</li>
+          <li>
+            obtengo el valor de clea en una varuable con la funcion <b>super</b>
+          </li>
+          <li>
+            en esa variable esta el diccionario con los valores de mi formulario
+            y puedo hacer verificaciones
+          </li>
+          <li>
+            En este caso le mando un error si el name tiene menos de 50
+            caracteres
+          </li>
+          <li>
+            con la función <b>.add_error</b> de los componentes que estan en el
+            self, agrego el error que saldra en el <b>form.errors</b>, el primer
+            parametro es el nombre del componente (porque los errores se guardan
+            en cada componente) y el segundo parametro el error
+          </li>
+          <li>
+            Si intento agregar un valor en el formulario con pocos caracteres,
+            osea, menos de 50 me lanza la alerta que tengo controlada en el
+            form.html con sweetalert
+          </li>
+          <li>
+            Tambien puedo crear un error o excepción manual mente pero no se
+            guarda en el <b>form.errors</b> porque ahi debo guardar los errores
+            de formulario, para otro tipo de error, creo la excepción o la
+            guardo de la siguiente forma
+          </li>
           <div class="codigo">
             <pre><code id="b64">def clean(self):
         cleaned = super().clean() 
         if len(cleaned['name']) <= 50: 
             raise forms.ValidationError('Validation xxx')
-        return cleaned</code></pre><button onclick="copiar('b64','146')" id="146">Copiar</button>
+        return cleaned</code></pre>
+            <button onclick="copiar('b64','146')" id="146">Copiar</button>
           </div>
-          <p class="nota"><b>NOTA:</b> Si al poner forms no lo reconoce, verifica que en las importaciones este asi <b>from django.forms import *</b></p>
+          <p class="nota">
+            <b>NOTA:</b> Si al poner forms no lo reconoce, verifica que en las
+            importaciones este asi <b>from django.forms import *</b>
+          </p>
           <ul>
-            <li>la palabra reservada <b>raise</b> es para crear errores o excepciones intencionales, en este caso creo una con la clase <b>forms.ValidationError</b> y recibe como palametro el mensaje de error</li>
-            <li>En el fomrulario para ver este tipo de error, porque no va a estar en el <b>form.errors</b>, lo vemos en <b>form.non_field_errors</b> que hace referencia a los errores que no son de los formularios</li>
+            <li>
+              la palabra reservada <b>raise</b> es para crear errores o
+              excepciones intencionales, en este caso creo una con la clase
+              <b>forms.ValidationError</b> y recibe como palametro el mensaje de
+              error
+            </li>
+            <li>
+              En el fomrulario para ver este tipo de error, porque no va a estar
+              en el <b>form.errors</b>, lo vemos en
+              <b>form.non_field_errors</b> que hace referencia a los errores que
+              no son de los formularios
+            </li>
             <li>y de la siguiente forma lo verifico con las alertas</li>
             <div class="codigo">
               <pre><code id="b65">{% for error in form.non_field_errors %}
       errors += '{{error}}\n';
       {% endfor %}
-</code></pre><button onclick="copiar('b65','147')" id="147">Copiar</button>
+</code></pre>
+              <button onclick="copiar('b65','147')" id="147">Copiar</button>
             </div>
-            <li>simplemente creo un for (fuera de los 2 for anteriores pero dentro del if y antes de la ejecucion de la función Swal.fire) y asi si ejecutamos, comentando el error en <b>add_error</b> al ejecutar nos mandara el valor que le pasamos en la excepción que creamos y asi manejamos mejor los errores en formularios</li>
+            <li>
+              simplemente creo un for (fuera de los 2 for anteriores pero dentro
+              del if y antes de la ejecucion de la función Swal.fire) y asi si
+              ejecutamos, comentando el error en <b>add_error</b> al ejecutar
+              nos mandara el valor que le pasamos en la excepción que creamos y
+              asi manejamos mejor los errores en formularios
+            </li>
           </ul>
         </ul>
       </ul>
@@ -4585,9 +4690,7 @@ urlpatterns = [
 
     <details>
       <summary class="videos-titulo" id="video-37">
-        <h2>
-          <i>Video 37</i>: LoginView | Vistas basadas en clases
-        </h2>
+        <h2><i>Video 37</i>: LoginView | Vistas basadas en clases</h2>
       </summary>
       <a
         target="_blank"
@@ -4596,14 +4699,28 @@ urlpatterns = [
         >Link del video 37</a
       >
       <ul>
-        <li>Creamos una app llamada <b>login</b> dentro de la carpeta core, que será para el inicio de sesión, ponerla en el <b>INSTALLED_APPS</b> con su core. y en el archivo apps.py de la app también</li>
-        <li>como solo será para una vista, no creamos una subcarpeta para las vistas</li>
-        <li>Dentro de <b>views.py</b> importamos la vista de <b>LoginView</b> y la función <b>redirect</b></li>
+        <li>
+          Creamos una app llamada <b>login</b> dentro de la carpeta core, que
+          será para el inicio de sesión, ponerla en el <b>INSTALLED_APPS</b> con
+          su core. y en el archivo apps.py de la app también
+        </li>
+        <li>
+          como solo será para una vista, no creamos una subcarpeta para las
+          vistas
+        </li>
+        <li>
+          Dentro de <b>views.py</b> importamos la vista de <b>LoginView</b> y la
+          función <b>redirect</b>
+        </li>
         <div class="codigo">
           <pre><code id="b66">from django.contrib.auth.views import LoginView
-from django.shortcuts import redirect</code></pre><button onclick="copiar('b66','148')" id="148">Copiar</button>
+from django.shortcuts import redirect</code></pre>
+          <button onclick="copiar('b66','148')" id="148">Copiar</button>
         </div>
-        <li>creamos la clase <b>LoginFormView</b> que va a heredar de <b>LoginView</b></li>
+        <li>
+          creamos la clase <b>LoginFormView</b> que va a heredar de
+          <b>LoginView</b>
+        </li>
         <div class="codigo">
           <pre><code id="b67">class LoginFormView(LoginView):
   template_name = 'login.html'
@@ -4611,29 +4728,61 @@ from django.shortcuts import redirect</code></pre><button onclick="copiar('b66',
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['title'] = 'Iniciar sesión'
-    return context</code></pre><button onclick="copiar('b67','149')" id="149">Copiar</button>
+    return context</code></pre>
+          <button onclick="copiar('b67','149')" id="149">Copiar</button>
         </div>
         <ul>
-          <li>No le ponemos el atributo <b>form_class</b> porque si inspeccionamos la vista <b>LoginView</b> ya tiene el formulario de autenticación <b>AuthenticationForm</b> la cual recibe el <b>username</b> y <b>password</b></li>
-          <li>el pasamos el template el cual crearemos dentro de la carpeta template de la app</li>
-          <li>Modificamos la función <b>get_context_data</b> para pasarle el <b>title</b></li>
+          <li>
+            No le ponemos el atributo <b>form_class</b> porque si inspeccionamos
+            la vista <b>LoginView</b> ya tiene el formulario de autenticación
+            <b>AuthenticationForm</b> la cual recibe el <b>username</b> y
+            <b>password</b>
+          </li>
+          <li>
+            el pasamos el template el cual crearemos dentro de la carpeta
+            template de la app
+          </li>
+          <li>
+            Modificamos la función <b>get_context_data</b> para pasarle el
+            <b>title</b>
+          </li>
         </ul>
-        <li>Lo agregamos a las <b>urls.py</b> de la carpeta de configuraciónporque solo es una ruta, y es la de logueo</li>
+        <li>
+          Lo agregamos a las <b>urls.py</b> de la carpeta de configuraciónporque
+          solo es una ruta, y es la de logueo
+        </li>
         <div class="codigo">
-          <pre><code id="b68">path('login/',LoginFormView.as_view(),name='login'),</code></pre><button onclick="copiar('b68','150')" id="150">Copiar</button>
+          <pre><code id="b68">path('login/',LoginFormView.as_view(),name='login'),</code></pre>
+          <button onclick="copiar('b68','150')" id="150">Copiar</button>
         </div>
-        <li>El <b>login.html</b> que creamos en la carpeta templates de la app, utilizamos una plantilla de la libreria <b>AdminLte</b> que el solo es copiar y pega el code del login y con los estaticos ponemos los archivos requeridos</li>
-        <li>dentro del <b>form</b> del <b>login.html</b> el action lo ponemos con un "." porque mandara los datos a la misma vista</li>
+        <li>
+          El <b>login.html</b> que creamos en la carpeta templates de la app,
+          utilizamos una plantilla de la libreria <b>AdminLte</b> que el solo es
+          copiar y pega el code del login y con los estaticos ponemos los
+          archivos requeridos
+        </li>
+        <li>
+          dentro del <b>form</b> del <b>login.html</b> el action lo ponemos con
+          un "." porque mandara los datos a la misma vista
+        </li>
         <li>le ponemos el csrf_token</li>
-        <li>ponemos los inputs username y password, ya que son solo 2 podemos hacerlo sin un form, cargamos tambien los widget_tweaks</li>
+        <li>
+          ponemos los inputs username y password, ya que son solo 2 podemos
+          hacerlo sin un form, cargamos tambien los widget_tweaks
+        </li>
         <div class="codigo">
-          <pre><code id="b69">{{form.username|add_class:'form-control'|attr:'placeholder:Ingrese su username'|attr:'autocomplete:off'}}</code></pre><button onclick="copiar('b69','151')" id="151">Copiar</button>
+          <pre><code id="b69">{{form.username|add_class:'form-control'|attr:'placeholder:Ingrese su username'|attr:'autocomplete:off'}}</code></pre>
+          <button onclick="copiar('b69','151')" id="151">Copiar</button>
         </div>
-        <br>
+        <br />
         <div class="codigo">
-          <pre><code id="b70">{{form.password|add_class:'form-control'|attr:'placeholder:Ingrese su password'}}</code></pre><button onclick="copiar('b70','152')" id="152">Copiar</button>
+          <pre><code id="b70">{{form.password|add_class:'form-control'|attr:'placeholder:Ingrese su password'}}</code></pre>
+          <button onclick="copiar('b70','152')" id="152">Copiar</button>
         </div>
-        <li>Agregamos el javascript para la verificación de errores, sean del formulario o otro error, podemos copiar el del form.py</li>
+        <li>
+          Agregamos el javascript para la verificación de errores, sean del
+          formulario o otro error, podemos copiar el del form.py
+        </li>
         <div class="codigo">
           <pre><code id="b71">&lt;script type="application/javascript"&gt;
       //manejo de errores
@@ -4653,26 +4802,46 @@ from django.shortcuts import redirect</code></pre><button onclick="copiar('b66',
             icon:'error'
           })
           {% endif %}
-    &lt;/script&gt;</code></pre><button onclick="copiar('b71','153')" id="153">Copiar</button>
+    &lt;/script&gt;</code></pre>
+          <button onclick="copiar('b71','153')" id="153">Copiar</button>
         </div>
-        <li>Ya si probamos, erroneamente nos manda la alerta, pero si iniciamos sesión nos manda a una ruta que no tenemos, tenemos que configurar la ruta para cuando se inicie sesión en el <b>settings.py</b> y le especificamos cual es la ruta para iniciar sesión</li>
+        <li>
+          Ya si probamos, erroneamente nos manda la alerta, pero si iniciamos
+          sesión nos manda a una ruta que no tenemos, tenemos que configurar la
+          ruta para cuando se inicie sesión en el <b>settings.py</b> y le
+          especificamos cual es la ruta para iniciar sesión
+        </li>
         <div class="codigo">
           <pre><code id="b72">#login
 LOGIN_REDIRECT_URL = '/erp/category/list/'
-LOGIN_URL = '/login/'</code></pre><button onclick="copiar('b72','154')" id="154">Copiar</button>
+LOGIN_URL = '/login/'</code></pre>
+          <button onclick="copiar('b72','154')" id="154">Copiar</button>
         </div>
         <ul>
-          <li>en este caso, le decimo que después de iniciar sesión le muestre el listado de categorias</li>
+          <li>
+            en este caso, le decimo que después de iniciar sesión le muestre el
+            listado de categorias
+          </li>
         </ul>
-        <li>Si iniciamos sesión e intentamos entrar de nuevo al login, nos deja entrar, pero no deberia porque ya iniciamos sesión, para esto modificamos el metodo <b>dispatch</b> de nuestra vista <b>LoginFormView</b> para verificar si esta autenticado</li>
+        <li>
+          Si iniciamos sesión e intentamos entrar de nuevo al login, nos deja
+          entrar, pero no deberia porque ya iniciamos sesión, para esto
+          modificamos el metodo <b>dispatch</b> de nuestra vista
+          <b>LoginFormView</b> para verificar si esta autenticado
+        </li>
         <div class="codigo">
           <pre><code id="b73">def dispatch(self, request, *args, **kwargs):
     if request.user.is_authenticated:
       return redirect('erp:category_list')
-    return super().dispatch(request, *args, **kwargs)</code></pre><button onclick="copiar('b73','155')" id="155">Copiar</button>
+    return super().dispatch(request, *args, **kwargs)</code></pre>
+          <button onclick="copiar('b73','155')" id="155">Copiar</button>
         </div>
         <ul>
-          <li>con el if verificamos si esta autenticado (is_authenticated tendra True o False), si lo esta, lo redireccionamos a la vista de las categorias, si no, lo dejamos entrar normal al login</li>
+          <li>
+            con el if verificamos si esta autenticado (is_authenticated tendra
+            True o False), si lo esta, lo redireccionamos a la vista de las
+            categorias, si no, lo dejamos entrar normal al login
+          </li>
         </ul>
       </ul>
       <div class="flecha-arriba">
@@ -4684,10 +4853,77 @@ LOGIN_URL = '/login/'</code></pre><button onclick="copiar('b72','154')" id="154"
 
     <details>
       <summary class="videos-titulo" id="video-38">
+        <h2><i>Video 38</i>: FormView | Inicio de sesión</h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=WYTZeE3WsXA&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=38"
+        >Link del video 38</a
+      >
+      <ul>
+        <li>En el <b>views.py</b> de mi app <b>login</b> importo lo que vamos a utilizar</li>
+        <div class="codigo">
+          <pre><code id="b74">from django.http import HttpResponseRedirect
+from django.views.generic import FormView
+from django.contrib.auth.forms import AuthenticationForm
+from django.urls import reverse_lazy
+from django.contrib.auth import login</code></pre><button onclick="copiar('b74','156')" id="156">Copiar</button>
+        </div>
+        <li>Duplicamos la vista, la cual esta heredando de <b>LoginView</b> para trabajar desde ahí, y lo modificamos de la siguiente manera</li>
+        <div class="codigo">
+          <pre><code id="b75">class LoginFormView2(FormView):
+  form_class = AuthenticationForm
+  template_name = 'login.html'
+  success_url = reverse_lazy('erp:category_form')
+
+  def dispatch(self, request, *args, **kwargs):
+    if request.user.is_authenticated:
+      return redirect('erp:category_list')
+    return super().dispatch(request, *args, **kwargs)
+
+  def form_valid(self, form):
+    login(self.request, form.get_user())
+    return HttpResponseRedirect(self.success_url)
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['title'] = 'Iniciar sesión'
+    return context
+</code></pre><button onclick="copiar('b75','157')" id="157">Copiar</button>
+        </div>
+        <ul>
+          <li>Le agregamos un 2 al nombre de la vista para diferenciarlos (<b>LoginFormView2</b>)</li>
+          <li>Recodar que al <b>FormView</b> le debemos pasa el formulario de autenticación (<b>AuthenticationForm</b>) para el inicio de sesión </li>
+          <li>Y le debemos pasar el link de cuando se valide el formulario para que lo redireccione, en la variable <b>success_url</b> urilizando la funcion de <b>reverse_lazy</b> pasandole el name de la url</li>
+          <li>Dejo el <b>dispatch</b> para que no lo deje entrar al login si esta logueado, de lo contrario lo dejo entrar</li>
+          <li>Utilizo la función <b>form_valid</b> para cuando el formulario sea valido</li>
+          <li>Utilizo la función <b>login</b> para iniciar sesión la cual recibe el <b>request</b> como primer parametro, el cual esta en el self, y como segundo parametro recibe el usuario, y puedo obtenerlo desde el formulario, el cual ya esta validado, y se lo paso con la funcion <b>get_user</b> que lo tiene el <b>form</b></li>
+          <li>Y lo retorno a la vista que tengo en <b>success_url</b> con el <b>HttpResponseRedirect</b></li>
+          <p class="nota"><b>NOTA:</b> La diferncia entre <b>redirect</b> y <b>HttpResponseRedirect</b> es que <b>redirect</b> puedo pasarle cualquier url sea interna o externa, y <b>HttpResponseRedirect</b> es para las url internas del sitio web</p>
+          <li>Y dejo el mismo <b>get_context_data</b></li>
+        </ul>
+        <li>Y pues en el <b>urls.py</b> del config le cambio el nombre al del login por la vista que acabo de crear para probar</li>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-39">
         <h2>
-          <i>Video 38</i>
+          <i>Video 39</i>
         </h2>
       </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=BA_Qv1Jk10A&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=39"
+        >Link del video 39</a
+      >
       <div class="flecha-arriba">
         <a href="#inicio"
           ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
