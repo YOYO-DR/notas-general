@@ -179,7 +179,7 @@
             </li>
             <li><a href="#video-39">Videos 39: LogoutView | RedirectView | Vistas basadas en clases</a></li>
             <li><a href="#video-40">Videos 40: Validando nuestras vistas (login_required, next, LOGIN_URL)</a></li>
-            <li><a href="#video-41">Videos 41</a></li>
+            <li><a href="#video-41">Videos 41:  Implementando alertas en nuestro formulario con jquery-confirm</a></li>
             <li><a href="#video-42">Videos 42</a></li>
             <li><a href="#video-43">Videos 43</a></li>
             <li><a href="#video-44">Videos 44</a></li>
@@ -5096,7 +5096,7 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')
     <details>
       <summary class="videos-titulo" id="video-41">
         <h2>
-          <i>Video 41</i>
+          <i>Video 41</i>:  Implementando alertas en nuestro formulario con jquery-confirm
         </h2>
       </summary>
       <a
@@ -5104,6 +5104,139 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')
         class="link-videos"
         href="https://www.youtube.com/watch?v=-9YOl_IGd0A&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=41"
         >Link del video 41</a
+      >
+      <ul>
+        <li>Primero agrega 2 botones, uno de actualizar al lado de nuevo registro en la lista de categorias y otro de cancelar en el formulario de guardar una categoria</li>
+        <ul>
+          <li>Actualizar al lado del de nuevo registro</li>
+          <div class="codigo">
+            <pre><code id="b89">&lt;a href="{{create_url}}" class="btn btn-primary" id="btnTest"&gt;
+  &lt;i class="fas fa-plus"&gt;&lt;/i&gt;
+  Nuevo registro
+&lt;/a&gt;
+&lt;!--Este--&gt;
+&lt;a href="{{ list_url }}" class="btn btn-success"&gt;
+  &lt;i class="fas fa-sync"&gt;&lt;/i&gt; Actualizar
+&lt;/a&gt;</code></pre><button onclick="copiar('b89','171')" id="171">Copiar</button>
+          </div>
+          <li>Cancelar en el formulario de categorias</li>
+          <div class="codigo">
+            <pre><code id="b90">&lt;button type="submit" class="btn btn-primary" id="btnTest"&gt;
+  &lt;i class="fas fa-save"&gt;&lt;/i&gt;
+  Guardar registro
+  &lt;/button&gt;
+&lt;!--Este--&gt;
+&lt;a href="{{ list_url }}" class="btn btn-danger"&gt;
+  &lt;i class="fas fa-times"&gt;&lt;/i&gt; Cancelar
+&lt;/a&gt;</code></pre><button onclick="copiar('b90','172')" id="172">Copiar</button>
+          </div>
+        </ul>
+        <li>Como se va a utilizar la libreria de <b>jquery-confirm</b>, descargamos la del profe y la ponemos en nuestra carpeta de librerias, e importamos el css y js en el main</li>
+        <div class="codigo">
+          <pre><code id="b91">&lt;!--Jquery confirm--&gt;
+  &lt;link rel="stylesheet" href="{% static 'libs/jquery-confirm-v3.3.4/jquery-confirm.min.css' %}"&gt;
+  &lt;script src="{% static 'libs/jquery-confirm-v3.3.4/jquery-confirm.min.js' %}"&gt;&lt;/script&gt;</code></pre><button onclick="copiar('b91','173')" id="173">Copiar</button>
+        </div>
+        <li>En nuestro archivo de funciones <b>static/js/function.js</b>, agregamos una función llamada <b>submit_with_ajax</b> la cual vamos a utilizar para que cuando la persona vaya a realizar una acción, utilicemos jquery-confirm, y la vamos a configurar para que no solo sea para confirmar el registro de una categoria, sino para utilizarla en diferentes acciones de peticiones</li>
+        <div class="codigo">
+          <pre><code id="b92">function submit_with_ajax(url, parameters,callback) {
+  $.confirm({
+    theme: "material", 
+    title: "Confirmación", 
+    icon: "fa fa-info", 
+    content: "¿Estas seguro de realizar la siguiente acción?", 
+    columnClass: "medium", 
+    typeAnimated: true,
+    cancelButtonClass: "btn-primary",
+    draggable: true, 
+    dragWindowBorder: false,
+    buttons: {
+      info: {
+        text: "Si", 
+        btnClass: "btn-green",
+        action: function () {
+          $.ajax({
+            url: url, 
+            type: "POST",
+            data: parameters, 
+            dataType: "json",
+          })
+            .done(function (data) {
+              if (!data.hasOwnProperty("error")) {
+                callback(); 
+                return false;
+              }
+              message_error(data.error);
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+              alert(`${textStatus} : ${errorThrown}`);
+            })
+            .always(function () {
+            });
+        },
+      },
+      danger: {
+        text: "No",
+        btnClass: "btn-red",
+        action: function () {},
+      },
+    },
+  });
+};</code></pre><button onclick="copiar('b92','174')" id="174">Copiar</button>
+        </div>
+        <ul>
+          <li>link de <a href="https://craftpip.github.io/jquery-confirm/" target="_blank">jquery-confirm</a></li>
+          <li>El <b>theme</b> es el tipo de tema</li>
+          <li>El <b>title</b> es el titulo de la alerta</li>
+          <li>El <b>icon</b> es el icono a mostrar el cual es de fontawesome</li>
+          <li>El <b>content</b> es el contenido de la alerta</li>
+          <li>El <b>columnClass</b> es el tamaño del modal, puede ser small para más pequeño</li>
+          <li>Los <b>typeAnimated, cancelButtonClass, draggable</b> y <b>dragWindowBorder</b> son opciones de efectos, en su doc se puede ver para que sirven</li>
+          <li>En el <b>buttons</b> van los botones con su configuración</li>
+          <ul>
+            <li>primero se le pone el nombre del boton o tipo, en este caso info para si y danger para no</li>
+            <li>cada boton contiene un diccionario con su configuración, el text para el mensaje que se va a ver, el btnClass para una clase que le quiera agregar y en el action, recibe una función si le da clic en esa opción</li>
+          </ul>
+          <li>En el action del si, osea, el boton info, va a estar el ajax que tenia el form.html, porque cuando el usuario de click en <b>si</b> entonces manda la petición para guardar el valor o mostrar el error, el cual ya lo tenemos configurado en el ajax</li>
+          <ul>
+            <li>La función <b>submit_with_ajax</b> le decimos que va a recibir 3 parametros, una url, unos parametros y un callback, el cual, la url sera hacia donde va a hacer la petición, los <b>parameters</b> va a recibir un diccionario con los parametros que se enviara en la petición, y un <b>callback</b> o función el cual sera la acción a realizar si la petición se realiza de manera exitosa y asi la función no solo se utilizara en este formulario, sino en varios casos</li>
+
+          </ul>
+          </ul>
+          <li>El <b>form.html</b>, en la función donde estaba el ajax, ponemos la función que creamos y le pasamos los parametros respectivos y quedaria asi</li>
+          <div class="codigo">
+            <pre><code id="b93">$('form').on('submit', function (e){
+        e.preventDefault();
+        var parameters = $(this).serializeArray();
+        submit_with_ajax(window.location.pathname, parameters, function (){
+          location.href = '{{list_url}}'
+        });
+      })
+</code></pre><button onclick="copiar('b93','175')" id="175">Copiar</button>
+          </div>
+          <ul>
+            <li>Quitamos el ajax que estaba y solo dejamos la variable la cual tiene los parametros</li>
+            <li>le pasamos la dirección la cual es la pagina actual, los parametros y la función, la cual lo que hace es que si es exitoso la petición, lo redirecciona a la url de la lista de las categorias</li>
+          
+        </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+    <details>
+      <summary class="videos-titulo" id="video-42">
+        <h2>
+          <i>Video 42</i>
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=3HWq6hd8u7g&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=42&pp=iAQB"
+        >Link del video 42</a
       >
       <div class="flecha-arriba">
         <a href="#inicio"
