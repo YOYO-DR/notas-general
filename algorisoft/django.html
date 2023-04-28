@@ -178,7 +178,7 @@
               <a href="#video-38">Videos 38: FormView | Inicio de sesión</a>
             </li>
             <li><a href="#video-39">Videos 39: LogoutView | RedirectView | Vistas basadas en clases</a></li>
-            <li><a href="#video-40">Videos 40</a></li>
+            <li><a href="#video-40">Videos 40: Validando nuestras vistas (login_required, next, LOGIN_URL)</a></li>
             <li><a href="#video-41">Videos 41</a></li>
             <li><a href="#video-42">Videos 42</a></li>
             <li><a href="#video-43">Videos 43</a></li>
@@ -4993,14 +4993,117 @@ urlpatterns = [
     <details>
       <summary class="videos-titulo" id="video-40">
         <h2>
-          <i>Video 40</i>
+          <i>Video 40</i>:Validando nuestras vistas (login_required, next, LOGIN_URL)
         </h2>
       </summary>
       <a
         target="_blank"
         class="link-videos"
-        href="https://www.youtube.com/watch?v=iRmKCuz4ro0&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=40"
+        href="https://www.youtube.com/watch?v=iRmKCuz4ro0&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=40&pp=iAQB"
         >Link del video 40</a
+      >
+      <ul>
+        <li>Inicia realizando algunas modificaciones</li>
+        <li>Crea un template <b>dashboard.html</b> en los templates principales el cual hereda de <b>layout.html</b> para hacer el panel principal</li>
+        <li>En la app <b>erp</b>, en su carpeta <b>views</b> crea una carpeta llamada <b>dashboard</b> y ahi un <b>views.py</b> para crear la vista del dashboard</li>
+        <div class="codigo">
+          <pre><code id="b82">from django.views.generic import TemplateView
+
+class DashboardView(TemplateView):
+    template_name='dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'Panel de administrador'
+        return context</code></pre><button onclick="copiar('b82','164')" id="164">Copiar</button>
+        </div>
+        <ul>
+          <li>Importo la vista a utilizar, creo la vista, y le modifico el <b>get_context_data</b> para pasarle el titulo de la vista</li>
+          <li>Agrego la vista a las url de <b>erp</b>, quedaria así</li>
+          <div class="codigo">
+            <pre><code id="b83"># home
+    path('dashboard/',DashboardView.as_view(),name='dashboard'),
+</code></pre><button onclick="copiar('b83','165')" id="165">Copiar</button>
+          </div>
+        </ul>
+        <li>En el archivo <b>index.html</b> de homepage, donde estan las listas de opciones agrego el iniciar sesión o mensaje de bienvenida hacia el panel principal dependiendo si esta logueado o no</li>
+        <div class="codigo">
+          <pre><code id="b84">{% if request.user.is_authenticated %}
+  &lt;a href="{% url 'erp:dashboard' %}" class="nav-link scrollto"&gt;
+    &lt;i class="bx bx-user"&gt;&lt;/i&gt; 
+    &lt;span&gt;Bienvenido {{request.user.username|title}}&lt;/span&gt;
+  &lt;/a&gt;
+  {% else %}
+    &lt;a href="{% url 'login' %}" class="nav-link scrollto"&gt;
+      &lt;i class="bx bx-door-open"&gt;&lt;/i&gt; 
+        &lt;span&gt;Login&lt;/span&gt;
+    &lt;/a&gt;
+  {% endif %}
+  &lt;/li&gt;
+</code></pre><button onclick="copiar('b84','166')" id="166">Copiar</button>
+        </div>
+        <li>El el <b>views.py</b> de las categorias, importo el metodo decorador de django y el login_required</li>
+        <div class="codigo">
+          <pre><code id="b85">from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required</code></pre><button onclick="copiar('b85','167')" id="167">Copiar</button>
+        </div>
+        <li>y luego en los <b>dispatch</b> de las siguientes vistas le agrego el decorador de <b>login_required</b> para pedirle que es necesario iniciar sesión para entrar a esas secciones</li>
+        <ul>
+          <li>Asi se pone el metodo decorador</li>
+          <div class="codigo">
+            <pre><code>@method_decorator(login_required)
+def dispatch(self, request, *args,**kwargs):
+  ...</code></pre>
+          </div>
+          <li>Y se pone en</li>
+          <li><b>CategoryListView</b></li>
+          <li><b>CategoryCreateView</b></li>
+          <li><b>CategoryUpdateView</b></li>
+          <li><b>CategoryDeleteView</b></li>
+          <li><b>CategoryFormView</b></li>
+          <li>Y en el que no se este utilizando, solo llamamos el metodo dispatch</li>
+          <div class="codigo">
+            <pre><code id="b86">@method_decorator(login_required)
+def dispatch(self, request, *args, **kwargs):
+  return super().dispatch(request, *args, **kwargs)</code></pre><button onclick="copiar('b86','168')" id="168">Copiar</button>
+          </div>
+        </ul>
+        <li>Las configuraciones del login, osea sus direcciones las dejamos de la siguiente manera</li>
+        <div class="codigo">
+          <pre><code id="b87">#login
+LOGIN_REDIRECT_URL = '/erp/dashboard/'
+LOGIN_URL = '/login/' 
+LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')" id="169">Copiar</button>
+        </div>
+        <li>Le agregamos un input al formulario de iniciar sesión porque si por ejemplo intento entrar a category/list sin loguearme, me mandara al login gracias al decorador, y eso pondra una varibale next en la url, pero si inicio sesión no me manda a esa direccion a la cual iba a entrar, entonces se crea este input para recibir ese valor de next a la vista, y si existe, en vez de mandarlo a LOGIN_REDIRECT_URL que es la de por defecto que le pongo, me manda a la que este en next</li>
+        <div class="codigo">
+          <pre><code id="b87">&lt;input type="hidden" name="next" value="{{next}}"&gt;
+</code></pre>
+        </div>
+        <li>En el <b>views.py</b> del login, importamos el <b>settings</b></li>
+        <div class="codigo">
+          <pre><code id="b88">import config.settings as settings</code></pre><button onclick="copiar('b88','170')" id="170">Copiar</button>
+        </div>
+        <li>En las 2 clases de <b>LoginFormView</b>, en la de <b>LoginView</b> en el redirect del dispatch le pongo <b>return redirect(settings.LOGIN_REDIRECT_URL)</b> para utilizar la variable que tengo en la config, que si la necesito modificar, no modifico todo el codigo, y en la otra clase, le dejo ell success_url asi: <b>reverse_lazy(settings.LOGIN_REDIRECT_URL)</b></li>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-41">
+        <h2>
+          <i>Video 41</i>
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=-9YOl_IGd0A&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=41"
+        >Link del video 41</a
       >
       <div class="flecha-arriba">
         <a href="#inicio"
