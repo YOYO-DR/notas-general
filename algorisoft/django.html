@@ -180,7 +180,7 @@
             <li><a href="#video-39">Videos 39: LogoutView | RedirectView | Vistas basadas en clases</a></li>
             <li><a href="#video-40">Videos 40: Validando nuestras vistas (login_required, next, LOGIN_URL)</a></li>
             <li><a href="#video-41">Videos 41:  Implementando alertas en nuestro formulario con jquery-confirm</a></li>
-            <li><a href="#video-42">Videos 42</a></li>
+            <li><a href="#video-42">Videos 42: Media Files | Parte I</a></li>
             <li><a href="#video-43">Videos 43</a></li>
             <li><a href="#video-44">Videos 44</a></li>
             <li><a href="#video-45">Videos 45</a></li>
@@ -5226,16 +5226,132 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')
         /></a>
       </div>
     </details>
+
     <details>
       <summary class="videos-titulo" id="video-42">
         <h2>
-          <i>Video 42</i>
+          <i>Video 42</i>: Media Files | Parte I
         </h2>
       </summary>
       <a
         target="_blank"
         class="link-videos"
         href="https://www.youtube.com/watch?v=3HWq6hd8u7g&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=42&pp=iAQB"
+        >Link del video 42</a
+      >
+      
+      <ul>
+        <li>Primero se crea lo mismo de categoria (todas las vistas), con el modelo de producto, en la pagina de el esta ya modificado para descargar o se crea manual para practicar</li>
+        <li>En la función de js <b>submit_with_ajax</b> le agrega uno parametros para el <b>title</b> y el <b>content</b> y asi puede cambiar el titulo de la alerta y el mensaje</li>
+        <li>Vamos a hacer un guardado puro sin ajax de jquery entonces comentamos algunos archivos para desactivar el ajax</li>
+        <ul>
+          <li>Comentamos en el <b>form.html</b> de la plantilla base, todo lo que sigue de <b>$('form')</b> para desactivarlo</li>
+          <li>En el formulario del producto, comento la Sobreescritura del metodo <b>save</b></li>
+          <li>En la vista <b>CreateView</b> le comentamos la Sobreescritura del metodo <b>post</b></li>
+        </ul>
+        <li>Si agregamos un producto no se guarda la imagen, solo se guarda el registro</li>
+        <li>Debemos configurar los archivos media para que se guarden, lo configuramos en <b>settings.py</b></li>
+        <div class="codigo">
+          <pre><code id="b94">#media
+#carpeta donde se van a guardar los archivos subidos
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+#link de como se accede a ellos de forma publica
+MEDIA_URL = '/media/'</code></pre><button onclick="copiar('b94','176')" id="176">Copiar</button>
+        </div>
+        <ul>
+          <li>El <b>MEDIA_ROOT</b> es la ruta en mi proyecto en la cual se va a guardar los archivos subidos, eso creara una carpeta con el nombre que le paso, en este caso <b>media</b> y dentro guardara todos los archivos que se suban</li>
+          <li>El <b>MEDIA_ROOT</b> es la ruta publica la cual las persona o el frontend accede a esos archivos</li>
+        </ul>
+        <p class="nota"><b>NOTA:</b> asegurarse que el <b>MEDIA_URL</b> tenga el <b>/</b> inicial igual que el <b>STATIC_URL</b></p>
+        <li>Agregamos una configuración que nos da la doc de Django para agregar esa ruta a las urls.py de la configuración, cuando estamos en desarrollo, debajo y fuera del arreglo <b>urlpatterns</b></li>
+        <div class="codigo">
+          <pre><code id="b95">urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</code></pre><button onclick="copiar('b95','177')" id="177">Copiar</button>
+        </div>
+        <li>El <b>list.html</b> lo hacemos de la siguiente forma porque no vamos a utilizar datatable en este video</li>
+        <div class="codigo">
+          <pre><code id="b96">{% extends 'list.html' %} 
+{% load static %}
+{% block head_list %}
+&lt;script src="{% static 'product/js/list.js' %}"&gt;&lt;/script&gt;
+{% endblock head_list %}
+{% block columns %}
+&lt;tr&gt;
+  &lt;th scope="col" style="width: 10%"&gt;Nro&lt;/th&gt;
+  &lt;th scope="col" tyle="width: 20%"&gt;Nombre&lt;/th&gt;
+  &lt;th scope="col" tyle="width: 30%"&gt;Categoria&lt;/th&gt;
+  &lt;th scope="col" tyle="width: 20%"&gt;Imagen&lt;/th&gt;
+  &lt;th scope="col" tyle="width: 20%"&gt;Pvp&lt;/th&gt;
+  &lt;th scope="col" tyle="width: 20%"&gt;Opciones&lt;/th&gt;
+&lt;/tr&gt;
+{% endblock columns %} 
+{% block rows %}
+{% comment %} No utilizo ajax, sino lo normal {% endcomment %}
+    {% for obj in object_list %}
+        &lt;tr&gt;
+            &lt;td&gt;{{ obj.id }}&lt;/td&gt;
+            &lt;td&gt;{{ obj.name }}&lt;/td&gt;
+            &lt;td&gt;{{ obj.cate.name }}&lt;/td&gt;
+            &lt;td class="text-center"&gt;
+{#                 {{ obj.image }}#}
+                &lt;img src="{{ obj.get_image }}" class="img-fluid d-block mx-auto" style="width: 20px; height: 20px;"&gt;
+            &lt;/td&gt;
+            &lt;td&gt;{{ obj.pvp }}&lt;/td&gt;
+            &lt;td class="text-center"&gt;
+                &lt;a href="{% url 'erp:product_update' obj.id %}" class="btn btn-warning btn-xs btn-flat"&gt;
+                    &lt;i class="fas fa-edit"&gt;&lt;/i&gt;
+                &lt;/a&gt;
+                &lt;a href="{% url 'erp:product_delete' obj.id %}" class="btn btn-danger btn-xs btn-flat"&gt;
+                    &lt;i class="fas fa-trash"&gt;&lt;/i&gt;
+                &lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    {% endfor %}
+{% endblock rows %}
+{% comment %} Para que quite el ajax predeterminado que esta en el html que esta heredando {% endcomment %}
+{% block js %}{% endblock js %}</code></pre><button onclick="copiar('b96','178')" id="178">Copiar</button>
+        </div>
+        <ul>
+          <li>En el codigo, se ve que en la imagen se pone <b>obj.get_image</b> la cual es la ruta de la imagen la cual configuraremos en el modelo de los productos</li>
+        </ul>
+        <li>En el modelo del producto, creamos una función <b>get_image</b> la cual haremos una verificación y retornaremos un enlace hacia la imagen u otra por si no se encuentra</li>
+        <li>primero importamos las url de los archivos media y static</li>
+        <div class="codigo">
+          <pre><code id="b97">from config.settings import MEDIA_URL, STATIC_URL</code></pre><button onclick="copiar('b97','179')" id="179">Copiar</button>
+        </div>
+        <li>Luego la función quedaria asi</li>
+        <div class="codigo"><pre><code id="b98">def get_image(self):
+        if self.image:
+            return f'{MEDIA_URL}{self.image}'
+        
+        return f'{STATIC_URL}media/img/empty.png'</code></pre><button onclick="copiar('b98','180')" id="180">Copiar</button></div>
+        <ul>
+          <li>si existe la imagen, o bueno, si se subio, le retorno la ruta que debe estar en media url, y le junto el self.image que es el nombre de la imagen</li>
+          <li>de lo contrario, le retorno una imagen como predeterminada que esta en mis static</li>
+          <li>Y por esto mismo la nota de que las rutas deben iniciar con <b>/</b></li>
+        </ul>
+        <li>Y en el <b>form.html</b> de las plantillas base, en el fomulario le agregamos el siguiente atributo <b>enctype</b>, el cual es para decirle que se van a enviar archivos por el formulario</li>
+        <div class="codigo">
+          <pre><code id="b99">&lt;form method="post" enctype="multipart/form-data"&gt; </code></pre><button onclick="copiar('b99','181')" id="181">Copiar</button>
+        </div>
+        <li>Y ya de esta forma si agregamos un producto, se guardara la imagen y el registro correctamente</li>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-43">
+        <h2>
+          <i>Video 43</i>
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=VUP_cyjD32s&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=43&pp=iAQB"
         >Link del video 42</a
       >
       <div class="flecha-arriba">
