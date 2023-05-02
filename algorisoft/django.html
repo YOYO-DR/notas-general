@@ -5354,6 +5354,58 @@ MEDIA_URL = '/media/'</code></pre><button onclick="copiar('b94','176')" id="176"
         href="https://www.youtube.com/watch?v=VUP_cyjD32s&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=43&pp=iAQB"
         >Link del video 42</a
       >
+      <ul>
+        <li>En el <b>form.html</b> de las plantillas principales, descomentamos el <b>$('form')</b> porque vamos a utilizar ajax para el envio de datos, y vamos a modificarlo</li>
+        <ul>
+          <li>Modificamos la variable <b>parameters</b> y creamos un <b>FormData</b> con la palabra reservada <b>new</b>, y con podriamos agregarle cada valor con la funcion <b>.append(clave,valor)</b> pero simplemente le pasamos el <b>this</b> que hace referencia al formulario y eso ya acepta los valores tipo texto y tipo archivo y ya el los procesa</li>
+          <div class="codigo">
+            <pre><code id="c1">var parameters = new FormData(this);</code></pre><button onclick="copiar('c1','182')" id="182">Copiar</button>
+          </div>
+          <li>Luego le hacemos una pequeña modificación a nuestro ajax de la funcion <b>submit_with_ajax</b>, le agregamos 2 atributos, y los ponemos en false, y quedaria asi la cabecera del ajax</li>
+          <div class="codigo">
+            <pre><code id="c2"></code>$.ajax({
+            url: url,
+            type: "POST",
+            data: parameters, 
+            dataType: "json",
+            processData: false,
+            contentType:false 
+          })</pre><button onclick="copiar('c2','183')" id="183">Copiar</button>
+          </div>
+          <ul>
+            <li>Esos 2 nuevos atributos, por defecto estan en ture, y modifican los datos que le pase, pero con el FormData ya lo hago y le digo que no procese esos datos</li>
+          </ul>
+          <li>Si quiero ver los valores, puedo comentar el <b>submit_with_ajax</b> y utilizo un forEach para ver los valores del formulario</li>
+          <div class="codigo">
+            <pre><code id="c3">parameters.forEach(function (value,key){ 
+  console.log(key+" "+value)
+})</code></pre><button onclick="copiar('c3','184')" id="184">Copiar</button>
+          </div>
+        </ul>
+        <li>En la vista de mi products le descomento el post, y si quiero, puedo comentar lo que esta en el try para que no se guarde y con un print(request.POST) y print(request.FILES) puedo ver los valores que llegan, a ver si llegan de forma correcta</li>
+        <li>Si es asi, descomento todo el post y el metodo <b>save</b> del formulario de mi product para que se guarden los valores</li>
+        <p class="nota"><b>NOTA:</b> en el <b>delete.html</b> también debo ponerle el new FormData porque sino al intentar eliminar lanzara un error</p>
+        <li>Y ya si probamos guardar, debe guardar la imagen y en el video el profe hace algunas modificaciones a los modelos</li>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-44">
+        <h2>
+          <i>Video 44</i>
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=s2P3AxKNmww&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=44&pp=iAQB"
+        >Link del video 42</a
+      >
       <div class="flecha-arriba">
         <a href="#inicio"
           ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
