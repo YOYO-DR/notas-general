@@ -181,11 +181,35 @@
             <li><a href="#video-40">Videos 40: Validando nuestras vistas (login_required, next, LOGIN_URL)</a></li>
             <li><a href="#video-41">Videos 41:  Implementando alertas en nuestro formulario con jquery-confirm</a></li>
             <li><a href="#video-42">Videos 42: Media Files | Parte I</a></li>
-            <li><a href="#video-43">Videos 43</a></li>
-            <li><a href="#video-44">Videos 44</a></li>
+            <li><a href="#video-43">Videos 43: Media Files con ajax | Parte II</a></li>
+            <li><a href="#video-44">Videos 44: Select anidados con ajax</a></li>
             <li><a href="#video-45">Videos 45</a></li>
             <li><a href="#video-46">Video 46</a></li>
             <li><a href="#video-47">Video 47</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li><a href="#video-48">Video 48</a></li>
+            <li><a href="#video-49">Video 49</a></li>
+            <li><a href="#video-50">Video 50</a></li>
+            <li><a href="#video-51">Video 51</a></li>
+            <li><a href="#video-52">Video 52</a></li>
+            <li><a href="#video-53">Video 53</a></li>
+            <li><a href="#video-54">Video 54</a></li>
+            <li><a href="#video-55">Video 55</a></li>
+            <li><a href="#video-56">Video 56</a></li>
+            <li><a href="#video-57">Video 57</a></li>
+            <li><a href="#video-58">Video 58</a></li>
+            <li><a href="#video-59">Video 59</a></li>
+            <li><a href="#video-60">Video 60</a></li>
+            <li><a href="#video-61">Video 61</a></li>
+            <li><a href="#video-62">Video 62</a></li>
+            <li><a href="#video-63">Video 63</a></li>
+            <li><a href="#video-64">Video 64</a></li>
+            <li><a href="#video-65">Video 65</a></li>
+            <li><a href="#video-66">Video 66</a></li>
+            <li><a href="#video-67">Video 67</a></li>
           </ul>
         </div>
       </div>
@@ -5345,14 +5369,14 @@ MEDIA_URL = '/media/'</code></pre><button onclick="copiar('b94','176')" id="176"
     <details>
       <summary class="videos-titulo" id="video-43">
         <h2>
-          <i>Video 43</i>
+          <i>Video 43</i>: Media Files con ajax | Parte II
         </h2>
       </summary>
       <a
         target="_blank"
         class="link-videos"
         href="https://www.youtube.com/watch?v=VUP_cyjD32s&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=43&pp=iAQB"
-        >Link del video 42</a
+        >Link del video 43</a
       >
       <ul>
         <li>En el <b>form.html</b> de las plantillas principales, descomentamos el <b>$('form')</b> porque vamos a utilizar ajax para el envio de datos, y vamos a modificarlo</li>
@@ -5397,14 +5421,202 @@ MEDIA_URL = '/media/'</code></pre><button onclick="copiar('b94','176')" id="176"
     <details>
       <summary class="videos-titulo" id="video-44">
         <h2>
-          <i>Video 44</i>
+          <i>Video 44</i>: Select anidados con ajax
         </h2>
       </summary>
       <a
         target="_blank"
         class="link-videos"
         href="https://www.youtube.com/watch?v=s2P3AxKNmww&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=44&pp=iAQB"
-        >Link del video 42</a
+        >Link del video 44</a
+      >
+      
+      <ul>
+        <li>En mi app <b>erp</b>, en la carpeta de <b>views.py</b> creo una carpeta <b>tests</b> para las prubas o enseñanzan del profe, porque en este video, los select anidados no es algo que por ahora vaya a implementar sino que es algo que va a explicae porque se lo pidieron</li>
+        <li>En el archivo <b>forms.py</b> de mi app erp, crep un formulario herenando de <b>Form</b> porque vamos a crear cada componente de forma manual y no basandonos en un modelo</li>
+        <div class="codigo">
+          <pre><code id="c4">class TestForm(Form):#creo mi propio formulario
+  categories = ModelChoiceField(queryset=Category.objects.all(),widget=Select(attrs={
+      'class':'form-control'
+  }))
+  products = ModelChoiceField(queryset=Product.objects.none(),widget=Select(attrs={
+      'class':'form-control'
+  }))
+</code></pre><button onclick="copiar('c4','185')" id="185">Copiar</button>
+        </div>
+        <ul>
+          <li>El <b>ModelChoiceField</b> es para las opciones, y en el widget le digo que tipo de input sera, en este caso, un <b>Select</b>, y ese <b>ModelChoiceField</b> debe ir tambien con el parametro <b>queryset</b> el cual le paso los valores que seran las opciones, en este caso, todas las categorias</li>
+          <li>Le paso un listado vacio o <b>none</b> de los productos porque con ajax lo voy a llenar, y pues es obligatorio pasar ese parametro</li>
+          <li>Y pues le puedo pasar atributos dentro del widget asignado</li>
+        </ul>
+        <li>En la carpeta tests, creo el archivo <b>views.py</b> y creo una vista simple que herede de <b>TemplateView</b> y le pongo el post, distpach y sus metodos decoradores para el login e ignorar la seguridad, y quedaria asi:</li>
+        <div class="codigo">
+          <pre><code id="c5">from django.http import JsonResponse
+from django.views.generic import TemplateView
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from core.erp.forms import TestForm
+from core.erp.models import Product
+
+class TestView(TemplateView):
+    template_name='tests.html'
+
+    @method_decorator(csrf_exempt)
+    @method_decorator(login_required) 
+    def dispatch(self, request, *args,**kwargs):
+     return super().dispatch(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+      data={}
+      try:
+        action = request.POST['action']
+        if action == 'search_product_id':
+          data=[]
+          for i in Product.objects.filter(cat_id=request.POST['id']):
+             data.append({'id':i.id, 'name':i.name})
+        else:
+          data['error']='Ha ocurrido un error'
+      except Exception as e:
+         data['error']=str(e)
+
+      return JsonResponse(data,safe=False)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = 'Selects anidados | Django'
+        context['form']=TestForm()
+        return context</code></pre><button onclick="copiar('c5','186')" id="186">Copiar</button>
+        </div>
+        <ul>
+          <li>Hago las respectivas importaciones a utilizar</li>
+          <li>Le pongo los decoradores al distpach</li>
+          <li>En el metodo post verifico la acción, le mando los productos según el id que reciba el cual sera de una categoria, y buscare todos los productos por esa categoria</li>
+          <li>En este caso no sera un json o diccionario sino una colección de diccionario o un arreglo con varios diccionarios con el id y nombre del producto</li>
+          <li>Y en el <b>get_context_data</b> le paso los valores que necesito, junto a ellos el formulario</li>
+          <li>Recordar que como voy a retornar un arreglo o coleccion, el JsonResponse debe tener el safe en False</li>
+        </ul>
+        <li>Agrego la vista a las urls de mi app, con el link <b>test/</b>, quedaria como <b>/erp/test/</b>, importo la vista como <b>from core.erp.views.tests.views import *</b></li>
+        <div class="codigo">
+          <pre><code id="c6"># test
+    path('test/',TestView.as_view(),name='test')</code></pre><button onclick="copiar('c5','186')" id="186">Copiar</button>
+        </div>
+        <li>Copiamos del <b>form.html</b> de las plantillas principales, pero le hago unas modificaciones</li>
+        <div class="codigo">
+          <pre><code id="c6">{% extends 'layout.html' %} 
+{% load widget_tweaks %} 
+{% block content %}
+&lt;form method="post"&gt;
+  &lt;div class="card card-default"&gt;
+    &lt;div class="card-header"&gt;
+      &lt;h3 class="card-title"&gt;
+        &lt;i class="fas fa-plus"&gt;&lt;/i&gt;
+        {{title}}
+      &lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="card-body"&gt;
+      &lt;div class="form-group"&gt;
+        &lt;label for=""&gt;Categorias:&lt;/label&gt;
+        {{form.categories}} {% comment %} Pongo el input que cree {% endcomment %}
+      &lt;/div&gt;
+      &lt;div class="form-group"&gt;
+        &lt;label for=""&gt;Productos:&lt;/label&gt;
+        {{form.products}}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+{% endblock content %} 
+{% block js %}
+{% endblock js %}
+</code></pre><button onclick="copiar('c6','187')" id="187">Copiar</button>
+        </div>
+        <ul>
+          <li>Ponemos los inputs, ya que son 2, no recorremos el <b>form</b> sino que lo ponemos manual accediendo a su nombre del atributo que pusimos en la clase del formulario</li>
+          <li>Le dejamos el bloque de js vacio para que no herede esa parte, porque ahora vamos a utilizar ajax</li>
+        </ul>
+        <li>Agregamos el codigo javascript en el bloque js que vamos a utilizar</li>
+        <div class="codigo">
+          <pre><code id="c7">&lt;script&gt;
+  $(function () {
+    $('select[name="categories"]').on('change',function (){
+      let id = $(this).val(); 
+      let select_products=$('select[name="products"]');
+      let options ='&lt;option value=""&gt;-----&lt;/option&gt;'
+      if(id===''){
+        select_products.html(options)
+        return false;
+      }
+      $.ajax({
+            url: window.location.pathname, 
+            type: "POST",
+            data: {
+              action:'search_product_id',
+              id:id
+            }, 
+            dataType: "json",
+          })
+            .done(function (data) {
+              if (!data.hasOwnProperty("error")) {
+                $.each(data,function(key,value){
+                  //console.log(`key:${key}, value:${value}`)
+                  options+=`&lt;option value="${value.id}"&gt;${value.name}&lt;/option&gt;`
+                })
+                return false;
+              }
+              message_error(data.error);
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+              alert(`${textStatus} : ${errorThrown}`);
+            })
+            .always(function () {
+              select_products.html(options);
+            });
+    })
+  });
+&lt;/script&gt;</code></pre><button onclick="copiar('c7','188')" id="188">Copiar</button>
+        </div>
+        <ul>
+          <li>Con el <b>$(function () {})</b> le digo que se ejecute apenas cargue la pagina</li>
+          <li>Le agregamos el evento <b>change</b> o cambio cuando selecciona cada opcion del select, lo selecciono por su nombre o <b>name</b> el cual se pone en el input</li>
+          <li>Dentro de la función, obtengo el id de la categoria, con el this que hace referencia a la opcion seleccionada y que en <b>value</b> esta el id de la categoria (en la inspección se puede ver) y con <b>val()</b> obtengo su valor</li>
+          <li>Selecciono el input del producto para incrustarle las opciones segun la categoria</li>
+          <li>Inicializo las opciones en una variable para luego ir agregandolas segun lo que reciba el ajax</li>
+          <li>Verifico ue si el id esta vacio, osea no ha seleccionado nada, entonces no haga la petición porque eso seria un error en el servidor, entonces solo le paso la opción vacia y con el return detengo la ejecución para que no pase al ajax</li>
+          <li>Si el id si tiene un valor, osea el id de la categoria, ejecuto el ajax de jquery donde:</li>
+          <ul>
+            <li>La url es la actual por eso se pone <b>window.location.pathname</b></li>
+            <li>el tipo de petición</li>
+            <li>La data la cual le paso la accion (action) y el id el cual es el de la categoria que obtuve arriba</li>
+            <li>Y el <b>dataType</b> el cual es json</li>
+          </ul>
+         
+          <li>En la función <b>.done</b> la cual se ejecuta si la peticion es correcta, le paso la data que me envie el servido, la cual es un arreglo de diccionarios</li>
+          <li>Pregunto que el data no tenga una clave error, y si no la tiene, con la función <b>$.each</b> recorro el arreglo, le paso el data y como segundo parametro la funcion la cual recibe el key y value, el cual el key es la posicion del arreglo y el value el diccionario</li>
+          <li>y como el <b>each</b> recorre, entonces creo las opciones, se las agrego a la variable que ya tengo creada, las opciones con su value el cual pongo el id del producto, y el name en el valor del option que es el que se muestra</li>
+          <li>Y le pongo <b>return false</b> para que salga de la ejecución</li>
+          <li>Si hay algun error, le paso los errores a la funcion <b>message_error</b> como <b>data.error</b> para que le diga el error al usuario</li>
+          <li>Y ya en el <b>.always</b>, en su función, en el input product el cual esta seleccionado en <b>select_products</b> y con la funcion <b>.html</b> le paso la variable que tiene los valores, si se envia la petición, recibe los productos, sino tiene valores lo dejara vacio como la inicializacion de esa variable</li>
+        </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-45">
+        <h2>
+          <i>Video 45</i>
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=_RhjES5lDlo&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=45&pp=iAQB"
+        >Link del video 45</a
       >
       <div class="flecha-arriba">
         <a href="#inicio"
