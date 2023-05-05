@@ -5791,7 +5791,7 @@ admin.site.register(User)</code></pre><button onclick="copiar('c13','194')" id="
     <details>
       <summary class="videos-titulo" id="video-47">
         <h2>
-          <i>Video 47</i>
+          <i>Video 47</i>: Auditoria en mis modelos con django-crum
         </h2>
       </summary>
       <a
@@ -5799,6 +5799,88 @@ admin.site.register(User)</code></pre><button onclick="copiar('c13','194')" id="
         class="link-videos"
         href="https://www.youtube.com/watch?v=AFpLfs-ALow&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=47&pp=iAQB"
         >Link del video 47</a
+      >
+      <ul>
+        <li>La auditaria hace referencia a poner como el registro o control de modificaciones, actualizaciones, quien lo hizo y cuando, y para no repetir eso en cada modelo, sabiendo que va a ser igual, creamos un modelo base y lo probaremos con las categorias</li>
+        <li>Fuera de las apps, pero dentro de la carpeta <b>core</b>, creo un archivo para ese modelo base, <b>models.py</b> y ahi lo creo de la siguiente manera</li>
+        <div class="codigo">
+          <pre><code id="c15">from django.conf import settings
+from django.db import models
+
+class BaseModel(models.Model):
+    user_creation = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, related_name='%(app_label)s_%(class)s_creation')
+
+    user_updated = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, related_name='%(app_label)s_%(class)s_updated')
+
+    date_creation = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    class Meta:
+        abstract = True</code></pre><button onclick="copiar('c15','196')" id="196">Copiar</button>
+        </div>
+        <ul>
+          <li>el <b>user_creation</b> es para registrar al usuario que creo el registro, y como tengo el usuario personalizado, debo utilizar la variable <b>AUTH_USER_MODEL</b> la cual tiene el modelo de mi usuario personalizado, y viene de <b>django.conf</b> que es donde se guarda la info de mi carpeta config o principal del proyecto, y lo pongo nulo y vacio porque si tengo datos, va a tener problemas, asi que inician nulos y vacios porque igualmente los agregare yo desde el backend</li>
+          <li>Aveces hay problemas con el nombre de la tabla al utilizar el <b>AUTH_USER_MODEL</b> para la relacion, asi que le puedo poner el nombre, y lo pongo de esa forma para que cambie segun la clase y no haya problema al poner uno repetido</li>
+          <li>el <b>user_updated</b> es para registrar que usuario actualizo el registro</li>
+          <li>El <b>date_creation</b> y el <b>date_updated</b> les pongo fecha con hora y se pondran de forma automatica</li>
+          <li>En la clase <b>Meta</b> le pongo el atributo <b>abstract</b> en <b>True</b> para decirle que no se ponga en la base de datos, sino que sera una clase para implementar en mis modelos</li>
+        </ul>
+        <li>En mi modelo <b>Category</b> ya no lo heredo de <b>models.Model</b> sino del modelo base que cree, debo importar ese modelo (<b>from core.models import BaseModel</b>) y ponerselo al Category</li>
+        <li>Instalamos la libreria <b>django-crum</b> (<b> pip install django-crum</b>) para obtener el usuario logueado en el momento y asi ponerlo cuando haga una modificación o creacion enmis categorias</li>
+        <li>Desde <b>crum</b> importamos <b>get_current_user</b> la cual es la función para obtener el usuario</li>
+        <div class="codigo">
+          <pre><code id="c16">from crum import get_current_user</code></pre><button onclick="copiar('c16','197')" id="197">Copiar</button>
+        </div>
+        <li>Pero para utilizarlo debemos ponerlo en el <b>MIDDLEWARE</b> de los <b>settings.py</b> de la siguiente forma</li>
+        <div class="codigo">
+          <pre><code id="c17">'crum.CurrentRequestUserMiddleware'</code></pre><button onclick="copiar('c17','198')" id="198">Copiar</button>
+        </div>
+        <li>Ya asi podemos utilizarlo</li>
+        <li>En el modelo que se va a utilizar, en este caso, Category, sobreescribimos la función <b>save</b> del modelo para obtener el usuario y ponerlo en el registro</li>
+        <div class="codigo">
+          <pre><code id="c18">def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+  get_current_request()
+  user = get_current_user()
+  if user is not None:
+    if not self.pk:
+      self.user_creation=user
+    else:
+      self.user_updated=user
+  super(Category, self).save()</code></pre><button onclick="copiar('c18','199')" id="199">Copiar</button>
+        </div>
+        <ul>
+          <li>Si se autocompleta con visual la funcion save, los campos deben quedar asi, no utilizando ":" sino los "=" (error mio que vi)</li>
+          <li>creamos una variable y llamamos la función para obtener el usuario, y con el primer <b>if</b> verificamos si el usuario no esta vacio</li>
+          <li>Si no esta vacio, preguntamos si existe una clave primario, si no existe significa que se esta creando un registro y ponemos el registro en el <b>user_creation</b> por dicha cuestión</li>
+          <li>De lo contrario, si existe una clave pk, significa que se esta actualizando y ponemos en el <b>user_updated</b> el usuario que esta atualizando el registro</li>
+          <li>Recordar que los 2 date se ponen de forma automatica</li>
+        </ul>
+        <li>Si corremos el servidor y vamos a la edición o creacion de una categoria, se ven unos selects de los usuarios los cuales no deben ir porque los ponemos de forma dinamica, entonces le hacemos una pequeña modificacion al formulario de las categorias</li>
+        <div class="codigo">
+          <pre><code id="c19">exclude = ['user_creation','user_updated']</code></pre><button onclick="copiar('c19','200')" id="200">Copiar</button>
+        </div>
+        <ul>
+          <li>De esta forma excluyo los campos (Los cuales ya vimos ese tema), no pongo los date porque como tienen la propiedad auto_now y auto_now_add, django sabe que son campos que se autocompletan</li>
+        </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-48">
+        <h2>
+          <i>Video 48</i>
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=-lftKKGQ0Ao&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=48&pp=iAQB"
+        >Link del video 48</a
       >
       <div class="flecha-arriba">
         <a href="#inicio"
