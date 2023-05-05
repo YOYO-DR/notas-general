@@ -22,6 +22,9 @@ details {
   border-radius: 5px;
   align-items: flex-start;
   margin: 10px 0;
+  max-height: 80vh;
+  max-width: 70vw;
+  overflow: auto;
 }
 .codigo pre {
   padding: 10px 10px 0 10px;
@@ -123,10 +126,5 @@ h2 {
 }
 ul ul {
   list-style-type: square;
-}
-.codigo-largo {
-  max-height: 80vh;
-  max-width: 80vw;
-  overflow: scroll;
 }
 

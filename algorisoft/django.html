@@ -5609,7 +5609,7 @@ class TestView(TemplateView):
     <details>
       <summary class="videos-titulo" id="video-45">
         <h2>
-          <i>Video 45</i>
+          <i>Video 45</i>: Select anidados con select2
         </h2>
       </summary>
       <a
@@ -5617,6 +5617,124 @@ class TestView(TemplateView):
         class="link-videos"
         href="https://www.youtube.com/watch?v=_RhjES5lDlo&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=45&pp=iAQB"
         >Link del video 45</a
+      >
+      <ul>
+        <li>Ponemos la libreria <b>select2</b> en las libs de nuestra carpeta static</li>
+        <li>La importamos en nuestro html <b>tests.html</b></li>
+        <div class="codigo">
+          <pre><code id="c8">{% load static %}
+{% block head %}
+&lt;link rel="stylesheet" href="{% static 'libs/select2-4.1.0/css/select2.min.css' %}"&gt;
+&lt;link rel="stylesheet" href="{% static 'libs/select2-4.1.0/css/select2-bootstrap4.min.css' %}"&gt;
+&lt;script src="{% static 'libs/select2-4.1.0/js/select2.min.js' %}"&gt;&lt;/script&gt;
+&lt;!--Para los lenguajes--&gt;
+&lt;script src="{% static 'libs/select2-4.1.0/js/i18n/es.js' %}"&gt;</script>
+{% endblock head %}</code></pre><button onclick="copiar('c8','189')" id="189">Copiar</button>
+        </div>
+        <ul>
+          <li>Cargamos los static, y en el bloque <b>head</b> el cual esta creado en el <b>body.html</b> y el cual se hereda el <b>layout</b></li>
+          <li>importamos el css y el js, más el js del lenguaje español, que esta en la carpeta <b>i18n</b></li>
+        </ul>
+        <li>En nuestra clase de formulario <b>TestForm</b>, le agregamos la clase <b>select2</b> para seleccionarlo con dicha clase</li>
+        <div class="codigo">
+          <pre><code id="c9">categories = ModelChoiceField(queryset=Category.objects.all(),widget=Select(attrs={
+      'class':'form-control select2',
+      'style':'width:100%'
+  }))
+products = ModelChoiceField(queryset=Product.objects.none(),widget=Select(attrs={
+      'class':'form-control select2',
+      'style':'width:100%'
+  }))</code></pre><button onclick="copiar('c9','190')" id="190">Copiar</button>
+        </div>
+        <li>En nuestra vista, le modificamos el nombre de la clave <b>name</b> del data que enviamos por <b>text</b> porque asi lo pide la libreria</li>
+        <div class="codigo">
+          <pre><code id="c10">data=[{"id":'','text':'-'*9}]
+          for i in Product.objects.filter(cat_id=request.POST['id']):
+             data.append({'id':i.id, 'text':i.name,'data':i.cat.toJSON()})</code></pre><button onclick="copiar('c10','191')" id="191">Copiar</button>
+        </div>
+        <ul>
+          <li>La inicializacion de la variable data le paso un id vacio y un text con los guiones porque es la primera <b>option</b> del select, porque le voy a pasar los datos directo de la petición y select2 creara los <b>option</b> de forma dinamica</li>
+          <li>en la data, la cual es la info de los productos según la categoria, ahi le paso en otra clase, llamada data, la información de la categoria segun el producto, el cual visualizaremos en la consola de la pagina si se desea</li>
+        </ul>
+        <li>El script del html quedaria de la siguiente forma</li>
+        <div class="codigo codigo-largo"><button onclick="copiar('c11','192')" id="192">Copiar</button>
+          <pre><code id="c11">$(function () {
+    let select_products = $('select[name="products"]'); 
+    $(".select2").select2({
+      theme: "bootstrap4", 
+      language: "es",
+    });
+    $('select[name="categories"]').on("change", function () {
+      let id = $(this).val(); 
+      let options = '&lt;option value=""&gt;---------&lt;/option&gt;'; 
+      if (id === "") {
+        select_products.html(options);
+        return false;
+      }
+      $.ajax({
+        url: window.location.pathname,
+        type: "POST",
+        data: {
+          action: "search_product_id",
+          id: id,
+        },
+        dataType: "json",
+      })
+        .done(function (data) {
+          if (!data.hasOwnProperty("error")) {
+            select_products.html("").select2({
+              theme: "bootstrap4",
+              language: "es",
+              data: data,
+            });
+            /*$.each(data,function(key,value){
+                  //console.log(`key:${key}, value:${value}`)
+                  options+=`&lt;option value="${value.id}"&gt;${value.name}&lt;/option&gt;`
+                })*/
+            return false;
+          }
+          message_error(data.error);
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          alert(`${textStatus} : ${errorThrown}`);
+        })
+        .always(function (data) {
+          //select_products.html(options); 
+        });
+    });
+    select_products.on("change", function () {
+      var value = select_products.select2("data")[0];
+      console.log(value);
+    });
+  });</code></pre>
+        </div>
+        <ul>
+          <li>creo una variable y selecciono el select de los prodcutos para ponerle lo valores que me pase la petición, <b>select_products</b></li>
+          <li>Selecciono los inputs por su clase y les pongo tema y lenguaje gracias a que los importe en el html, utilizando la funcion de select2</li>
+          <li>Con el <b>if (id === "")</b> verifico si la persona selecciono la opcion vacia, la cual solamente le pongo las lineas de las opcion vacia y ya, no envio la petición</li>
+          <li>en el <b>if (!data.hasOwnProperty("error"))</b>, si no hay errores, selecciono el select de los productos, lo limpio con <b>.html("")</b> y con <b>select2</b> le pongo los valores, el tema, lenguaje y la data que venga de la petición, la cual viene en un diccionario con varios diccionarios (<b>[{"id":0,"text":'Nombre'},{"id":1,"text":'Nombre 2'}]</b>)</li>
+          <li>En la función <b>always</b> que es la que se ejecute siempre, lo comento porque si no hay opciones, el data solo envia la opcion vacia</li>
+          <li>Fuera de la funcion <b>$('select[name="categories"]').on('change',function (){})</b> la cual es la mayor, fuera de esa, obtenemos el evento del cambio en el select de los productos y gracias a select2 puedo obtener los datos que tenga y asi realizar otras opciones, en este caso solo veremos la información del producto seleccionado, y le pongo <b>[0]</b> porque esta dentro de un arreglo</li>
+        </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-46">
+        <h2>
+          <i>Video 46</i>
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=PJHmare6KeM&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=46&pp=iAQB"
+        >Link del video 46</a
       >
       <div class="flecha-arriba">
         <a href="#inicio"
