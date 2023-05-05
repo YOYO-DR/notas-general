@@ -183,8 +183,8 @@
             <li><a href="#video-42">Videos 42: Media Files | Parte I</a></li>
             <li><a href="#video-43">Videos 43: Media Files con ajax | Parte II</a></li>
             <li><a href="#video-44">Videos 44: Select anidados con ajax</a></li>
-            <li><a href="#video-45">Videos 45</a></li>
-            <li><a href="#video-46">Video 46</a></li>
+            <li><a href="#video-45">Videos 45: Select anidados con select2</a></li>
+            <li><a href="#video-46">Video 46: Personalizando la clase User</a></li>
             <li><a href="#video-47">Video 47</a></li>
           </ul>
         </div>
@@ -5727,7 +5727,7 @@ products = ModelChoiceField(queryset=Product.objects.none(),widget=Select(attrs=
     <details>
       <summary class="videos-titulo" id="video-46">
         <h2>
-          <i>Video 46</i>
+          <i>Video 46</i>: Personalizando la clase User
         </h2>
       </summary>
       <a
@@ -5735,6 +5735,70 @@ products = ModelChoiceField(queryset=Product.objects.none(),widget=Select(attrs=
         class="link-videos"
         href="https://www.youtube.com/watch?v=PJHmare6KeM&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=46&pp=iAQB"
         >Link del video 46</a
+      >
+      <ul>
+        <li>Creamos una app dentro de <b>core</b> (nuestra carpeta de apps), llamada <b>user</b> la cual tendra el modelo heredado de un modelo para modificar el usuario por si le queremos agregar un campo, en este caso, le agregaremos un campo para foto de perfil</li>
+        <li>Después de crear la app, registrarla en <b>INSTALLED_APPS</b> y en el archivo <b>apps.py</b> agregarle el <b>core.</b> porque esta dentro de esa carpeta</li>
+        <li>En el archivo <b>models.py</b> de la app importamos lo necesario y creamos el modelo</li>
+        <div class="codigo">
+          <pre><code id="c12">from django.db import models
+from django.contrib.auth.models import AbstractUser
+from config.settings import MEDIA_URL, STATIC_URL
+
+class User(AbstractUser):
+    image = models.ImageField(upload_to='users/%Y/%m/',null=True, blank=True)
+    
+    def get_image(self):
+        if self.image:
+            return f'{MEDIA_URL}{self.image}'
+        return f'{STATIC_URL}media/img/empty.png'</code></pre><button onclick="copiar('c12','193')" id="193">Copiar</button>
+        </div>
+        <ul>
+          <li>importamos la clase <b>AbstractUser</b> la cual es para agregar más datos a la clase <b>User</b></li>
+          <li>Creamos y heredamos la clase, agregamos el campo de imagen, la cual puede ser nula y vacia</li>
+          <li>Copiamos la funcion <b>get_image</b> que creamos de los productos para retornar la imagen del usuario, y si no hay una, retornamos una imagen de vacio</li>
+          </ul>
+          <li>En el <b>settings</b> creo una variable y le pongo el nombre de la app que tiene el modelo modificado y el nombre de la clase, la cual la buscara en los modelos</li>
+          <div class="codigo">
+            <pre><code id="c13">AUTH_USER_MODEL = 'user.User'</code></pre><button onclick="copiar('c13','194')" id="194">Copiar</button>
+          </div>
+          <ul>
+            <li>Si lanza error, posiblemente sea porque no se puso correctamente la app en <b>INSTALLED_APPS</b></li>
+        </ul>
+        <li>Borro la base de datos, y la vuelvo a crear, realizo el <b>makemigrations</b> y luego el <b>migrate</b>, y la tabla user ahora se llama <b>user_user</b>, y seguidamente se crean todas las tablas del user (grupos y permisos)</li>
+        <li>En la app <b>user</b> registro el modelo en el archivo <b>admin.py</b></li>
+        <div class="codigo">
+          <pre><code id="c13">from django.contrib import admin
+from core.user.models import User
+
+admin.site.register(User)</code></pre><button onclick="copiar('c13','194')" id="194">Copiar</button>
+        </div>
+        <li>En el template <b>vtc/sidebar.html</b> busco donde se pone la foto de perfil del usuario y lo remplazo llamando al usuario y poninendo su función de la imagen</li>
+        <div class="codigo">
+          <pre><code id="c14">&lt;div class="image"&gt;
+  &lt;img src="{{user.get_image}}" class="img-circle elevation-2" alt="User Image"&gt;
+&lt;/div&gt;</code></pre><button onclick="copiar('c14','195')" id="195">Copiar</button>
+        </div>
+        <li>Y asi pongo la imagen del usuario, o una predeterminada si no tiene</li>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-47">
+        <h2>
+          <i>Video 47</i>
+        </h2>
+      </summary>
+      <a
+        target="_blank"
+        class="link-videos"
+        href="https://www.youtube.com/watch?v=AFpLfs-ALow&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=47&pp=iAQB"
+        >Link del video 47</a
       >
       <div class="flecha-arriba">
         <a href="#inicio"
