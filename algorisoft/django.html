@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
 
     <title>Notas Django</title>
   </head>
@@ -1000,6 +1000,7 @@ for i in obj:
             el <b>id</b> (que es la llave primaria <b>pk</b>)
           </li>
           <li><b>filter().count()</b> - Me muestra cuantos registros trajo</li>
+          <li><b>filter().order_by('nombreColumna')</b> - Me muestra de forma ordenada (A-Z) los registros, si le pongo un "-", los ordena de forma (Z-A), y aplica los mismo para las columnas con números, de forma ascendente o de forma descendente si se le antepone el "-"</li>
         </ul>
         <li>
           Con el <b>query</b> me retorna la consulta en el lenguaje <b>sql</b>,
@@ -5657,7 +5658,7 @@ products = ModelChoiceField(queryset=Product.objects.none(),widget=Select(attrs=
           <li>en la data, la cual es la info de los productos según la categoria, ahi le paso en otra clase, llamada data, la información de la categoria segun el producto, el cual visualizaremos en la consola de la pagina si se desea</li>
         </ul>
         <li>El script del html quedaria de la siguiente forma</li>
-        <div class="codigo codigo-largo"><button onclick="copiar('c11','192')" id="192">Copiar</button>
+        <div class="codigo"><button onclick="copiar('c11','192')" id="192">Copiar</button>
           <pre><code id="c11">$(function () {
     let select_products = $('select[name="products"]'); 
     $(".select2").select2({
