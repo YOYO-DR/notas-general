@@ -144,5 +144,10 @@ nav a:hover {
   border-radius: 5px;
 }
 nav a:visited {
-color: black;
+  color: black;
+}
+img {
+  margin: 20px 0;
+  margin-left: 30px;
+  border: 1px solid black;
 }

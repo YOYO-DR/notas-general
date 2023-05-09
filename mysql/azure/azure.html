@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link
+      rel="icon"
+      href="../../media/img/nota-adhesiva.png"
+      type="image/x-icon"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../style.css" />
+
+    <title>Notas Django</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="../../home.html">Principal</a></li>
+      </ul>
+    </nav>
+    <h1 id="inicio" style="color: black">
+      Como INSTALAR MySQL en una VPS en Azure y como CONECTARSE con el servidor
+    </h1>
+    <h2>Primero vamos a <b>Azure</b>, ya teniendo una suscripción</h2>
+    <ul>
+      <li>En la parte lateral, seleccionamos <b>Maquinas Virtuales</b></li>
+      <img src="../../media/img/azure 1.png" alt="" />
+      <li>
+        Seleccionamos <b>Crear</b> y luego <b>Máquina virtual de Azure</b>
+      </li>
+      <img src="../../media/img/azure 2.png" alt="" />
+      <li>Solo modifican lo que mencione</li>
+      <ul>
+        <li>
+          En <b>Grupo de recursos</b> seleccionan en <b>Crear nuevo</b> y le
+          ponen un nombre, ejem: <b>ServidorMySQL</b>
+        </li>
+        <li>Ponen el nombre a la maquina virtual, ejem: <b>MySQL</b></li>
+        <li>En región, ponen <b>(US) East US</b></li>
+        <li>En <b>tipo de autenticación</b> seleccionan <b>Contraseña</b></li>
+        <li>
+          Llenamos los 3 campos, la cual seran las credenciales para
+          conectarnos, via ssh a la maquina virtual
+        </li>
+      </ul>
+      <li>Pasamos a <b>Discos</b></li>
+      <ul>
+        <li>
+          En <b>Tipo de disco del sistema operativo</b> lo ponemos en
+          <b>SSD Premium</b>
+        </li>
+      </ul>
+      <li>Pasamos a <b>redes</b></li>
+      <li>Y luego seleccionamos <b>Revisar y crear</b></li>
+      <li>
+        Esta configuración, cobrara aproximadamente 14 usd por mes, ahi se ven
+        los gastos por hora, multiplican por 24 luego 30 y calculan cuanto es
+      </li>
+      <li>Seleccionamos crear y esperamos que se cree la maquina virtual</li>
+      <li>Despues de haberse creado, seleccionamos en <b>Ir al recurso</b></li>
+      <li>
+        Ya aqui podemos ver la información de nuestra maquina virtual, ahora nos
+        conectaremos a ella por via ssh gracias a la ip publica
+      </li>
+      <img src="../../media/img/azure 3.png" alt="" />
+      <li>Copiamos la dirección ip</li>
+      <li>Abrimos la terminal de nuestro pc y escribimos:</li>
+      <div class="codigo">
+        <pre><code>nombreUsuario@ipPublica</code></pre>
+      </div>
+      <ul>
+        <li>
+          De esta forma accedemos a nuestra maquina virtual, de ahi le decimo
+          que <b>yes</b> y luego escribimos la contraseña y se debe ver algo asi
+        </li>
+        <img src="../../media/img/azure 4.png" alt="" />
+      </ul>
+       </ul>
+      <h2>
+        Ya dentro de nuestra maquina virtual, ejecutamos los siguiente comandos
+      </h2>
+      <ul>
+        <li>Actualizar repositorio</li>
+        <div class="codigo">
+          <pre><code id="a1">sudo apt update</code></pre>
+          <button onclick="copiar('a1','1')" id="1">Copiar</button>
+        </div>
+        <li>Instalar mysql</li>
+        <div class="codigo">
+          <pre><code id="a2">sudo apt-get install mysql-server mysql-client -y</code></pre>
+          <button onclick="copiar('a2','2')" id="2">Copiar</button>
+        </div>
+        <li>Ver la versión</li>
+        <div class="codigo">
+          <pre><code id="a3">mysql --version</code></pre>
+          <button onclick="copiar('a3','3')" id="3">Copiar</button>
+        </div>
+      </ul>
+   
+    <h2>Vamos a configurar mysql</h2>
+    <ul>
+      <li>Entramos a mysql</li>
+      <div class="codigo">
+        <pre><code id="a4">sudo mysql</code></pre>
+        <button onclick="copiar('a4','4')" id="4">Copiar</button>
+      </div>
+      <li>Este comando es para poner una contraseña al usuario root</li>
+      <div class="codigo">
+        <pre><code id="a5">ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'tu_nueva_contraseña';</code></pre>
+        <button onclick="copiar('a5','5')" id="5">Copiar</button>
+      </div>
+      <li>
+        salimos de <b>mysql</b> con <b>exit</b> y reiniciamos el servidor de
+        mysql
+      </li>
+      <div class="codigo">
+        <pre><code id="a6">sudo service mysql restart</code></pre>
+        <button onclick="copiar('a6','6')" id="6">Copiar</button>
+      </div>
+      <li>
+        Ejecutamos el siguiente comando e ingresamos la contraseña que le
+        pusimos al usuario <b>root</b>
+      </li>
+      <div class="codigo">
+        <pre><code id="a7">sudo mysql_secure_installation</code></pre>
+        <button onclick="copiar('a7','7')" id="7">Copiar</button>
+      </div>
+      <ul>
+        <li>
+          En <b>VALIDATE PASSWORD COMPONENT</b> es para utilizar un componente
+          para validar contraseñas, pero lo pondre en no porque solo es una base
+          de datos de prueba y practicas
+        </li>
+        <li>En <b>Change the password for root ?</b> Seleccionamos que no</li>
+        <li>
+          En <b>Remove anonymous users?</b> seleccionamos que si, <b>yes</b>
+        </li>
+        <li>
+          En <b>Disallow root login remotely?</b> seleccionamos que si,
+          <b>yes</b>
+        </li>
+        <li>
+          En <b>Remove test database and access to it?</b>, pregunta que si
+          queremos eliminar la base de datos <b>test</b> seleccionamos que si,
+          <b>yes</b>
+        </li>
+        <li>
+          En <b>Reload privilege tables now?</b> seleccionamos que si,
+          <b>yes</b>
+        </li>
+        <li>Ahi nos dira <b>All Done</b></li>
+      </ul>
+    </ul>
+      <h2>Configurar los usuarios</h2>
+      <ul>
+        <li>Entramos a mysql como usuario root y ponemos la contraseña que pusimos ahora</li>
+        <div class="codigo">
+          <pre><code id="a8">sudo mysql -u root -p</code></pre><button onclick="copiar('a8','8')" id="8">Copiar</button>
+        </div>
+        <li>Vamos a crear un usuario para conectarnos de forma remota, osea, directamente con mysql y no tener que entrar por ssh al servidor de mysql</li>
+        <div class="codigo">
+          <pre><code id="a9">CREATE USER 'nombreUsuario'@'%' IDENTIFIED BY 'contraseña';</code></pre><button onclick="copiar('a9','9')" id="9">Copiar</button>
+        </div>
+        <ul>
+          <li>El <b>'%'</b> significa que puede conectarse de cual dirección ip</li>
+        </ul>
+        <li>Le pasamos todos los privilegios sobre el servidor</li>
+        <div class="codigo">
+          <pre><code id="a10">GRANT ALL PRIVILEGES ON *.* TO 'nombreUsuariooCreado'@'%' WITH GRANT OPTION;</code></pre><button onclick="copiar('a10','10')" id="10">Copiar</button>
+        </div>
+      </ul>
+      <h2>Configurar puertos y redes para acceso remoto</h2>
+      <ul>
+        <li>salimos de mysql con <b>exit</b> y ejecutamos el siguiente comando para entrar al editor de texto en terminal <b>nano</b> para modificar un archivo de configuración de mysql</li>
+        <div class="codigo">
+          <pre><code id="a11">sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</code></pre><button onclick="copiar('a11','11')" id="11">Copiar</button>
+        </div>
+        <li>Esto no va a abrir nano con ese archivo, nos movemos con las flechas, no con el mouse, y bajamos hasta donde dice <b>bind-addres</b>, y lo comentamos simplemente poniendole un <b>#</b> al inicio como todos los comentarios que hay en el archivo, le undimos <b>ctrl + o</b> para guardar, <b>enter</b> para confirmar y <b>ctrl + x</b> para salir</li>
+        <li>Reiniciamos el servidor de mysql para que aplique los cambios</li>
+        <div class="codigo">
+        <pre><code id="a12">sudo service mysql restart</code></pre>
+        <button onclick="copiar('a12','12')" id="12">Copiar</button>
+      </div>
+    </ul>
+      <h2>Configurar el puerto que utiliza mysql en la maquina virtual</h2>
+<ul>
+  <li>En azure, en la informaciónde la maquina virtual, a la izquierda en las opciones entramos en <b>redes</b></li>
+  <img src="../../media/img/azure 5.png" alt="" />
+  <li>Seleccionamos en <b>Agregar regla de puerto de entrada</b></li>
+  <ul>
+    <li>En servicio, buscamos y seleccionamos <b>MySQL</b></li>
+    <li>Acción debe estar en permitir</li>
+    <li>Le ponemos un nombre que queramos, una descripción y seleccionamos en <b>Agregar</b></li>
+  </ul>
+</ul>
+<h2>Ya con eso nos podemos conectar con la ip de la maquina virtual y el usuario que creamos, a mysql desde cualquier lugar y aplicación, por ejemplo <b>WorkBench</b> solo ponemos la ip, usuario y contraseña y ya podemos manipular la base de datos</h2>
+    <script>
+      function copiar(idValor, idBoton) {
+        let valor = document.getElementById(idValor).textContent;
+        navigator.clipboard.writeText(valor);
+        let boton = document.getElementById(idBoton);
+        boton.textContent = "Copiado!";
+        setTimeout(function () {
+          boton.textContent = "Copiar";
+        }, 3000);
+      }
+      window.onload = function () {
+        var hash = window.location.hash.substring(1); // Obtener el ID del hash de la URL
+        if (hash) {
+          var detalle = document.getElementById(hash);
+          if (detalle) {
+            detalle.setAttribute("open", "open"); // Mostrar el detalle
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
