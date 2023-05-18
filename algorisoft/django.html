@@ -9,6 +9,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="../style.css" />
 
     <title>Notas Django</title>
@@ -177,14 +183,35 @@
             <li>
               <a href="#video-38">Videos 38: FormView | Inicio de sesión</a>
             </li>
-            <li><a href="#video-39">Videos 39: LogoutView | RedirectView | Vistas basadas en clases</a></li>
-            <li><a href="#video-40">Videos 40: Validando nuestras vistas (login_required, next, LOGIN_URL)</a></li>
-            <li><a href="#video-41">Videos 41:  Implementando alertas en nuestro formulario con jquery-confirm</a></li>
+            <li>
+              <a href="#video-39"
+                >Videos 39: LogoutView | RedirectView | Vistas basadas en
+                clases</a
+              >
+            </li>
+            <li>
+              <a href="#video-40"
+                >Videos 40: Validando nuestras vistas (login_required, next,
+                LOGIN_URL)</a
+              >
+            </li>
+            <li>
+              <a href="#video-41"
+                >Videos 41: Implementando alertas en nuestro formulario con
+                jquery-confirm</a
+              >
+            </li>
             <li><a href="#video-42">Videos 42: Media Files | Parte I</a></li>
-            <li><a href="#video-43">Videos 43: Media Files con ajax | Parte II</a></li>
+            <li>
+              <a href="#video-43">Videos 43: Media Files con ajax | Parte II</a>
+            </li>
             <li><a href="#video-44">Videos 44: Select anidados con ajax</a></li>
-            <li><a href="#video-45">Videos 45: Select anidados con select2</a></li>
-            <li><a href="#video-46">Video 46: Personalizando la clase User</a></li>
+            <li>
+              <a href="#video-45">Videos 45: Select anidados con select2</a>
+            </li>
+            <li>
+              <a href="#video-46">Video 46: Personalizando la clase User</a>
+            </li>
             <li><a href="#video-47">Video 47</a></li>
           </ul>
         </div>
@@ -340,7 +367,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -427,7 +454,7 @@ DATABASES = db.MYSQL
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -659,7 +686,7 @@ date_joined = models.DateField(default=datetime.now, verbose_name='Fecha')</code
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -770,7 +797,7 @@ date_joined = models.DateField(default=datetime.now, verbose_name='Fecha')</code
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -917,7 +944,7 @@ tipe.delete()
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -1000,7 +1027,12 @@ for i in obj:
             el <b>id</b> (que es la llave primaria <b>pk</b>)
           </li>
           <li><b>filter().count()</b> - Me muestra cuantos registros trajo</li>
-          <li><b>filter().order_by('nombreColumna')</b> - Me muestra de forma ordenada (A-Z) los registros, si le pongo un "-", los ordena de forma (Z-A), y aplica los mismo para las columnas con números, de forma ascendente o de forma descendente si se le antepone el "-"</li>
+          <li>
+            <b>filter().order_by('nombreColumna')</b> - Me muestra de forma
+            ordenada (A-Z) los registros, si le pongo un "-", los ordena de
+            forma (Z-A), y aplica los mismo para las columnas con números, de
+            forma ascendente o de forma descendente si se le antepone el "-"
+          </li>
         </ul>
         <li>
           Con el <b>query</b> me retorna la consulta en el lenguaje <b>sql</b>,
@@ -1026,7 +1058,7 @@ for i in obj:
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -1097,7 +1129,7 @@ for i in obj:
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -1275,7 +1307,7 @@ class DetSale(models.Model):
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -1393,7 +1425,7 @@ urlpatterns = [
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -1485,7 +1517,7 @@ def vista(request):
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -1574,7 +1606,7 @@ un comentario
 de varias
 lineas
 {% endcomment %}
-  </code></pre>
+</code></pre>
             <button onclick="copiar('comment-varias-line','64')" id="64">
               Copiar
             </button>
@@ -1689,7 +1721,7 @@ lineas
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -1776,7 +1808,7 @@ src = "{% static 'media/video/hola.mp4' %}"</code></pre>
       </p>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -1826,7 +1858,7 @@ src = "{% static 'media/video/hola.mp4' %}"</code></pre>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -1886,7 +1918,7 @@ src = "{% static 'media/video/hola.mp4' %}"</code></pre>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -1988,7 +2020,7 @@ src = "{% static 'media/video/hola.mp4' %}"</code></pre>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -2075,7 +2107,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -2122,7 +2154,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -2166,7 +2198,7 @@ from django.contrib.auth.decorators import login_required
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -2174,8 +2206,7 @@ from django.contrib.auth.decorators import login_required
     <details>
       <summary class="videos-titulo" id="video-24">
         <h2>
-          <i>Video 24</i>: Sobreescritura del metodo post | vistas basadas en
-          clases
+          <i>Video 24</i>: Sobreescritura del metodo post | vistas basadas en clases
         </h2>
       </summary>
       <a
@@ -2234,7 +2265,7 @@ from django.contrib.auth.decorators import login_required
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -2347,7 +2378,7 @@ return JsonResponse(data)
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -2495,7 +2526,7 @@ from .models import Category
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -2668,7 +2699,7 @@ from .models import Category
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -2824,7 +2855,7 @@ def post(self,request,*args,**kwargs):
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -3055,7 +3086,7 @@ return false;
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -3174,7 +3205,7 @@ return false;
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -3314,7 +3345,7 @@ return false;
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -3449,7 +3480,7 @@ return false;
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -3703,7 +3734,7 @@ except Exception as e:
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -3751,7 +3782,7 @@ except Exception as e:
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -4506,7 +4537,7 @@ urlpatterns = [
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -4708,7 +4739,7 @@ urlpatterns = [
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -4871,7 +4902,7 @@ LOGIN_URL = '/login/'</code></pre>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -4887,15 +4918,22 @@ LOGIN_URL = '/login/'</code></pre>
         >Link del video 38</a
       >
       <ul>
-        <li>En el <b>views.py</b> de mi app <b>login</b> importo lo que vamos a utilizar</li>
+        <li>
+          En el <b>views.py</b> de mi app <b>login</b> importo lo que vamos a
+          utilizar
+        </li>
         <div class="codigo">
           <pre><code id="b74">from django.http import HttpResponseRedirect
 from django.views.generic import FormView
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse_lazy
-from django.contrib.auth import login</code></pre><button onclick="copiar('b74','156')" id="156">Copiar</button>
+from django.contrib.auth import login</code></pre>
+          <button onclick="copiar('b74','156')" id="156">Copiar</button>
         </div>
-        <li>Duplicamos la vista, la cual esta heredando de <b>LoginView</b> para trabajar desde ahí, y lo modificamos de la siguiente manera</li>
+        <li>
+          Duplicamos la vista, la cual esta heredando de <b>LoginView</b> para
+          trabajar desde ahí, y lo modificamos de la siguiente manera
+        </li>
         <div class="codigo">
           <pre><code id="b75">class LoginFormView2(FormView):
   form_class = AuthenticationForm
@@ -4915,24 +4953,58 @@ from django.contrib.auth import login</code></pre><button onclick="copiar('b74',
     context = super().get_context_data(**kwargs)
     context['title'] = 'Iniciar sesión'
     return context
-</code></pre><button onclick="copiar('b75','157')" id="157">Copiar</button>
+</code></pre>
+          <button onclick="copiar('b75','157')" id="157">Copiar</button>
         </div>
         <ul>
-          <li>Le agregamos un 2 al nombre de la vista para diferenciarlos (<b>LoginFormView2</b>)</li>
-          <li>Recodar que al <b>FormView</b> le debemos pasa el formulario de autenticación (<b>AuthenticationForm</b>) para el inicio de sesión </li>
-          <li>Y le debemos pasar el link de cuando se valide el formulario para que lo redireccione, en la variable <b>success_url</b> urilizando la funcion de <b>reverse_lazy</b> pasandole el name de la url</li>
-          <li>Dejo el <b>dispatch</b> para que no lo deje entrar al login si esta logueado, de lo contrario lo dejo entrar</li>
-          <li>Utilizo la función <b>form_valid</b> para cuando el formulario sea valido</li>
-          <li>Utilizo la función <b>login</b> para iniciar sesión la cual recibe el <b>request</b> como primer parametro, el cual esta en el self, y como segundo parametro recibe el usuario, y puedo obtenerlo desde el formulario, el cual ya esta validado, y se lo paso con la funcion <b>get_user</b> que lo tiene el <b>form</b></li>
-          <li>Y lo retorno a la vista que tengo en <b>success_url</b> con el <b>HttpResponseRedirect</b></li>
-          <p class="nota"><b>NOTA:</b> La diferncia entre <b>redirect</b> y <b>HttpResponseRedirect</b> es que <b>redirect</b> puedo pasarle cualquier url sea interna o externa, y <b>HttpResponseRedirect</b> es para las url internas del sitio web</p>
+          <li>
+            Le agregamos un 2 al nombre de la vista para diferenciarlos
+            (<b>LoginFormView2</b>)
+          </li>
+          <li>
+            Recodar que al <b>FormView</b> le debemos pasa el formulario de
+            autenticación (<b>AuthenticationForm</b>) para el inicio de sesión
+          </li>
+          <li>
+            Y le debemos pasar el link de cuando se valide el formulario para
+            que lo redireccione, en la variable <b>success_url</b> urilizando la
+            funcion de <b>reverse_lazy</b> pasandole el name de la url
+          </li>
+          <li>
+            Dejo el <b>dispatch</b> para que no lo deje entrar al login si esta
+            logueado, de lo contrario lo dejo entrar
+          </li>
+          <li>
+            Utilizo la función <b>form_valid</b> para cuando el formulario sea
+            valido
+          </li>
+          <li>
+            Utilizo la función <b>login</b> para iniciar sesión la cual recibe
+            el <b>request</b> como primer parametro, el cual esta en el self, y
+            como segundo parametro recibe el usuario, y puedo obtenerlo desde el
+            formulario, el cual ya esta validado, y se lo paso con la funcion
+            <b>get_user</b> que lo tiene el <b>form</b>
+          </li>
+          <li>
+            Y lo retorno a la vista que tengo en <b>success_url</b> con el
+            <b>HttpResponseRedirect</b>
+          </li>
+          <p class="nota">
+            <b>NOTA:</b> La diferncia entre <b>redirect</b> y
+            <b>HttpResponseRedirect</b> es que <b>redirect</b> puedo pasarle
+            cualquier url sea interna o externa, y
+            <b>HttpResponseRedirect</b> es para las url internas del sitio web
+          </p>
           <li>Y dejo el mismo <b>get_context_data</b></li>
         </ul>
-        <li>Y pues en el <b>urls.py</b> del config le cambio el nombre al del login por la vista que acabo de crear para probar</li>
+        <li>
+          Y pues en el <b>urls.py</b> del config le cambio el nombre al del
+          login por la vista que acabo de crear para probar
+        </li>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -4954,9 +5026,13 @@ from django.contrib.auth import login</code></pre><button onclick="copiar('b74',
         <div class="codigo">
           <pre><code id="b76">from django.views.generic import RedirectView
 from django.contrib.auth.views import LogoutView
-from django.contrib.auth import logout</code></pre><button onclick="copiar('b76','158')" id="158">Copiar</button>
+from django.contrib.auth import logout</code></pre>
+          <button onclick="copiar('b76','158')" id="158">Copiar</button>
         </div>
-        <li>Creamos un archivo <b>uls.py</b> en la app <b>login</b> ya que vamos a manejar más de una url</li>
+        <li>
+          Creamos un archivo <b>uls.py</b> en la app <b>login</b> ya que vamos a
+          manejar más de una url
+        </li>
         <div class="codigo">
           <pre><code id="b77">from django.urls import path
 from core.login.views import *
@@ -4964,53 +5040,92 @@ from core.login.views import *
 urlpatterns = [
     path('',LoginFormView.as_view(),name='login'),
     path('logout/',LogoutView.as_view(),name='logout'),
-]</code></pre><button onclick="copiar('b77','159')" id="159">Copiar</button>
+]</code></pre>
+          <button onclick="copiar('b77','159')" id="159">Copiar</button>
         </div>
         <ul>
-          <li>Al importar la vista <b>LogoutView</b> en el 
-          <b>views.py</b>, puedo utilizarla si importo todo en el archivo <b>ulrs.py</b></li>
-          <li>No necesito crear y heredar una clase para utilizarla, solo la pongo como url en las urls con su función <b>as_view</b> pero se le pasa un parametro <b>next_page='nombre_url'</b> para que apenas cierre sesión lo redireccione, pero si no se lo ponemos va a ir a buscar la variable <b>LOGOUT_REDIRECT_URL</b> del <b>settings.py</b> y si no esta, como 3° opción el Django utiliza una vista para eso</li>
-          <li>En este caso no le pasaremos el parametro <b>next_page</b> sino que crearemos la variable en el <b>settings.py</b></li>
+          <li>
+            Al importar la vista <b>LogoutView</b> en el <b>views.py</b>, puedo
+            utilizarla si importo todo en el archivo <b>ulrs.py</b>
+          </li>
+          <li>
+            No necesito crear y heredar una clase para utilizarla, solo la pongo
+            como url en las urls con su función <b>as_view</b> pero se le pasa
+            un parametro <b>next_page='nombre_url'</b> para que apenas cierre
+            sesión lo redireccione, pero si no se lo ponemos va a ir a buscar la
+            variable <b>LOGOUT_REDIRECT_URL</b> del <b>settings.py</b> y si no
+            esta, como 3° opción el Django utiliza una vista para eso
+          </li>
+          <li>
+            En este caso no le pasaremos el parametro <b>next_page</b> sino que
+            crearemos la variable en el <b>settings.py</b>
+          </li>
           <div class="codigo">
-            <pre><code id="b78">LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b78','160')" id="160">Copiar</button>
+            <pre><code id="b78">LOGOUT_REDIRECT_URL = '/login/'</code></pre>
+            <button onclick="copiar('b78','160')" id="160">Copiar</button>
           </div>
-          <li>La incluimos en el <b>urls.py</b> de la config, y el <b>urlpatterns</b> quedaria asi</li>
+          <li>
+            La incluimos en el <b>urls.py</b> de la config, y el
+            <b>urlpatterns</b> quedaria asi
+          </li>
           <div class="codigo">
             <pre><code id="b79">urlpatterns = [
     path('',IndexView.as_view(),name='index'),
     path('login/',include('core.login.urls')),
     path('admin/', admin.site.urls),
     path('erp/',include('core.erp.urls')),
-]</code></pre><button onclick="copiar('b79','161')" id="161">Copiar</button>
+]</code></pre>
+            <button onclick="copiar('b79','161')" id="161">Copiar</button>
           </div>
-          </ul>
-          <li>Ahora haremos la misma funcion utilizando la vista de <b>RedirectView</b></li>
-          <li>Creamos la vista en el <b>views.py</b> de la app de inicio de sesión</li>
-          <div class="codigo">
-            <pre><code id="b80">class LogoutRedirectView(RedirectView):
+        </ul>
+        <li>
+          Ahora haremos la misma funcion utilizando la vista de
+          <b>RedirectView</b>
+        </li>
+        <li>
+          Creamos la vista en el <b>views.py</b> de la app de inicio de sesión
+        </li>
+        <div class="codigo">
+          <pre><code id="b80">class LogoutRedirectView(RedirectView):
   pattern_name = 'login'
 
   def dispatch(self, request, *args, **kwargs):logout solo pasandole el request
     logout(request)
-    return super().dispatch(request, *args, **kwargs)</code></pre><button onclick="copiar('b80','162')" id="162">Copiar</button>
-          </div>
-          <ul>
-            <li>El <b>pattern_name</b> es la ruta a la cual va a ir cuando cierre sesión, y utiliza el nombre de la url</li>
-            <li>Como la vista es solo para redireccionar, entonces modificamos el <b>distpach</b> para que cuando entre a la pagina, capturamos el request y con la función <b>logout</b> cerramos sesión solo pasandole el request</li>
-            <li>La agregamos a la urls.py de la app, comentamos la otra vista para probar y quedaria asi</li>
-            <div class="codigo">
-              <pre><code id="b81">urlpatterns = [
+    return super().dispatch(request, *args, **kwargs)</code></pre>
+          <button onclick="copiar('b80','162')" id="162">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            El <b>pattern_name</b> es la ruta a la cual va a ir cuando cierre
+            sesión, y utiliza el nombre de la url
+          </li>
+          <li>
+            Como la vista es solo para redireccionar, entonces modificamos el
+            <b>distpach</b> para que cuando entre a la pagina, capturamos el
+            request y con la función <b>logout</b> cerramos sesión solo
+            pasandole el request
+          </li>
+          <li>
+            La agregamos a la urls.py de la app, comentamos la otra vista para
+            probar y quedaria asi
+          </li>
+          <div class="codigo">
+            <pre><code id="b81">urlpatterns = [
     path('',LoginFormView.as_view(),name='login'),
     # path('logout/',LogoutView.as_view(),name='logout'),
     path('logout/',LogoutRedirectView.as_view(),name='logout'),
-]</code></pre><button onclick="copiar('b81','163')" id="163">Copiar</button>
-            </div>
-          </ul>
-          <li>En el video el profe le hace unas modificaciones al <b>login.html, index.html, header.html</b> (los 2)</li>
+]</code></pre>
+            <button onclick="copiar('b81','163')" id="163">Copiar</button>
+          </div>
+        </ul>
+        <li>
+          En el video el profe le hace unas modificaciones al
+          <b>login.html, index.html, header.html</b> (los 2)
+        </li>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -5018,7 +5133,8 @@ urlpatterns = [
     <details>
       <summary class="videos-titulo" id="video-40">
         <h2>
-          <i>Video 40</i>:Validando nuestras vistas (login_required, next, LOGIN_URL)
+          <i>Video 40</i>:Validando nuestras vistas (login_required, next,
+          LOGIN_URL)
         </h2>
       </summary>
       <a
@@ -5029,8 +5145,15 @@ urlpatterns = [
       >
       <ul>
         <li>Inicia realizando algunas modificaciones</li>
-        <li>Crea un template <b>dashboard.html</b> en los templates principales el cual hereda de <b>layout.html</b> para hacer el panel principal</li>
-        <li>En la app <b>erp</b>, en su carpeta <b>views</b> crea una carpeta llamada <b>dashboard</b> y ahi un <b>views.py</b> para crear la vista del dashboard</li>
+        <li>
+          Crea un template <b>dashboard.html</b> en los templates principales el
+          cual hereda de <b>layout.html</b> para hacer el panel principal
+        </li>
+        <li>
+          En la app <b>erp</b>, en su carpeta <b>views</b> crea una carpeta
+          llamada <b>dashboard</b> y ahi un <b>views.py</b> para crear la vista
+          del dashboard
+        </li>
         <div class="codigo">
           <pre><code id="b82">from django.views.generic import TemplateView
 
@@ -5040,18 +5163,27 @@ class DashboardView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = 'Panel de administrador'
-        return context</code></pre><button onclick="copiar('b82','164')" id="164">Copiar</button>
+        return context</code></pre>
+          <button onclick="copiar('b82','164')" id="164">Copiar</button>
         </div>
         <ul>
-          <li>Importo la vista a utilizar, creo la vista, y le modifico el <b>get_context_data</b> para pasarle el titulo de la vista</li>
+          <li>
+            Importo la vista a utilizar, creo la vista, y le modifico el
+            <b>get_context_data</b> para pasarle el titulo de la vista
+          </li>
           <li>Agrego la vista a las url de <b>erp</b>, quedaria así</li>
           <div class="codigo">
             <pre><code id="b83"># home
     path('dashboard/',DashboardView.as_view(),name='dashboard'),
-</code></pre><button onclick="copiar('b83','165')" id="165">Copiar</button>
+</code></pre>
+            <button onclick="copiar('b83','165')" id="165">Copiar</button>
           </div>
         </ul>
-        <li>En el archivo <b>index.html</b> de homepage, donde estan las listas de opciones agrego el iniciar sesión o mensaje de bienvenida hacia el panel principal dependiendo si esta logueado o no</li>
+        <li>
+          En el archivo <b>index.html</b> de homepage, donde estan las listas de
+          opciones agrego el iniciar sesión o mensaje de bienvenida hacia el
+          panel principal dependiendo si esta logueado o no
+        </li>
         <div class="codigo">
           <pre><code id="b84">{% if request.user.is_authenticated %}
   &lt;a href="{% url 'erp:dashboard' %}" class="nav-link scrollto"&gt;
@@ -5065,14 +5197,23 @@ class DashboardView(TemplateView):
     &lt;/a&gt;
   {% endif %}
   &lt;/li&gt;
-</code></pre><button onclick="copiar('b84','166')" id="166">Copiar</button>
+</code></pre>
+          <button onclick="copiar('b84','166')" id="166">Copiar</button>
         </div>
-        <li>El el <b>views.py</b> de las categorias, importo el metodo decorador de django y el login_required</li>
+        <li>
+          El el <b>views.py</b> de las categorias, importo el metodo decorador
+          de django y el login_required
+        </li>
         <div class="codigo">
           <pre><code id="b85">from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required</code></pre><button onclick="copiar('b85','167')" id="167">Copiar</button>
+from django.contrib.auth.decorators import login_required</code></pre>
+          <button onclick="copiar('b85','167')" id="167">Copiar</button>
         </div>
-        <li>y luego en los <b>dispatch</b> de las siguientes vistas le agrego el decorador de <b>login_required</b> para pedirle que es necesario iniciar sesión para entrar a esas secciones</li>
+        <li>
+          y luego en los <b>dispatch</b> de las siguientes vistas le agrego el
+          decorador de <b>login_required</b> para pedirle que es necesario
+          iniciar sesión para entrar a esas secciones
+        </li>
         <ul>
           <li>Asi se pone el metodo decorador</li>
           <div class="codigo">
@@ -5086,34 +5227,57 @@ def dispatch(self, request, *args,**kwargs):
           <li><b>CategoryUpdateView</b></li>
           <li><b>CategoryDeleteView</b></li>
           <li><b>CategoryFormView</b></li>
-          <li>Y en el que no se este utilizando, solo llamamos el metodo dispatch</li>
+          <li>
+            Y en el que no se este utilizando, solo llamamos el metodo dispatch
+          </li>
           <div class="codigo">
             <pre><code id="b86">@method_decorator(login_required)
 def dispatch(self, request, *args, **kwargs):
-  return super().dispatch(request, *args, **kwargs)</code></pre><button onclick="copiar('b86','168')" id="168">Copiar</button>
+  return super().dispatch(request, *args, **kwargs)</code></pre>
+            <button onclick="copiar('b86','168')" id="168">Copiar</button>
           </div>
         </ul>
-        <li>Las configuraciones del login, osea sus direcciones las dejamos de la siguiente manera</li>
+        <li>
+          Las configuraciones del login, osea sus direcciones las dejamos de la
+          siguiente manera
+        </li>
         <div class="codigo">
           <pre><code id="b87">#login
 LOGIN_REDIRECT_URL = '/erp/dashboard/'
 LOGIN_URL = '/login/' 
-LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')" id="169">Copiar</button>
+LOGOUT_REDIRECT_URL = '/login/'</code></pre>
+          <button onclick="copiar('b87','169')" id="169">Copiar</button>
         </div>
-        <li>Le agregamos un input al formulario de iniciar sesión porque si por ejemplo intento entrar a category/list sin loguearme, me mandara al login gracias al decorador, y eso pondra una varibale next en la url, pero si inicio sesión no me manda a esa direccion a la cual iba a entrar, entonces se crea este input para recibir ese valor de next a la vista, y si existe, en vez de mandarlo a LOGIN_REDIRECT_URL que es la de por defecto que le pongo, me manda a la que este en next</li>
+        <li>
+          Le agregamos un input al formulario de iniciar sesión porque si por
+          ejemplo intento entrar a category/list sin loguearme, me mandara al
+          login gracias al decorador, y eso pondra una varibale next en la url,
+          pero si inicio sesión no me manda a esa direccion a la cual iba a
+          entrar, entonces se crea este input para recibir ese valor de next a
+          la vista, y si existe, en vez de mandarlo a LOGIN_REDIRECT_URL que es
+          la de por defecto que le pongo, me manda a la que este en next
+        </li>
         <div class="codigo">
           <pre><code id="b87">&lt;input type="hidden" name="next" value="{{next}}"&gt;
 </code></pre>
         </div>
         <li>En el <b>views.py</b> del login, importamos el <b>settings</b></li>
         <div class="codigo">
-          <pre><code id="b88">import config.settings as settings</code></pre><button onclick="copiar('b88','170')" id="170">Copiar</button>
+          <pre><code id="b88">import config.settings as settings</code></pre>
+          <button onclick="copiar('b88','170')" id="170">Copiar</button>
         </div>
-        <li>En las 2 clases de <b>LoginFormView</b>, en la de <b>LoginView</b> en el redirect del dispatch le pongo <b>return redirect(settings.LOGIN_REDIRECT_URL)</b> para utilizar la variable que tengo en la config, que si la necesito modificar, no modifico todo el codigo, y en la otra clase, le dejo ell success_url asi: <b>reverse_lazy(settings.LOGIN_REDIRECT_URL)</b></li>
+        <li>
+          En las 2 clases de <b>LoginFormView</b>, en la de <b>LoginView</b> en
+          el redirect del dispatch le pongo
+          <b>return redirect(settings.LOGIN_REDIRECT_URL)</b> para utilizar la
+          variable que tengo en la config, que si la necesito modificar, no
+          modifico todo el codigo, y en la otra clase, le dejo ell success_url
+          asi: <b>reverse_lazy(settings.LOGIN_REDIRECT_URL)</b>
+        </li>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -5121,7 +5285,8 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')
     <details>
       <summary class="videos-titulo" id="video-41">
         <h2>
-          <i>Video 41</i>:  Implementando alertas en nuestro formulario con jquery-confirm
+          <i>Video 41</i>: Implementando alertas en nuestro formulario con
+          jquery-confirm
         </h2>
       </summary>
       <a
@@ -5131,7 +5296,11 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')
         >Link del video 41</a
       >
       <ul>
-        <li>Primero agrega 2 botones, uno de actualizar al lado de nuevo registro en la lista de categorias y otro de cancelar en el formulario de guardar una categoria</li>
+        <li>
+          Primero agrega 2 botones, uno de actualizar al lado de nuevo registro
+          en la lista de categorias y otro de cancelar en el formulario de
+          guardar una categoria
+        </li>
         <ul>
           <li>Actualizar al lado del de nuevo registro</li>
           <div class="codigo">
@@ -5142,7 +5311,8 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')
 &lt;!--Este--&gt;
 &lt;a href="{{ list_url }}" class="btn btn-success"&gt;
   &lt;i class="fas fa-sync"&gt;&lt;/i&gt; Actualizar
-&lt;/a&gt;</code></pre><button onclick="copiar('b89','171')" id="171">Copiar</button>
+&lt;/a&gt;</code></pre>
+            <button onclick="copiar('b89','171')" id="171">Copiar</button>
           </div>
           <li>Cancelar en el formulario de categorias</li>
           <div class="codigo">
@@ -5153,16 +5323,29 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')
 &lt;!--Este--&gt;
 &lt;a href="{{ list_url }}" class="btn btn-danger"&gt;
   &lt;i class="fas fa-times"&gt;&lt;/i&gt; Cancelar
-&lt;/a&gt;</code></pre><button onclick="copiar('b90','172')" id="172">Copiar</button>
+&lt;/a&gt;</code></pre>
+            <button onclick="copiar('b90','172')" id="172">Copiar</button>
           </div>
         </ul>
-        <li>Como se va a utilizar la libreria de <b>jquery-confirm</b>, descargamos la del profe y la ponemos en nuestra carpeta de librerias, e importamos el css y js en el main</li>
+        <li>
+          Como se va a utilizar la libreria de <b>jquery-confirm</b>,
+          descargamos la del profe y la ponemos en nuestra carpeta de librerias,
+          e importamos el css y js en el main
+        </li>
         <div class="codigo">
           <pre><code id="b91">&lt;!--Jquery confirm--&gt;
   &lt;link rel="stylesheet" href="{% static 'libs/jquery-confirm-v3.3.4/jquery-confirm.min.css' %}"&gt;
-  &lt;script src="{% static 'libs/jquery-confirm-v3.3.4/jquery-confirm.min.js' %}"&gt;&lt;/script&gt;</code></pre><button onclick="copiar('b91','173')" id="173">Copiar</button>
+  &lt;script src="{% static 'libs/jquery-confirm-v3.3.4/jquery-confirm.min.js' %}"&gt;&lt;/script&gt;</code></pre>
+          <button onclick="copiar('b91','173')" id="173">Copiar</button>
         </div>
-        <li>En nuestro archivo de funciones <b>static/js/function.js</b>, agregamos una función llamada <b>submit_with_ajax</b> la cual vamos a utilizar para que cuando la persona vaya a realizar una acción, utilicemos jquery-confirm, y la vamos a configurar para que no solo sea para confirmar el registro de una categoria, sino para utilizarla en diferentes acciones de peticiones</li>
+        <li>
+          En nuestro archivo de funciones <b>static/js/function.js</b>,
+          agregamos una función llamada <b>submit_with_ajax</b> la cual vamos a
+          utilizar para que cuando la persona vaya a realizar una acción,
+          utilicemos jquery-confirm, y la vamos a configurar para que no solo
+          sea para confirmar el registro de una categoria, sino para utilizarla
+          en diferentes acciones de peticiones
+        </li>
         <div class="codigo">
           <pre><code id="b92">function submit_with_ajax(url, parameters,callback) {
   $.confirm({
@@ -5207,56 +5390,101 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')
       },
     },
   });
-};</code></pre><button onclick="copiar('b92','174')" id="174">Copiar</button>
+};</code></pre>
+          <button onclick="copiar('b92','174')" id="174">Copiar</button>
         </div>
         <ul>
-          <li>link de <a href="https://craftpip.github.io/jquery-confirm/" target="_blank">jquery-confirm</a></li>
+          <li>
+            link de
+            <a href="https://craftpip.github.io/jquery-confirm/" target="_blank"
+              >jquery-confirm</a
+            >
+          </li>
           <li>El <b>theme</b> es el tipo de tema</li>
           <li>El <b>title</b> es el titulo de la alerta</li>
-          <li>El <b>icon</b> es el icono a mostrar el cual es de fontawesome</li>
+          <li>
+            El <b>icon</b> es el icono a mostrar el cual es de fontawesome
+          </li>
           <li>El <b>content</b> es el contenido de la alerta</li>
-          <li>El <b>columnClass</b> es el tamaño del modal, puede ser small para más pequeño</li>
-          <li>Los <b>typeAnimated, cancelButtonClass, draggable</b> y <b>dragWindowBorder</b> son opciones de efectos, en su doc se puede ver para que sirven</li>
+          <li>
+            El <b>columnClass</b> es el tamaño del modal, puede ser small para
+            más pequeño
+          </li>
+          <li>
+            Los <b>typeAnimated, cancelButtonClass, draggable</b> y
+            <b>dragWindowBorder</b> son opciones de efectos, en su doc se puede
+            ver para que sirven
+          </li>
           <li>En el <b>buttons</b> van los botones con su configuración</li>
           <ul>
-            <li>primero se le pone el nombre del boton o tipo, en este caso info para si y danger para no</li>
-            <li>cada boton contiene un diccionario con su configuración, el text para el mensaje que se va a ver, el btnClass para una clase que le quiera agregar y en el action, recibe una función si le da clic en esa opción</li>
+            <li>
+              primero se le pone el nombre del boton o tipo, en este caso info
+              para si y danger para no
+            </li>
+            <li>
+              cada boton contiene un diccionario con su configuración, el text
+              para el mensaje que se va a ver, el btnClass para una clase que le
+              quiera agregar y en el action, recibe una función si le da clic en
+              esa opción
+            </li>
           </ul>
-          <li>En el action del si, osea, el boton info, va a estar el ajax que tenia el form.html, porque cuando el usuario de click en <b>si</b> entonces manda la petición para guardar el valor o mostrar el error, el cual ya lo tenemos configurado en el ajax</li>
+          <li>
+            En el action del si, osea, el boton info, va a estar el ajax que
+            tenia el form.html, porque cuando el usuario de click en
+            <b>si</b> entonces manda la petición para guardar el valor o mostrar
+            el error, el cual ya lo tenemos configurado en el ajax
+          </li>
           <ul>
-            <li>La función <b>submit_with_ajax</b> le decimos que va a recibir 3 parametros, una url, unos parametros y un callback, el cual, la url sera hacia donde va a hacer la petición, los <b>parameters</b> va a recibir un diccionario con los parametros que se enviara en la petición, y un <b>callback</b> o función el cual sera la acción a realizar si la petición se realiza de manera exitosa y asi la función no solo se utilizara en este formulario, sino en varios casos</li>
-
+            <li>
+              La función <b>submit_with_ajax</b> le decimos que va a recibir 3
+              parametros, una url, unos parametros y un callback, el cual, la
+              url sera hacia donde va a hacer la petición, los
+              <b>parameters</b> va a recibir un diccionario con los parametros
+              que se enviara en la petición, y un <b>callback</b> o función el
+              cual sera la acción a realizar si la petición se realiza de manera
+              exitosa y asi la función no solo se utilizara en este formulario,
+              sino en varios casos
+            </li>
           </ul>
-          </ul>
-          <li>El <b>form.html</b>, en la función donde estaba el ajax, ponemos la función que creamos y le pasamos los parametros respectivos y quedaria asi</li>
-          <div class="codigo">
-            <pre><code id="b93">$('form').on('submit', function (e){
+        </ul>
+        <li>
+          El <b>form.html</b>, en la función donde estaba el ajax, ponemos la
+          función que creamos y le pasamos los parametros respectivos y quedaria
+          asi
+        </li>
+        <div class="codigo">
+          <pre><code id="b93">$('form').on('submit', function (e){
         e.preventDefault();
         var parameters = $(this).serializeArray();
         submit_with_ajax(window.location.pathname, parameters, function (){
           location.href = '{{list_url}}'
         });
       })
-</code></pre><button onclick="copiar('b93','175')" id="175">Copiar</button>
-          </div>
-          <ul>
-            <li>Quitamos el ajax que estaba y solo dejamos la variable la cual tiene los parametros</li>
-            <li>le pasamos la dirección la cual es la pagina actual, los parametros y la función, la cual lo que hace es que si es exitoso la petición, lo redirecciona a la url de la lista de las categorias</li>
-          
+</code></pre>
+          <button onclick="copiar('b93','175')" id="175">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            Quitamos el ajax que estaba y solo dejamos la variable la cual tiene
+            los parametros
+          </li>
+          <li>
+            le pasamos la dirección la cual es la pagina actual, los parametros
+            y la función, la cual lo que hace es que si es exitoso la petición,
+            lo redirecciona a la url de la lista de las categorias
+          </li>
         </ul>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
 
     <details>
       <summary class="videos-titulo" id="video-42">
-        <h2>
-          <i>Video 42</i>: Media Files | Parte I
-        </h2>
+        <h2><i>Video 42</i>: Media Files | Parte I</h2>
       </summary>
       <a
         target="_blank"
@@ -5264,35 +5492,81 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre><button onclick="copiar('b87','169')
         href="https://www.youtube.com/watch?v=3HWq6hd8u7g&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=42&pp=iAQB"
         >Link del video 42</a
       >
-      
+
       <ul>
-        <li>Primero se crea lo mismo de categoria (todas las vistas), con el modelo de producto, en la pagina de el esta ya modificado para descargar o se crea manual para practicar</li>
-        <li>En la función de js <b>submit_with_ajax</b> le agrega uno parametros para el <b>title</b> y el <b>content</b> y asi puede cambiar el titulo de la alerta y el mensaje</li>
-        <li>Vamos a hacer un guardado puro sin ajax de jquery entonces comentamos algunos archivos para desactivar el ajax</li>
+        <li>
+          Primero se crea lo mismo de categoria (todas las vistas), con el
+          modelo de producto, en la pagina de el esta ya modificado para
+          descargar o se crea manual para practicar
+        </li>
+        <li>
+          En la función de js <b>submit_with_ajax</b> le agrega uno parametros
+          para el <b>title</b> y el <b>content</b> y asi puede cambiar el titulo
+          de la alerta y el mensaje
+        </li>
+        <li>
+          Vamos a hacer un guardado puro sin ajax de jquery entonces comentamos
+          algunos archivos para desactivar el ajax
+        </li>
         <ul>
-          <li>Comentamos en el <b>form.html</b> de la plantilla base, todo lo que sigue de <b>$('form')</b> para desactivarlo</li>
-          <li>En el formulario del producto, comento la Sobreescritura del metodo <b>save</b></li>
-          <li>En la vista <b>CreateView</b> le comentamos la Sobreescritura del metodo <b>post</b></li>
+          <li>
+            Comentamos en el <b>form.html</b> de la plantilla base, todo lo que
+            sigue de <b>$('form')</b> para desactivarlo
+          </li>
+          <li>
+            En el formulario del producto, comento la Sobreescritura del metodo
+            <b>save</b>
+          </li>
+          <li>
+            En la vista <b>CreateView</b> le comentamos la Sobreescritura del
+            metodo <b>post</b>
+          </li>
         </ul>
-        <li>Si agregamos un producto no se guarda la imagen, solo se guarda el registro</li>
-        <li>Debemos configurar los archivos media para que se guarden, lo configuramos en <b>settings.py</b></li>
+        <li>
+          Si agregamos un producto no se guarda la imagen, solo se guarda el
+          registro
+        </li>
+        <li>
+          Debemos configurar los archivos media para que se guarden, lo
+          configuramos en <b>settings.py</b>
+        </li>
         <div class="codigo">
           <pre><code id="b94">#media
 #carpeta donde se van a guardar los archivos subidos
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 #link de como se accede a ellos de forma publica
-MEDIA_URL = '/media/'</code></pre><button onclick="copiar('b94','176')" id="176">Copiar</button>
+MEDIA_URL = '/media/'</code></pre>
+          <button onclick="copiar('b94','176')" id="176">Copiar</button>
         </div>
         <ul>
-          <li>El <b>MEDIA_ROOT</b> es la ruta en mi proyecto en la cual se va a guardar los archivos subidos, eso creara una carpeta con el nombre que le paso, en este caso <b>media</b> y dentro guardara todos los archivos que se suban</li>
-          <li>El <b>MEDIA_ROOT</b> es la ruta publica la cual las persona o el frontend accede a esos archivos</li>
+          <li>
+            El <b>MEDIA_ROOT</b> es la ruta en mi proyecto en la cual se va a
+            guardar los archivos subidos, eso creara una carpeta con el nombre
+            que le paso, en este caso <b>media</b> y dentro guardara todos los
+            archivos que se suban
+          </li>
+          <li>
+            El <b>MEDIA_ROOT</b> es la ruta publica la cual las persona o el
+            frontend accede a esos archivos
+          </li>
         </ul>
-        <p class="nota"><b>NOTA:</b> asegurarse que el <b>MEDIA_URL</b> tenga el <b>/</b> inicial igual que el <b>STATIC_URL</b></p>
-        <li>Agregamos una configuración que nos da la doc de Django para agregar esa ruta a las urls.py de la configuración, cuando estamos en desarrollo, debajo y fuera del arreglo <b>urlpatterns</b></li>
+        <p class="nota">
+          <b>NOTA:</b> asegurarse que el <b>MEDIA_URL</b> tenga el
+          <b>/</b> inicial igual que el <b>STATIC_URL</b>
+        </p>
+        <li>
+          Agregamos una configuración que nos da la doc de Django para agregar
+          esa ruta a las urls.py de la configuración, cuando estamos en
+          desarrollo, debajo y fuera del arreglo <b>urlpatterns</b>
+        </li>
         <div class="codigo">
-          <pre><code id="b95">urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</code></pre><button onclick="copiar('b95','177')" id="177">Copiar</button>
+          <pre><code id="b95">urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</code></pre>
+          <button onclick="copiar('b95','177')" id="177">Copiar</button>
         </div>
-        <li>El <b>list.html</b> lo hacemos de la siguiente forma porque no vamos a utilizar datatable en este video</li>
+        <li>
+          El <b>list.html</b> lo hacemos de la siguiente forma porque no vamos a
+          utilizar datatable en este video
+        </li>
         <div class="codigo">
           <pre><code id="b96">{% extends 'list.html' %} 
 {% load static %}
@@ -5333,45 +5607,73 @@ MEDIA_URL = '/media/'</code></pre><button onclick="copiar('b94','176')" id="176"
     {% endfor %}
 {% endblock rows %}
 {% comment %} Para que quite el ajax predeterminado que esta en el html que esta heredando {% endcomment %}
-{% block js %}{% endblock js %}</code></pre><button onclick="copiar('b96','178')" id="178">Copiar</button>
+{% block js %}{% endblock js %}</code></pre>
+          <button onclick="copiar('b96','178')" id="178">Copiar</button>
         </div>
         <ul>
-          <li>En el codigo, se ve que en la imagen se pone <b>obj.get_image</b> la cual es la ruta de la imagen la cual configuraremos en el modelo de los productos</li>
+          <li>
+            En el codigo, se ve que en la imagen se pone <b>obj.get_image</b> la
+            cual es la ruta de la imagen la cual configuraremos en el modelo de
+            los productos
+          </li>
         </ul>
-        <li>En el modelo del producto, creamos una función <b>get_image</b> la cual haremos una verificación y retornaremos un enlace hacia la imagen u otra por si no se encuentra</li>
+        <li>
+          En el modelo del producto, creamos una función <b>get_image</b> la
+          cual haremos una verificación y retornaremos un enlace hacia la imagen
+          u otra por si no se encuentra
+        </li>
         <li>primero importamos las url de los archivos media y static</li>
         <div class="codigo">
-          <pre><code id="b97">from config.settings import MEDIA_URL, STATIC_URL</code></pre><button onclick="copiar('b97','179')" id="179">Copiar</button>
+          <pre><code id="b97">from config.settings import MEDIA_URL, STATIC_URL</code></pre>
+          <button onclick="copiar('b97','179')" id="179">Copiar</button>
         </div>
         <li>Luego la función quedaria asi</li>
-        <div class="codigo"><pre><code id="b98">def get_image(self):
+        <div class="codigo">
+          <pre><code id="b98">def get_image(self):
         if self.image:
             return f'{MEDIA_URL}{self.image}'
         
-        return f'{STATIC_URL}media/img/empty.png'</code></pre><button onclick="copiar('b98','180')" id="180">Copiar</button></div>
-        <ul>
-          <li>si existe la imagen, o bueno, si se subio, le retorno la ruta que debe estar en media url, y le junto el self.image que es el nombre de la imagen</li>
-          <li>de lo contrario, le retorno una imagen como predeterminada que esta en mis static</li>
-          <li>Y por esto mismo la nota de que las rutas deben iniciar con <b>/</b></li>
-        </ul>
-        <li>Y en el <b>form.html</b> de las plantillas base, en el fomulario le agregamos el siguiente atributo <b>enctype</b>, el cual es para decirle que se van a enviar archivos por el formulario</li>
-        <div class="codigo">
-          <pre><code id="b99">&lt;form method="post" enctype="multipart/form-data"&gt; </code></pre><button onclick="copiar('b99','181')" id="181">Copiar</button>
+        return f'{STATIC_URL}media/img/empty.png'</code></pre>
+          <button onclick="copiar('b98','180')" id="180">Copiar</button>
         </div>
-        <li>Y ya de esta forma si agregamos un producto, se guardara la imagen y el registro correctamente</li>
+        <ul>
+          <li>
+            si existe la imagen, o bueno, si se subio, le retorno la ruta que
+            debe estar en media url, y le junto el self.image que es el nombre
+            de la imagen
+          </li>
+          <li>
+            de lo contrario, le retorno una imagen como predeterminada que esta
+            en mis static
+          </li>
+          <li>
+            Y por esto mismo la nota de que las rutas deben iniciar con <b>/</b>
+          </li>
+        </ul>
+        <li>
+          Y en el <b>form.html</b> de las plantillas base, en el fomulario le
+          agregamos el siguiente atributo <b>enctype</b>, el cual es para
+          decirle que se van a enviar archivos por el formulario
+        </li>
+        <div class="codigo">
+          <pre><code id="b99">&lt;form method="post" enctype="multipart/form-data"&gt; </code></pre>
+          <button onclick="copiar('b99','181')" id="181">Copiar</button>
+        </div>
+        <li>
+          Y ya de esta forma si agregamos un producto, se guardara la imagen y
+          el registro correctamente
+        </li>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
 
     <details>
       <summary class="videos-titulo" id="video-43">
-        <h2>
-          <i>Video 43</i>: Media Files con ajax | Parte II
-        </h2>
+        <h2><i>Video 43</i>: Media Files con ajax | Parte II</h2>
       </summary>
       <a
         target="_blank"
@@ -5380,13 +5682,29 @@ MEDIA_URL = '/media/'</code></pre><button onclick="copiar('b94','176')" id="176"
         >Link del video 43</a
       >
       <ul>
-        <li>En el <b>form.html</b> de las plantillas principales, descomentamos el <b>$('form')</b> porque vamos a utilizar ajax para el envio de datos, y vamos a modificarlo</li>
+        <li>
+          En el <b>form.html</b> de las plantillas principales, descomentamos el
+          <b>$('form')</b> porque vamos a utilizar ajax para el envio de datos,
+          y vamos a modificarlo
+        </li>
         <ul>
-          <li>Modificamos la variable <b>parameters</b> y creamos un <b>FormData</b> con la palabra reservada <b>new</b>, y con podriamos agregarle cada valor con la funcion <b>.append(clave,valor)</b> pero simplemente le pasamos el <b>this</b> que hace referencia al formulario y eso ya acepta los valores tipo texto y tipo archivo y ya el los procesa</li>
+          <li>
+            Modificamos la variable <b>parameters</b> y creamos un
+            <b>FormData</b> con la palabra reservada <b>new</b>, y con podriamos
+            agregarle cada valor con la funcion <b>.append(clave,valor)</b> pero
+            simplemente le pasamos el <b>this</b> que hace referencia al
+            formulario y eso ya acepta los valores tipo texto y tipo archivo y
+            ya el los procesa
+          </li>
           <div class="codigo">
-            <pre><code id="c1">var parameters = new FormData(this);</code></pre><button onclick="copiar('c1','182')" id="182">Copiar</button>
+            <pre><code id="c1">var parameters = new FormData(this);</code></pre>
+            <button onclick="copiar('c1','182')" id="182">Copiar</button>
           </div>
-          <li>Luego le hacemos una pequeña modificación a nuestro ajax de la funcion <b>submit_with_ajax</b>, le agregamos 2 atributos, y los ponemos en false, y quedaria asi la cabecera del ajax</li>
+          <li>
+            Luego le hacemos una pequeña modificación a nuestro ajax de la
+            funcion <b>submit_with_ajax</b>, le agregamos 2 atributos, y los
+            ponemos en false, y quedaria asi la cabecera del ajax
+          </li>
           <div class="codigo">
             <pre><code id="c2"></code>$.ajax({
             url: url,
@@ -5395,35 +5713,57 @@ MEDIA_URL = '/media/'</code></pre><button onclick="copiar('b94','176')" id="176"
             dataType: "json",
             processData: false,
             contentType:false 
-          })</pre><button onclick="copiar('c2','183')" id="183">Copiar</button>
+          })</pre>
+            <button onclick="copiar('c2','183')" id="183">Copiar</button>
           </div>
           <ul>
-            <li>Esos 2 nuevos atributos, por defecto estan en ture, y modifican los datos que le pase, pero con el FormData ya lo hago y le digo que no procese esos datos</li>
+            <li>
+              Esos 2 nuevos atributos, por defecto estan en ture, y modifican
+              los datos que le pase, pero con el FormData ya lo hago y le digo
+              que no procese esos datos
+            </li>
           </ul>
-          <li>Si quiero ver los valores, puedo comentar el <b>submit_with_ajax</b> y utilizo un forEach para ver los valores del formulario</li>
+          <li>
+            Si quiero ver los valores, puedo comentar el
+            <b>submit_with_ajax</b> y utilizo un forEach para ver los valores
+            del formulario
+          </li>
           <div class="codigo">
             <pre><code id="c3">parameters.forEach(function (value,key){ 
   console.log(key+" "+value)
-})</code></pre><button onclick="copiar('c3','184')" id="184">Copiar</button>
+})</code></pre>
+            <button onclick="copiar('c3','184')" id="184">Copiar</button>
           </div>
         </ul>
-        <li>En la vista de mi products le descomento el post, y si quiero, puedo comentar lo que esta en el try para que no se guarde y con un print(request.POST) y print(request.FILES) puedo ver los valores que llegan, a ver si llegan de forma correcta</li>
-        <li>Si es asi, descomento todo el post y el metodo <b>save</b> del formulario de mi product para que se guarden los valores</li>
-        <p class="nota"><b>NOTA:</b> en el <b>delete.html</b> también debo ponerle el new FormData porque sino al intentar eliminar lanzara un error</p>
-        <li>Y ya si probamos guardar, debe guardar la imagen y en el video el profe hace algunas modificaciones a los modelos</li>
+        <li>
+          En la vista de mi products le descomento el post, y si quiero, puedo
+          comentar lo que esta en el try para que no se guarde y con un
+          print(request.POST) y print(request.FILES) puedo ver los valores que
+          llegan, a ver si llegan de forma correcta
+        </li>
+        <li>
+          Si es asi, descomento todo el post y el metodo <b>save</b> del
+          formulario de mi product para que se guarden los valores
+        </li>
+        <p class="nota">
+          <b>NOTA:</b> en el <b>delete.html</b> también debo ponerle el new
+          FormData porque sino al intentar eliminar lanzara un error
+        </p>
+        <li>
+          Y ya si probamos guardar, debe guardar la imagen y en el video el
+          profe hace algunas modificaciones a los modelos
+        </li>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
 
     <details>
       <summary class="videos-titulo" id="video-44">
-        <h2>
-          <i>Video 44</i>: Select anidados con ajax
-        </h2>
+        <h2><i>Video 44</i>: Select anidados con ajax</h2>
       </summary>
       <a
         target="_blank"
@@ -5431,10 +5771,19 @@ MEDIA_URL = '/media/'</code></pre><button onclick="copiar('b94','176')" id="176"
         href="https://www.youtube.com/watch?v=s2P3AxKNmww&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=44&pp=iAQB"
         >Link del video 44</a
       >
-      
+
       <ul>
-        <li>En mi app <b>erp</b>, en la carpeta de <b>views.py</b> creo una carpeta <b>tests</b> para las prubas o enseñanzan del profe, porque en este video, los select anidados no es algo que por ahora vaya a implementar sino que es algo que va a explicae porque se lo pidieron</li>
-        <li>En el archivo <b>forms.py</b> de mi app erp, crep un formulario herenando de <b>Form</b> porque vamos a crear cada componente de forma manual y no basandonos en un modelo</li>
+        <li>
+          En mi app <b>erp</b>, en la carpeta de <b>views.py</b> creo una
+          carpeta <b>tests</b> para las prubas o enseñanzan del profe, porque en
+          este video, los select anidados no es algo que por ahora vaya a
+          implementar sino que es algo que va a explicae porque se lo pidieron
+        </li>
+        <li>
+          En el archivo <b>forms.py</b> de mi app erp, crep un formulario
+          herenando de <b>Form</b> porque vamos a crear cada componente de forma
+          manual y no basandonos en un modelo
+        </li>
         <div class="codigo">
           <pre><code id="c4">class TestForm(Form):#creo mi propio formulario
   categories = ModelChoiceField(queryset=Category.objects.all(),widget=Select(attrs={
@@ -5443,14 +5792,29 @@ MEDIA_URL = '/media/'</code></pre><button onclick="copiar('b94','176')" id="176"
   products = ModelChoiceField(queryset=Product.objects.none(),widget=Select(attrs={
       'class':'form-control'
   }))
-</code></pre><button onclick="copiar('c4','185')" id="185">Copiar</button>
+</code></pre>
+          <button onclick="copiar('c4','185')" id="185">Copiar</button>
         </div>
         <ul>
-          <li>El <b>ModelChoiceField</b> es para las opciones, y en el widget le digo que tipo de input sera, en este caso, un <b>Select</b>, y ese <b>ModelChoiceField</b> debe ir tambien con el parametro <b>queryset</b> el cual le paso los valores que seran las opciones, en este caso, todas las categorias</li>
-          <li>Le paso un listado vacio o <b>none</b> de los productos porque con ajax lo voy a llenar, y pues es obligatorio pasar ese parametro</li>
+          <li>
+            El <b>ModelChoiceField</b> es para las opciones, y en el widget le
+            digo que tipo de input sera, en este caso, un <b>Select</b>, y ese
+            <b>ModelChoiceField</b> debe ir tambien con el parametro
+            <b>queryset</b> el cual le paso los valores que seran las opciones,
+            en este caso, todas las categorias
+          </li>
+          <li>
+            Le paso un listado vacio o <b>none</b> de los productos porque con
+            ajax lo voy a llenar, y pues es obligatorio pasar ese parametro
+          </li>
           <li>Y pues le puedo pasar atributos dentro del widget asignado</li>
         </ul>
-        <li>En la carpeta tests, creo el archivo <b>views.py</b> y creo una vista simple que herede de <b>TemplateView</b> y le pongo el post, distpach y sus metodos decoradores para el login e ignorar la seguridad, y quedaria asi:</li>
+        <li>
+          En la carpeta tests, creo el archivo <b>views.py</b> y creo una vista
+          simple que herede de <b>TemplateView</b> y le pongo el post, distpach
+          y sus metodos decoradores para el login e ignorar la seguridad, y
+          quedaria asi:
+        </li>
         <div class="codigo">
           <pre><code id="c5">from django.http import JsonResponse
 from django.views.generic import TemplateView
@@ -5487,22 +5851,45 @@ class TestView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["title"] = 'Selects anidados | Django'
         context['form']=TestForm()
-        return context</code></pre><button onclick="copiar('c5','186')" id="186">Copiar</button>
+        return context</code></pre>
+          <button onclick="copiar('c5','186')" id="186">Copiar</button>
         </div>
         <ul>
           <li>Hago las respectivas importaciones a utilizar</li>
           <li>Le pongo los decoradores al distpach</li>
-          <li>En el metodo post verifico la acción, le mando los productos según el id que reciba el cual sera de una categoria, y buscare todos los productos por esa categoria</li>
-          <li>En este caso no sera un json o diccionario sino una colección de diccionario o un arreglo con varios diccionarios con el id y nombre del producto</li>
-          <li>Y en el <b>get_context_data</b> le paso los valores que necesito, junto a ellos el formulario</li>
-          <li>Recordar que como voy a retornar un arreglo o coleccion, el JsonResponse debe tener el safe en False</li>
+          <li>
+            En el metodo post verifico la acción, le mando los productos según
+            el id que reciba el cual sera de una categoria, y buscare todos los
+            productos por esa categoria
+          </li>
+          <li>
+            En este caso no sera un json o diccionario sino una colección de
+            diccionario o un arreglo con varios diccionarios con el id y nombre
+            del producto
+          </li>
+          <li>
+            Y en el <b>get_context_data</b> le paso los valores que necesito,
+            junto a ellos el formulario
+          </li>
+          <li>
+            Recordar que como voy a retornar un arreglo o coleccion, el
+            JsonResponse debe tener el safe en False
+          </li>
         </ul>
-        <li>Agrego la vista a las urls de mi app, con el link <b>test/</b>, quedaria como <b>/erp/test/</b>, importo la vista como <b>from core.erp.views.tests.views import *</b></li>
+        <li>
+          Agrego la vista a las urls de mi app, con el link <b>test/</b>,
+          quedaria como <b>/erp/test/</b>, importo la vista como
+          <b>from core.erp.views.tests.views import *</b>
+        </li>
         <div class="codigo">
           <pre><code id="c6"># test
-    path('test/',TestView.as_view(),name='test')</code></pre><button onclick="copiar('c5','186')" id="186">Copiar</button>
+    path('test/',TestView.as_view(),name='test')</code></pre>
+          <button onclick="copiar('c5','186')" id="186">Copiar</button>
         </div>
-        <li>Copiamos del <b>form.html</b> de las plantillas principales, pero le hago unas modificaciones</li>
+        <li>
+          Copiamos del <b>form.html</b> de las plantillas principales, pero le
+          hago unas modificaciones
+        </li>
         <div class="codigo">
           <pre><code id="c6">{% extends 'layout.html' %} 
 {% load widget_tweaks %} 
@@ -5530,13 +5917,23 @@ class TestView(TemplateView):
 {% endblock content %} 
 {% block js %}
 {% endblock js %}
-</code></pre><button onclick="copiar('c6','187')" id="187">Copiar</button>
+</code></pre>
+          <button onclick="copiar('c6','187')" id="187">Copiar</button>
         </div>
         <ul>
-          <li>Ponemos los inputs, ya que son 2, no recorremos el <b>form</b> sino que lo ponemos manual accediendo a su nombre del atributo que pusimos en la clase del formulario</li>
-          <li>Le dejamos el bloque de js vacio para que no herede esa parte, porque ahora vamos a utilizar ajax</li>
+          <li>
+            Ponemos los inputs, ya que son 2, no recorremos el <b>form</b> sino
+            que lo ponemos manual accediendo a su nombre del atributo que
+            pusimos en la clase del formulario
+          </li>
+          <li>
+            Le dejamos el bloque de js vacio para que no herede esa parte,
+            porque ahora vamos a utilizar ajax
+          </li>
         </ul>
-        <li>Agregamos el codigo javascript en el bloque js que vamos a utilizar</li>
+        <li>
+          Agregamos el codigo javascript en el bloque js que vamos a utilizar
+        </li>
         <div class="codigo">
           <pre><code id="c7">&lt;script&gt;
   $(function () {
@@ -5575,43 +5972,98 @@ class TestView(TemplateView):
             });
     })
   });
-&lt;/script&gt;</code></pre><button onclick="copiar('c7','188')" id="188">Copiar</button>
+&lt;/script&gt;</code></pre>
+          <button onclick="copiar('c7','188')" id="188">Copiar</button>
         </div>
         <ul>
-          <li>Con el <b>$(function () {})</b> le digo que se ejecute apenas cargue la pagina</li>
-          <li>Le agregamos el evento <b>change</b> o cambio cuando selecciona cada opcion del select, lo selecciono por su nombre o <b>name</b> el cual se pone en el input</li>
-          <li>Dentro de la función, obtengo el id de la categoria, con el this que hace referencia a la opcion seleccionada y que en <b>value</b> esta el id de la categoria (en la inspección se puede ver) y con <b>val()</b> obtengo su valor</li>
-          <li>Selecciono el input del producto para incrustarle las opciones segun la categoria</li>
-          <li>Inicializo las opciones en una variable para luego ir agregandolas segun lo que reciba el ajax</li>
-          <li>Verifico ue si el id esta vacio, osea no ha seleccionado nada, entonces no haga la petición porque eso seria un error en el servidor, entonces solo le paso la opción vacia y con el return detengo la ejecución para que no pase al ajax</li>
-          <li>Si el id si tiene un valor, osea el id de la categoria, ejecuto el ajax de jquery donde:</li>
+          <li>
+            Con el <b>$(function () {})</b> le digo que se ejecute apenas cargue
+            la pagina
+          </li>
+          <li>
+            Le agregamos el evento <b>change</b> o cambio cuando selecciona cada
+            opcion del select, lo selecciono por su nombre o <b>name</b> el cual
+            se pone en el input
+          </li>
+          <li>
+            Dentro de la función, obtengo el id de la categoria, con el this que
+            hace referencia a la opcion seleccionada y que en <b>value</b> esta
+            el id de la categoria (en la inspección se puede ver) y con
+            <b>val()</b> obtengo su valor
+          </li>
+          <li>
+            Selecciono el input del producto para incrustarle las opciones segun
+            la categoria
+          </li>
+          <li>
+            Inicializo las opciones en una variable para luego ir agregandolas
+            segun lo que reciba el ajax
+          </li>
+          <li>
+            Verifico ue si el id esta vacio, osea no ha seleccionado nada,
+            entonces no haga la petición porque eso seria un error en el
+            servidor, entonces solo le paso la opción vacia y con el return
+            detengo la ejecución para que no pase al ajax
+          </li>
+          <li>
+            Si el id si tiene un valor, osea el id de la categoria, ejecuto el
+            ajax de jquery donde:
+          </li>
           <ul>
-            <li>La url es la actual por eso se pone <b>window.location.pathname</b></li>
+            <li>
+              La url es la actual por eso se pone
+              <b>window.location.pathname</b>
+            </li>
             <li>el tipo de petición</li>
-            <li>La data la cual le paso la accion (action) y el id el cual es el de la categoria que obtuve arriba</li>
+            <li>
+              La data la cual le paso la accion (action) y el id el cual es el
+              de la categoria que obtuve arriba
+            </li>
             <li>Y el <b>dataType</b> el cual es json</li>
           </ul>
-         
-          <li>En la función <b>.done</b> la cual se ejecuta si la peticion es correcta, le paso la data que me envie el servido, la cual es un arreglo de diccionarios</li>
-          <li>Pregunto que el data no tenga una clave error, y si no la tiene, con la función <b>$.each</b> recorro el arreglo, le paso el data y como segundo parametro la funcion la cual recibe el key y value, el cual el key es la posicion del arreglo y el value el diccionario</li>
-          <li>y como el <b>each</b> recorre, entonces creo las opciones, se las agrego a la variable que ya tengo creada, las opciones con su value el cual pongo el id del producto, y el name en el valor del option que es el que se muestra</li>
+
+          <li>
+            En la función <b>.done</b> la cual se ejecuta si la peticion es
+            correcta, le paso la data que me envie el servido, la cual es un
+            arreglo de diccionarios
+          </li>
+          <li>
+            Pregunto que el data no tenga una clave error, y si no la tiene, con
+            la función <b>$.each</b> recorro el arreglo, le paso el data y como
+            segundo parametro la funcion la cual recibe el key y value, el cual
+            el key es la posicion del arreglo y el value el diccionario
+          </li>
+          <li>
+            y como el <b>each</b> recorre, entonces creo las opciones, se las
+            agrego a la variable que ya tengo creada, las opciones con su value
+            el cual pongo el id del producto, y el name en el valor del option
+            que es el que se muestra
+          </li>
           <li>Y le pongo <b>return false</b> para que salga de la ejecución</li>
-          <li>Si hay algun error, le paso los errores a la funcion <b>message_error</b> como <b>data.error</b> para que le diga el error al usuario</li>
-          <li>Y ya en el <b>.always</b>, en su función, en el input product el cual esta seleccionado en <b>select_products</b> y con la funcion <b>.html</b> le paso la variable que tiene los valores, si se envia la petición, recibe los productos, sino tiene valores lo dejara vacio como la inicializacion de esa variable</li>
+          <li>
+            Si hay algun error, le paso los errores a la funcion
+            <b>message_error</b> como <b>data.error</b> para que le diga el
+            error al usuario
+          </li>
+          <li>
+            Y ya en el <b>.always</b>, en su función, en el input product el
+            cual esta seleccionado en <b>select_products</b> y con la funcion
+            <b>.html</b> le paso la variable que tiene los valores, si se envia
+            la petición, recibe los productos, sino tiene valores lo dejara
+            vacio como la inicializacion de esa variable
+          </li>
         </ul>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
 
     <details>
       <summary class="videos-titulo" id="video-45">
-        <h2>
-          <i>Video 45</i>: Select anidados con select2
-        </h2>
+        <h2><i>Video 45</i>: Select anidados con select2</h2>
       </summary>
       <a
         target="_blank"
@@ -5620,7 +6072,10 @@ class TestView(TemplateView):
         >Link del video 45</a
       >
       <ul>
-        <li>Ponemos la libreria <b>select2</b> en las libs de nuestra carpeta static</li>
+        <li>
+          Ponemos la libreria <b>select2</b> en las libs de nuestra carpeta
+          static
+        </li>
         <li>La importamos en nuestro html <b>tests.html</b></li>
         <div class="codigo">
           <pre><code id="c8">{% load static %}
@@ -5629,14 +6084,24 @@ class TestView(TemplateView):
 &lt;link rel="stylesheet" href="{% static 'libs/select2-4.1.0/css/select2-bootstrap4.min.css' %}"&gt;
 &lt;script src="{% static 'libs/select2-4.1.0/js/select2.min.js' %}"&gt;&lt;/script&gt;
 &lt;!--Para los lenguajes--&gt;
-&lt;script src="{% static 'libs/select2-4.1.0/js/i18n/es.js' %}"&gt;</script>
-{% endblock head %}</code></pre><button onclick="copiar('c8','189')" id="189">Copiar</button>
+&lt;script src="{% static 'libs/select2-4.1.0/js/i18n/es.js' %}"&gt;&lt;/script&gt;
+{% endblock head %}</code></pre>
+          <button onclick="copiar('c8','189')" id="189">Copiar</button>
         </div>
         <ul>
-          <li>Cargamos los static, y en el bloque <b>head</b> el cual esta creado en el <b>body.html</b> y el cual se hereda el <b>layout</b></li>
-          <li>importamos el css y el js, más el js del lenguaje español, que esta en la carpeta <b>i18n</b></li>
+          <li>
+            Cargamos los static, y en el bloque <b>head</b> el cual esta creado
+            en el <b>body.html</b> y el cual se hereda el <b>layout</b>
+          </li>
+          <li>
+            importamos el css y el js, más el js del lenguaje español, que esta
+            en la carpeta <b>i18n</b>
+          </li>
         </ul>
-        <li>En nuestra clase de formulario <b>TestForm</b>, le agregamos la clase <b>select2</b> para seleccionarlo con dicha clase</li>
+        <li>
+          En nuestra clase de formulario <b>TestForm</b>, le agregamos la clase
+          <b>select2</b> para seleccionarlo con dicha clase
+        </li>
         <div class="codigo">
           <pre><code id="c9">categories = ModelChoiceField(queryset=Category.objects.all(),widget=Select(attrs={
       'class':'form-control select2',
@@ -5645,20 +6110,36 @@ class TestView(TemplateView):
 products = ModelChoiceField(queryset=Product.objects.none(),widget=Select(attrs={
       'class':'form-control select2',
       'style':'width:100%'
-  }))</code></pre><button onclick="copiar('c9','190')" id="190">Copiar</button>
+  }))</code></pre>
+          <button onclick="copiar('c9','190')" id="190">Copiar</button>
         </div>
-        <li>En nuestra vista, le modificamos el nombre de la clave <b>name</b> del data que enviamos por <b>text</b> porque asi lo pide la libreria</li>
+        <li>
+          En nuestra vista, le modificamos el nombre de la clave <b>name</b> del
+          data que enviamos por <b>text</b> porque asi lo pide la libreria
+        </li>
         <div class="codigo">
           <pre><code id="c10">data=[{"id":'','text':'-'*9}]
           for i in Product.objects.filter(cat_id=request.POST['id']):
-             data.append({'id':i.id, 'text':i.name,'data':i.cat.toJSON()})</code></pre><button onclick="copiar('c10','191')" id="191">Copiar</button>
+             data.append({'id':i.id, 'text':i.name,'data':i.cat.toJSON()})</code></pre>
+          <button onclick="copiar('c10','191')" id="191">Copiar</button>
         </div>
         <ul>
-          <li>La inicializacion de la variable data le paso un id vacio y un text con los guiones porque es la primera <b>option</b> del select, porque le voy a pasar los datos directo de la petición y select2 creara los <b>option</b> de forma dinamica</li>
-          <li>en la data, la cual es la info de los productos según la categoria, ahi le paso en otra clase, llamada data, la información de la categoria segun el producto, el cual visualizaremos en la consola de la pagina si se desea</li>
+          <li>
+            La inicializacion de la variable data le paso un id vacio y un text
+            con los guiones porque es la primera <b>option</b> del select,
+            porque le voy a pasar los datos directo de la petición y select2
+            creara los <b>option</b> de forma dinamica
+          </li>
+          <li>
+            en la data, la cual es la info de los productos según la categoria,
+            ahi le paso en otra clase, llamada data, la información de la
+            categoria segun el producto, el cual visualizaremos en la consola de
+            la pagina si se desea
+          </li>
         </ul>
         <li>El script del html quedaria de la siguiente forma</li>
-        <div class="codigo"><button onclick="copiar('c11','192')" id="192">Copiar</button>
+        <div class="codigo">
+          <button onclick="copiar('c11','192')" id="192">Copiar</button>
           <pre><code id="c11">$(function () {
     let select_products = $('select[name="products"]'); 
     $(".select2").select2({
@@ -5710,26 +6191,55 @@ products = ModelChoiceField(queryset=Product.objects.none(),widget=Select(attrs=
   });</code></pre>
         </div>
         <ul>
-          <li>creo una variable y selecciono el select de los prodcutos para ponerle lo valores que me pase la petición, <b>select_products</b></li>
-          <li>Selecciono los inputs por su clase y les pongo tema y lenguaje gracias a que los importe en el html, utilizando la funcion de select2</li>
-          <li>Con el <b>if (id === "")</b> verifico si la persona selecciono la opcion vacia, la cual solamente le pongo las lineas de las opcion vacia y ya, no envio la petición</li>
-          <li>en el <b>if (!data.hasOwnProperty("error"))</b>, si no hay errores, selecciono el select de los productos, lo limpio con <b>.html("")</b> y con <b>select2</b> le pongo los valores, el tema, lenguaje y la data que venga de la petición, la cual viene en un diccionario con varios diccionarios (<b>[{"id":0,"text":'Nombre'},{"id":1,"text":'Nombre 2'}]</b>)</li>
-          <li>En la función <b>always</b> que es la que se ejecute siempre, lo comento porque si no hay opciones, el data solo envia la opcion vacia</li>
-          <li>Fuera de la funcion <b>$('select[name="categories"]').on('change',function (){})</b> la cual es la mayor, fuera de esa, obtenemos el evento del cambio en el select de los productos y gracias a select2 puedo obtener los datos que tenga y asi realizar otras opciones, en este caso solo veremos la información del producto seleccionado, y le pongo <b>[0]</b> porque esta dentro de un arreglo</li>
+          <li>
+            creo una variable y selecciono el select de los prodcutos para
+            ponerle lo valores que me pase la petición, <b>select_products</b>
+          </li>
+          <li>
+            Selecciono los inputs por su clase y les pongo tema y lenguaje
+            gracias a que los importe en el html, utilizando la funcion de
+            select2
+          </li>
+          <li>
+            Con el <b>if (id === "")</b> verifico si la persona selecciono la
+            opcion vacia, la cual solamente le pongo las lineas de las opcion
+            vacia y ya, no envio la petición
+          </li>
+          <li>
+            en el <b>if (!data.hasOwnProperty("error"))</b>, si no hay errores,
+            selecciono el select de los productos, lo limpio con
+            <b>.html("")</b> y con <b>select2</b> le pongo los valores, el tema,
+            lenguaje y la data que venga de la petición, la cual viene en un
+            diccionario con varios diccionarios (<b
+              >[{"id":0,"text":'Nombre'},{"id":1,"text":'Nombre 2'}]</b
+            >)
+          </li>
+          <li>
+            En la función <b>always</b> que es la que se ejecute siempre, lo
+            comento porque si no hay opciones, el data solo envia la opcion
+            vacia
+          </li>
+          <li>
+            Fuera de la funcion
+            <b>$('select[name="categories"]').on('change',function (){})</b> la
+            cual es la mayor, fuera de esa, obtenemos el evento del cambio en el
+            select de los productos y gracias a select2 puedo obtener los datos
+            que tenga y asi realizar otras opciones, en este caso solo veremos
+            la información del producto seleccionado, y le pongo
+            <b>[0]</b> porque esta dentro de un arreglo
+          </li>
         </ul>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
 
     <details>
       <summary class="videos-titulo" id="video-46">
-        <h2>
-          <i>Video 46</i>: Personalizando la clase User
-        </h2>
+        <h2><i>Video 46</i>: Personalizando la clase User</h2>
       </summary>
       <a
         target="_blank"
@@ -5738,9 +6248,21 @@ products = ModelChoiceField(queryset=Product.objects.none(),widget=Select(attrs=
         >Link del video 46</a
       >
       <ul>
-        <li>Creamos una app dentro de <b>core</b> (nuestra carpeta de apps), llamada <b>user</b> la cual tendra el modelo heredado de un modelo para modificar el usuario por si le queremos agregar un campo, en este caso, le agregaremos un campo para foto de perfil</li>
-        <li>Después de crear la app, registrarla en <b>INSTALLED_APPS</b> y en el archivo <b>apps.py</b> agregarle el <b>core.</b> porque esta dentro de esa carpeta</li>
-        <li>En el archivo <b>models.py</b> de la app importamos lo necesario y creamos el modelo</li>
+        <li>
+          Creamos una app dentro de <b>core</b> (nuestra carpeta de apps),
+          llamada <b>user</b> la cual tendra el modelo heredado de un modelo
+          para modificar el usuario por si le queremos agregar un campo, en este
+          caso, le agregaremos un campo para foto de perfil
+        </li>
+        <li>
+          Después de crear la app, registrarla en <b>INSTALLED_APPS</b> y en el
+          archivo <b>apps.py</b> agregarle el <b>core.</b> porque esta dentro de
+          esa carpeta
+        </li>
+        <li>
+          En el archivo <b>models.py</b> de la app importamos lo necesario y
+          creamos el modelo
+        </li>
         <div class="codigo">
           <pre><code id="c12">from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -5752,48 +6274,80 @@ class User(AbstractUser):
     def get_image(self):
         if self.image:
             return f'{MEDIA_URL}{self.image}'
-        return f'{STATIC_URL}media/img/empty.png'</code></pre><button onclick="copiar('c12','193')" id="193">Copiar</button>
+        return f'{STATIC_URL}media/img/empty.png'</code></pre>
+          <button onclick="copiar('c12','193')" id="193">Copiar</button>
         </div>
         <ul>
-          <li>importamos la clase <b>AbstractUser</b> la cual es para agregar más datos a la clase <b>User</b></li>
-          <li>Creamos y heredamos la clase, agregamos el campo de imagen, la cual puede ser nula y vacia</li>
-          <li>Copiamos la funcion <b>get_image</b> que creamos de los productos para retornar la imagen del usuario, y si no hay una, retornamos una imagen de vacio</li>
-          </ul>
-          <li>En el <b>settings</b> creo una variable y le pongo el nombre de la app que tiene el modelo modificado y el nombre de la clase, la cual la buscara en los modelos</li>
-          <div class="codigo">
-            <pre><code id="c13">AUTH_USER_MODEL = 'user.User'</code></pre><button onclick="copiar('c13','194')" id="194">Copiar</button>
-          </div>
-          <ul>
-            <li>Si lanza error, posiblemente sea porque no se puso correctamente la app en <b>INSTALLED_APPS</b></li>
+          <li>
+            importamos la clase <b>AbstractUser</b> la cual es para agregar más
+            datos a la clase <b>User</b>
+          </li>
+          <li>
+            Creamos y heredamos la clase, agregamos el campo de imagen, la cual
+            puede ser nula y vacia
+          </li>
+          <li>
+            Copiamos la funcion <b>get_image</b> que creamos de los productos
+            para retornar la imagen del usuario, y si no hay una, retornamos una
+            imagen de vacio
+          </li>
         </ul>
-        <li>Borro la base de datos, y la vuelvo a crear, realizo el <b>makemigrations</b> y luego el <b>migrate</b>, y la tabla user ahora se llama <b>user_user</b>, y seguidamente se crean todas las tablas del user (grupos y permisos)</li>
-        <li>En la app <b>user</b> registro el modelo en el archivo <b>admin.py</b></li>
+        <li>
+          En el <b>settings</b> creo una variable y le pongo el nombre de la app
+          que tiene el modelo modificado y el nombre de la clase, la cual la
+          buscara en los modelos
+        </li>
+        <div class="codigo">
+          <pre><code id="c13">AUTH_USER_MODEL = 'user.User'</code></pre>
+          <button onclick="copiar('c13','194')" id="194">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            Si lanza error, posiblemente sea porque no se puso correctamente la
+            app en <b>INSTALLED_APPS</b>
+          </li>
+        </ul>
+        <li>
+          Borro la base de datos, y la vuelvo a crear, realizo el
+          <b>makemigrations</b> y luego el <b>migrate</b>, y la tabla user ahora
+          se llama <b>user_user</b>, y seguidamente se crean todas las tablas
+          del user (grupos y permisos)
+        </li>
+        <li>
+          En la app <b>user</b> registro el modelo en el archivo <b>admin.py</b>
+        </li>
         <div class="codigo">
           <pre><code id="c13">from django.contrib import admin
 from core.user.models import User
 
-admin.site.register(User)</code></pre><button onclick="copiar('c13','194')" id="194">Copiar</button>
+admin.site.register(User)</code></pre>
+          <button onclick="copiar('c13','194')" id="194">Copiar</button>
         </div>
-        <li>En el template <b>vtc/sidebar.html</b> busco donde se pone la foto de perfil del usuario y lo remplazo llamando al usuario y poninendo su función de la imagen</li>
+        <li>
+          En el template <b>vtc/sidebar.html</b> busco donde se pone la foto de
+          perfil del usuario y lo remplazo llamando al usuario y poninendo su
+          función de la imagen
+        </li>
         <div class="codigo">
           <pre><code id="c14">&lt;div class="image"&gt;
   &lt;img src="{{user.get_image}}" class="img-circle elevation-2" alt="User Image"&gt;
-&lt;/div&gt;</code></pre><button onclick="copiar('c14','195')" id="195">Copiar</button>
+&lt;/div&gt;</code></pre>
+          <button onclick="copiar('c14','195')" id="195">Copiar</button>
         </div>
-        <li>Y asi pongo la imagen del usuario, o una predeterminada si no tiene</li>
+        <li>
+          Y asi pongo la imagen del usuario, o una predeterminada si no tiene
+        </li>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
 
     <details>
       <summary class="videos-titulo" id="video-47">
-        <h2>
-          <i>Video 47</i>: Auditoria en mis modelos con django-crum
-        </h2>
+        <h2><i>Video 47</i>: Auditoria en mis modelos con django-crum</h2>
       </summary>
       <a
         target="_blank"
@@ -5802,8 +6356,17 @@ admin.site.register(User)</code></pre><button onclick="copiar('c13','194')" id="
         >Link del video 47</a
       >
       <ul>
-        <li>La auditaria hace referencia a poner como el registro o control de modificaciones, actualizaciones, quien lo hizo y cuando, y para no repetir eso en cada modelo, sabiendo que va a ser igual, creamos un modelo base y lo probaremos con las categorias</li>
-        <li>Fuera de las apps, pero dentro de la carpeta <b>core</b>, creo un archivo para ese modelo base, <b>models.py</b> y ahi lo creo de la siguiente manera</li>
+        <li>
+          La auditaria hace referencia a poner como el registro o control de
+          modificaciones, actualizaciones, quien lo hizo y cuando, y para no
+          repetir eso en cada modelo, sabiendo que va a ser igual, creamos un
+          modelo base y lo probaremos con las categorias
+        </li>
+        <li>
+          Fuera de las apps, pero dentro de la carpeta <b>core</b>, creo un
+          archivo para ese modelo base, <b>models.py</b> y ahi lo creo de la
+          siguiente manera
+        </li>
         <div class="codigo">
           <pre><code id="c15">from django.conf import settings
 from django.db import models
@@ -5817,27 +6380,74 @@ class BaseModel(models.Model):
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     class Meta:
-        abstract = True</code></pre><button onclick="copiar('c15','196')" id="196">Copiar</button>
+        abstract = True</code></pre>
+          <button onclick="copiar('c15','196')" id="196">Copiar</button>
         </div>
         <ul>
-          <li>el <b>user_creation</b> es para registrar al usuario que creo el registro, y como tengo el usuario personalizado, debo utilizar la variable <b>AUTH_USER_MODEL</b> la cual tiene el modelo de mi usuario personalizado, y viene de <b>django.conf</b> que es donde se guarda la info de mi carpeta config o principal del proyecto, y lo pongo nulo y vacio porque si tengo datos, va a tener problemas, asi que inician nulos y vacios porque igualmente los agregare yo desde el backend</li>
-          <li>Aveces hay problemas con el nombre de la tabla al utilizar el <b>AUTH_USER_MODEL</b> para la relacion, asi que le puedo poner el nombre, y lo pongo de esa forma para que cambie segun la clase y no haya problema al poner uno repetido</li>
-          <li>el <b>user_updated</b> es para registrar que usuario actualizo el registro</li>
-          <li>El <b>date_creation</b> y el <b>date_updated</b> les pongo fecha con hora y se pondran de forma automatica</li>
-          <li>En la clase <b>Meta</b> le pongo el atributo <b>abstract</b> en <b>True</b> para decirle que no se ponga en la base de datos, sino que sera una clase para implementar en mis modelos</li>
+          <li>
+            el <b>user_creation</b> es para registrar al usuario que creo el
+            registro, y como tengo el usuario personalizado, debo utilizar la
+            variable <b>AUTH_USER_MODEL</b> la cual tiene el modelo de mi
+            usuario personalizado, y viene de <b>django.conf</b> que es donde se
+            guarda la info de mi carpeta config o principal del proyecto, y lo
+            pongo nulo y vacio porque si tengo datos, va a tener problemas, asi
+            que inician nulos y vacios porque igualmente los agregare yo desde
+            el backend
+          </li>
+          <li>
+            Aveces hay problemas con el nombre de la tabla al utilizar el
+            <b>AUTH_USER_MODEL</b> para la relacion, asi que le puedo poner el
+            nombre, y lo pongo de esa forma para que cambie segun la clase y no
+            haya problema al poner uno repetido
+          </li>
+          <li>
+            el <b>user_updated</b> es para registrar que usuario actualizo el
+            registro
+          </li>
+          <li>
+            El <b>date_creation</b> y el <b>date_updated</b> les pongo fecha con
+            hora y se pondran de forma automatica
+          </li>
+          <li>
+            En la clase <b>Meta</b> le pongo el atributo <b>abstract</b> en
+            <b>True</b> para decirle que no se ponga en la base de datos, sino
+            que sera una clase para implementar en mis modelos
+          </li>
         </ul>
-        <li>En mi modelo <b>Category</b> ya no lo heredo de <b>models.Model</b> sino del modelo base que cree, debo importar ese modelo (<b>from core.models import BaseModel</b>) y ponerselo al Category</li>
-        <li>Instalamos la libreria <b>django-crum</b> (<b> pip install django-crum</b>) para obtener el usuario logueado en el momento y asi ponerlo cuando haga una modificación o creacion enmis categorias</li>
-        <li>Desde <b>crum</b> importamos <b>get_current_user</b> la cual es la función para obtener el usuario</li>
+        <li>
+          En mi modelo <b>Category</b> ya no lo heredo de
+          <b>models.Model</b> sino del modelo base que cree, debo importar ese
+          modelo (<b>from core.models import BaseModel</b>) y ponerselo al
+          Category
+        </li>
+        <li>
+          Instalamos la libreria <b>django-crum</b> (<b>
+            pip install django-crum</b
+          >) para obtener el usuario logueado en el momento y asi ponerlo cuando
+          haga una modificación o creacion enmis categorias
+        </li>
+        <li>
+          Desde <b>crum</b> importamos <b>get_current_user</b> la cual es la
+          función para obtener el usuario
+        </li>
         <div class="codigo">
-          <pre><code id="c16">from crum import get_current_user</code></pre><button onclick="copiar('c16','197')" id="197">Copiar</button>
+          <pre><code id="c16">from crum import get_current_user</code></pre>
+          <button onclick="copiar('c16','197')" id="197">Copiar</button>
         </div>
-        <li>Pero para utilizarlo debemos ponerlo en el <b>MIDDLEWARE</b> de los <b>settings.py</b> de la siguiente forma</li>
+        <li>
+          Pero para utilizarlo debemos ponerlo en el <b>MIDDLEWARE</b> de los
+          <b>settings.py</b> de la siguiente forma
+        </li>
         <div class="codigo">
-          <pre><code id="c17">'crum.CurrentRequestUserMiddleware'</code></pre><button onclick="copiar('c17','198')" id="198">Copiar</button>
+          <pre><code id="c17">'crum.CurrentRequestUserMiddleware'</code></pre>
+          <button onclick="copiar('c17','198')" id="198">Copiar</button>
         </div>
         <li>Ya asi podemos utilizarlo</li>
-        <li>En el modelo que se va a utilizar, en este caso, Category, sobreescribimos la función <b>save</b> del modelo para obtener el usuario y ponerlo en el registro</li>
+        <li>
+          En el modelo que se va a utilizar, en este caso, Category,
+          sobreescribimos la función <b>save</b> del modelo para obtener el
+          usuario y ponerlo en el registro
+        </li>
         <div class="codigo">
           <pre><code id="c18">def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
   get_current_request()
@@ -5847,26 +6457,51 @@ class BaseModel(models.Model):
       self.user_creation=user
     else:
       self.user_updated=user
-  super(Category, self).save()</code></pre><button onclick="copiar('c18','199')" id="199">Copiar</button>
+  super(Category, self).save()</code></pre>
+          <button onclick="copiar('c18','199')" id="199">Copiar</button>
         </div>
         <ul>
-          <li>Si se autocompleta con visual la funcion save, los campos deben quedar asi, no utilizando ":" sino los "=" (error mio que vi)</li>
-          <li>creamos una variable y llamamos la función para obtener el usuario, y con el primer <b>if</b> verificamos si el usuario no esta vacio</li>
-          <li>Si no esta vacio, preguntamos si existe una clave primario, si no existe significa que se esta creando un registro y ponemos el registro en el <b>user_creation</b> por dicha cuestión</li>
-          <li>De lo contrario, si existe una clave pk, significa que se esta actualizando y ponemos en el <b>user_updated</b> el usuario que esta atualizando el registro</li>
+          <li>
+            Si se autocompleta con visual la funcion save, los campos deben
+            quedar asi, no utilizando ":" sino los "=" (error mio que vi)
+          </li>
+          <li>
+            creamos una variable y llamamos la función para obtener el usuario,
+            y con el primer <b>if</b> verificamos si el usuario no esta vacio
+          </li>
+          <li>
+            Si no esta vacio, preguntamos si existe una clave primario, si no
+            existe significa que se esta creando un registro y ponemos el
+            registro en el <b>user_creation</b> por dicha cuestión
+          </li>
+          <li>
+            De lo contrario, si existe una clave pk, significa que se esta
+            actualizando y ponemos en el <b>user_updated</b> el usuario que esta
+            atualizando el registro
+          </li>
           <li>Recordar que los 2 date se ponen de forma automatica</li>
         </ul>
-        <li>Si corremos el servidor y vamos a la edición o creacion de una categoria, se ven unos selects de los usuarios los cuales no deben ir porque los ponemos de forma dinamica, entonces le hacemos una pequeña modificacion al formulario de las categorias</li>
+        <li>
+          Si corremos el servidor y vamos a la edición o creacion de una
+          categoria, se ven unos selects de los usuarios los cuales no deben ir
+          porque los ponemos de forma dinamica, entonces le hacemos una pequeña
+          modificacion al formulario de las categorias
+        </li>
         <div class="codigo">
-          <pre><code id="c19">exclude = ['user_creation','user_updated']</code></pre><button onclick="copiar('c19','200')" id="200">Copiar</button>
+          <pre><code id="c19">exclude = ['user_creation','user_updated']</code></pre>
+          <button onclick="copiar('c19','200')" id="200">Copiar</button>
         </div>
         <ul>
-          <li>De esta forma excluyo los campos (Los cuales ya vimos ese tema), no pongo los date porque como tienen la propiedad auto_now y auto_now_add, django sabe que son campos que se autocompletan</li>
+          <li>
+            De esta forma excluyo los campos (Los cuales ya vimos ese tema), no
+            pongo los date porque como tienen la propiedad auto_now y
+            auto_now_add, django sabe que son campos que se autocompletan
+          </li>
         </ul>
       </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
@@ -5885,11 +6520,11 @@ class BaseModel(models.Model):
       >
       <div class="flecha-arriba">
         <a href="#inicio"
-          ><img src="../media/img/deslizar-hacia-arriba.png" alt=""
+          ><img src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png" alt=""
         /></a>
       </div>
     </details>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       function copiar(idValor, idBoton) {
         let valor = document.getElementById(idValor).textContent;

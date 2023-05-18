@@ -1,153 +1,168 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+}
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
 }
 body,
 body::after,
 body::before {
-  box-sizing: border-box;
-  font-family: sans-serif;
+  box-sizing: border-box !important;
+  font-family: sans-serif !important;
 }
 h1,
 h2 {
-  color: mediumblue;
+  color: mediumblue !important;
 }
 details {
-  margin: 5px 0;
+  margin: 5px 0 !important;
 }
 .codigo {
-  display: inline-flex;
-  flex-direction: column;
-  background-color: black;
-  color: white;
-  border-radius: 5px;
-  align-items: flex-start;
-  margin: 10px 0;
-  max-height: 80vh;
-  max-width: 70vw;
-  overflow: auto;
+  border: solid white 1px;
+  display: inline-flex !important;
+  flex-direction: column !important;
+  background-color: black !important;
+  color: white !important;
+  border-radius: 5px !important;
+  align-items: flex-start !important;
+  margin: 10px 0 !important;
+  max-height: 80vh !important;
+  max-width: 70vw !important;
+   overflow: auto !important; 
 }
 .codigo pre {
-  padding: 10px 10px 0 10px;
+  padding: 10px 10px 0 10px !important;
 }
 .codigo button {
-  height: 20px;
-  color: white;
-  background-color: rgb(78, 76, 76);
-  border-bottom-left-radius: 5px;
-  border-top-right-radius: 5px;
-  cursor: pointer;
+  margin-bottom:1px ;
+  padding: 0 10px !important;
+  font-size: 14px;
+  border: none;
+  height: 20px !important;
+  color: white !important;
+  background-color: rgb(78, 76, 76) !important;
+  border-bottom-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  cursor: pointer !important;
 }
 .codigo button:hover {
-  color: rgb(29, 200, 29);
+  color: rgb(29, 200, 29) !important;
 }
 .nota {
-  background-color: rgb(195, 191, 191);
-  padding: 5px;
-  border-radius: 5px;
+  background-color: rgb(195, 191, 191) !important;
+  padding: 5px !important;
+  border-radius: 5px !important;
 }
 .link-videos {
-  display: inline-block;
-  border: 1px solid white;
-  margin: 5px 0;
-  padding: 2px;
+  display: inline-block !important;
+  border: 1px solid white !important;
+  margin: 5px 0 !important;
+  padding: 2px !important;
 }
 .indice {
-  display: flex;
-  width: 100vw;
+  display: flex !important;
+  width: 100vw !important;
 }
 .indice div {
-  width: auto;
+  width: auto !important;
 }
 /* .indice div:nth-child(1) {
-  width: 38%;
+  width: 38% !important;
 } */
 .indice a,
 .link-videos {
-  text-decoration: none;
-  color: cornflowerblue;
-  padding: 1px;
+  text-decoration: none !important;
+  color: cornflowerblue !important;
+  padding: 1px !important;
 }
 .indice a:hover,
 .link-videos:hover {
-  color: red;
-  border: 1px solid black;
-  border-radius: 5px;
+  color: red !important;
+  border: 1px solid black !important;
+  border-radius: 5px !important;
 }
 .details-indice span {
-  cursor: pointer;
-  background-color: red;
-  border-radius: 5px;
-  padding: 3px;
-  color: white;
-  user-select: none;
+  cursor: pointer !important;
+  background-color: red !important;
+  border-radius: 5px !important;
+  padding: 3px !important;
+  color: white !important;
+  user-select: none !important;
+}
+.details-indice ul {
+  list-style-type: none;
 }
 .details-indice {
-  display: inline-flex;
-  margin: 5px 0;
+  display: inline-flex !important;
+  margin: 5px 0 !important;
 }
 .details-indice summary {
-  list-style: none;
+  list-style: none !important;
 }
 .details-indice span:hover {
-  border: 1px solid red;
-  color: black;
-  background-color: white;
+  border: 1px solid red !important;
+  color: black !important;
+  background-color: white !important;
 }
 .flecha-arriba {
-  display: inline-block;
-  width: 100%;
-  text-align: center;
+  display: inline-block !important;
+  width: 100% !important;
+  text-align: center !important;
 }
 .flecha-arriba img {
-  width: 40px;
-  border: 1px solid black;
-  border-radius: 15px;
-  padding: 0 60px;
-  background-color: green;
+  width: 40px !important;
+  border: 1px solid black !important;
+  border-radius: 15px !important;
+  padding: 0 60px !important;
+  background-color: green !important;
 }
 .flecha-arriba img:hover {
-  background-color: white;
+  background-color: white !important;
 }
 h2 {
-  margin: 10px 0;
+  margin: 10px 0 !important;
 }
 .videos-titulo {
-  list-style: none;
-  border: 1px solid;
-  border-radius: 10px;
+  list-style: none !important;
+  border: 1px solid !important;
+  border-radius: 10px !important;
 }
 .videos-titulo:hover {
-  cursor: pointer;
-  background-color: rgb(195, 191, 191);
-  border: 1px solid white;
+  cursor: pointer !important;
+  background-color: rgb(195, 191, 191) !important;
+  border: 1px solid white !important;
 }
 .videos-titulo h2 {
-  user-select: none;
+  user-select: none !important;
 }
 ul ul {
-  list-style-type: square;
+  list-style-type: square !important;
 }
 
 nav {
-  border: 1px solid black;
-  color: black;
+  border: 1px solid black !important;
+  color: black !important;
 }
 nav ul {
-  list-style-type: none;
+  list-style-type: none !important;
 }
 nav a {
-  text-decoration: none;
-  padding: 3px;
+  text-decoration: none !important;
+  padding: 3px !important;
 }
 nav a:hover {
-  background-color: greenyellow;
-  border-radius: 5px;
+  background-color: greenyellow !important;
+  border-radius: 5px !important;
 }
 nav a:visited {
-  color: black;
+  color: black !important;
 }
 img {
-  margin: 20px 0;
-  margin-left: 30px;
-  border: 1px solid black;
+  margin: 20px 0 !important;
+  margin-left: 30px !important;
+  border: 1px solid black !important;
 }
