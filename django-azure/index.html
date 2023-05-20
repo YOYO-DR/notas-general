@@ -1,12 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deploy Django Azure</title>
-</head>
-<body>
-  <h1 id="inicio" style="color: black">Deploy de un proyecto de Django en Azure App Service</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deploy Django Azure</title>
+  </head>
+  <body>
+    <h1 id="inicio" style="color: black">
+      Deploy de un proyecto de Django en Azure App Service
+    </h1>
+    <details class="details-indice">
+      <summary><span>Indice</span></summary>
+      <div>
+        <div>
+          <ul>
+            <li>
+              <a href="#video-5"
+                >Video 5: Crear proyecto de Django con el CMD</a
+              >
+            </li>
+            <li>
+              <a href="#video-7"
+                >Video 7: Configurando la base de datos MySQL</a
+              >
+            </li>
+            <li><a href="#video-8">Video 8: Modelos | Parte I</a></li>
+            <li><a href="#video-9">Video 9: Modelos | Parte II</a></li>
+            <li><a href="#video-10">Video 10: ORM | Parte I</a></li>
+            <li><a href="#video-11">Video 11: ORM II</a></li>
+            <li>
+              <a href="#video-12">Video 12: Git | Control de versiones</a>
+            </li>
+            <li>
+              <a href="#video-13"
+                >Video 13: Panel de administrador | SuperUser</a
+              >
+            </li>
+            <li>
+              <a href="#video-14">Video 14: Configuración | Mi primera view</a>
+            </li>
+            <li><a href="#video-15">Video 15: Templates | Parte I</a></li>
+            <li><a href="#video-16">Video 16: Templates | Parte II</a></li>
+            <li>
+              <a href="#video-17"
+                >Video 17: Archivos estáticos | Configuración</a
+              >
+            </li>
+            <li>
+              <a href="#video-18"
+                >Video 18: Templates | integrando la plantilla adminLTE3</a
+              >
+            </li>
+            <li>
+              <a href="#video-19"
+                >Video 19: Creando nuestro primer listado en Django</a
+              >
+            </li>
+            <li>
+              <a href="#video-20"
+                >Video 20: ListView | Vistas basadas en clases</a
+              >
+            </li>
+            <li>
+              <a href="#video-21"
+                >Video 21: ListView | implementando datatables</a
+              >
+            </li>
+            <li>
+              <a href="#video-22"
+                >Video 22: Sobreescritura del metodo dispatch | Vistas basadas
+                en clases</a
+              >
+            </li>
+            <li>
+              <a href="#video-23"
+                >Video 23: Implementando decoradores | Vistas basadas en
+                clases</a
+              >
+            </li>
+            <li>
+              <a href="#video-24"
+                >Video 24: Sobreescritura del metodo post | vistas basadas en
+                clases</a
+              >
+            </li>
+            <li>
+              <a href="#video-25"
+                >Video 25: Ajax basico | post | vistas basadas en clases
+              </a>
+            </li>
+            <li>
+              <a href="#video-26"
+                >Video 26: CreateView | Creando nuestro primer formulario |
+                parte I</a
+              >
+            </li>
+            <li>
+              <a href="#video-27"
+                >Video 27: CreateView | personalizando nuestro formulario |
+                parte II</a
+              >
+            </li>
+            <li>
+              <a href="#video-28"
+                >Video 28: CreateView | Validaciones en nuestro formulario |
+                Parte III</a
+              >
+            </li>
+            <li>
+              <a href="#video-29"
+                >Video 29: CreateView | Implementando ajax para el envío de
+                datos</a
+              >
+            </li>
+            <li>
+              <a href="#video-30"
+                >Video 30: UpdateView | Editando un registro</a
+              >
+            </li>
+            <li>
+              <a href="#video-31"
+                >Video 31: DeleteView | Eliminando un registro</a
+              >
+            </li>
+            <li>
+              <a href="#video-32"
+                >Video 32: DeleteView | Implementando ajax para el eliminar un
+                registro</a
+              >
+            </li>
+            <li>
+              <a href="#video-33"
+                >Video 33: ListView | Cargar datos en mi tabla con ajax y
+                datatable</a
+              >
+            </li>
+            <li>
+              <a href="#video-34">Videos 34: Puliendo nuestro proyecto</a>
+            </li>
+            <li>
+              <a href="#video-35"
+                >Videos 35: TemplateView | Creando nuestro index</a
+              >
+            </li>
+            <li>
+              <a href="#video-36"
+                >Videos 36: FormView | Vistas basadas en clases</a
+              >
+            </li>
+            <li>
+              <a href="#video-37"
+                >Videos 37: LoginView | Vistas basadas en clases</a
+              >
+            </li>
+            <li>
+              <a href="#video-38">Videos 38: FormView | Inicio de sesión</a>
+            </li>
+            <li>
+              <a href="#video-39"
+                >Videos 39: LogoutView | RedirectView | Vistas basadas en
+                clases</a
+              >
+            </li>
+            <li>
+              <a href="#video-40"
+                >Videos 40: Validando nuestras vistas (login_required, next,
+                LOGIN_URL)</a
+              >
+            </li>
+            <li>
+              <a href="#video-41"
+                >Videos 41: Implementando alertas en nuestro formulario con
+                jquery-confirm</a
+              >
+            </li>
+            <li><a href="#video-42">Videos 42: Media Files | Parte I</a></li>
+            <li>
+              <a href="#video-43">Videos 43: Media Files con ajax | Parte II</a>
+            </li>
+            <li><a href="#video-44">Videos 44: Select anidados con ajax</a></li>
+            <li>
+              <a href="#video-45">Videos 45: Select anidados con select2</a>
+            </li>
+            <li>
+              <a href="#video-46">Video 46: Personalizando la clase User</a>
+            </li>
+            <li><a href="#video-47">Video 47</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </body>
 </html>

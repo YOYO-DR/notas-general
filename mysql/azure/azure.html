@@ -19,17 +19,51 @@
         <li><a href="../../home.html">Principal</a></li>
       </ul>
     </nav>
+    <details class="details-indice">
+      <summary>
+        <span class="btn btn-outline-secondary rounded p-1 text-white"
+          >Indice</span
+        >
+      </summary>
+      <div class="indice">
+        <ul>
+          <li>
+            <a href="#section-1">Sección 1: Crear maquina virtual y conectarnos por ssh</a>
+          </li>
+          <li>
+            <a href="#section-2">Sección 2: Instalar MySQL</a>
+          </li>
+          <li>
+            <a href="#section-3">Sección 3: Configurar MySQL</a>
+          </li>
+          <li>
+            <a href="#section-4">Sección 4: Configurar los usuarios</a>
+          </li>
+          <li>
+            <a href="#section-5"
+              >Sección 5: Configurar puertos y redes para acceso remoto</a
+            >
+          </li>
+          <li>
+            <a href="#section-6"
+              >Sección 6: Configurar el puerto que utiliza MySQL en la maquina virtual</a
+            >
+          </li>
+        </ul>
+      </div>
+    </details>
+
     <h1 id="inicio" style="color: black">
       Como INSTALAR MySQL en una VPS en Azure y como CONECTARSE con el servidor
     </h1>
-    <h2>Primero vamos a <b>Azure</b>, ya teniendo una suscripción</h2>
+    <h2>Crear maquina virtual y conectarnos por ssh</h2>
     <ul>
       <li>En la parte lateral, seleccionamos <b>Maquinas Virtuales</b></li>
-      <img src="../../media/img/azure 1.png" alt="" />
+      <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure 1.png" alt="" />
       <li>
         Seleccionamos <b>Crear</b> y luego <b>Máquina virtual de Azure</b>
       </li>
-      <img src="../../media/img/azure 2.png" alt="" />
+      <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure 2.png" alt="" />
       <li>Solo modifican lo que mencione</li>
       <ul>
         <li>
@@ -63,7 +97,7 @@
         Ya aqui podemos ver la información de nuestra maquina virtual, ahora nos
         conectaremos a ella por via ssh gracias a la ip publica
       </li>
-      <img src="../../media/img/azure 3.png" alt="" />
+      <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure 3.png" alt="" />
       <li>Copiamos la dirección ip</li>
       <li>Abrimos la terminal de nuestro pc y escribimos:</li>
       <div class="codigo">
@@ -74,31 +108,29 @@
           De esta forma accedemos a nuestra maquina virtual, de ahi le decimo
           que <b>yes</b> y luego escribimos la contraseña y se debe ver algo asi
         </li>
-        <img src="../../media/img/azure 4.png" alt="" />
+        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure 4.png" alt="" />
       </ul>
-       </ul>
-      <h2>
-        Ya dentro de nuestra maquina virtual, ejecutamos los siguiente comandos
-      </h2>
-      <ul>
-        <li>Actualizar repositorio</li>
-        <div class="codigo">
-          <pre><code id="a1">sudo apt update</code></pre>
-          <button onclick="copiar('a1','1')" id="1">Copiar</button>
-        </div>
-        <li>Instalar mysql</li>
-        <div class="codigo">
-          <pre><code id="a2">sudo apt-get install mysql-server mysql-client -y</code></pre>
-          <button onclick="copiar('a2','2')" id="2">Copiar</button>
-        </div>
-        <li>Ver la versión</li>
-        <div class="codigo">
-          <pre><code id="a3">mysql --version</code></pre>
-          <button onclick="copiar('a3','3')" id="3">Copiar</button>
-        </div>
-      </ul>
-   
-    <h2>Vamos a configurar mysql</h2>
+    </ul>
+    <h2>Instalar MySQL</h2>
+    <ul>
+      <li>Actualizar repositorio</li>
+      <div class="codigo">
+        <pre><code id="a1">sudo apt update</code></pre>
+        <button onclick="copiar('a1','1')" id="1">Copiar</button>
+      </div>
+      <li>Instalar mysql</li>
+      <div class="codigo">
+        <pre><code id="a2">sudo apt-get install mysql-server mysql-client -y</code></pre>
+        <button onclick="copiar('a2','2')" id="2">Copiar</button>
+      </div>
+      <li>Ver la versión</li>
+      <div class="codigo">
+        <pre><code id="a3">mysql --version</code></pre>
+        <button onclick="copiar('a3','3')" id="3">Copiar</button>
+      </div>
+    </ul>
+
+    <h2>Configurar MySQL</h2>
     <ul>
       <li>Entramos a mysql</li>
       <div class="codigo">
@@ -152,49 +184,86 @@
         <li>Ahi nos dira <b>All Done</b></li>
       </ul>
     </ul>
-      <h2>Configurar los usuarios</h2>
+
+    <h2>Configurar los usuarios</h2>
+    <ul>
+      <li>
+        Entramos a mysql como usuario root y ponemos la contraseña que pusimos
+        ahora
+      </li>
+      <div class="codigo">
+        <pre><code id="a8">sudo mysql -u root -p</code></pre>
+        <button onclick="copiar('a8','8')" id="8">Copiar</button>
+      </div>
+      <li>
+        Vamos a crear un usuario para conectarnos de forma remota, osea,
+        directamente con mysql y no tener que entrar por ssh al servidor de
+        mysql
+      </li>
+      <div class="codigo">
+        <pre><code id="a9">CREATE USER 'nombreUsuario'@'%' IDENTIFIED BY 'contraseña';</code></pre>
+        <button onclick="copiar('a9','9')" id="9">Copiar</button>
+      </div>
       <ul>
-        <li>Entramos a mysql como usuario root y ponemos la contraseña que pusimos ahora</li>
-        <div class="codigo">
-          <pre><code id="a8">sudo mysql -u root -p</code></pre><button onclick="copiar('a8','8')" id="8">Copiar</button>
-        </div>
-        <li>Vamos a crear un usuario para conectarnos de forma remota, osea, directamente con mysql y no tener que entrar por ssh al servidor de mysql</li>
-        <div class="codigo">
-          <pre><code id="a9">CREATE USER 'nombreUsuario'@'%' IDENTIFIED BY 'contraseña';</code></pre><button onclick="copiar('a9','9')" id="9">Copiar</button>
-        </div>
-        <ul>
-          <li>El <b>'%'</b> significa que puede conectarse de cual dirección ip</li>
-        </ul>
-        <li>Le pasamos todos los privilegios sobre el servidor</li>
-        <div class="codigo">
-          <pre><code id="a10">GRANT ALL PRIVILEGES ON *.* TO 'nombreUsuariooCreado'@'%' WITH GRANT OPTION;</code></pre><button onclick="copiar('a10','10')" id="10">Copiar</button>
-        </div>
+        <li>
+          El <b>'%'</b> significa que puede conectarse de cual dirección ip
+        </li>
       </ul>
-      <h2>Configurar puertos y redes para acceso remoto</h2>
-      <ul>
-        <li>salimos de mysql con <b>exit</b> y ejecutamos el siguiente comando para entrar al editor de texto en terminal <b>nano</b> para modificar un archivo de configuración de mysql</li>
-        <div class="codigo">
-          <pre><code id="a11">sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</code></pre><button onclick="copiar('a11','11')" id="11">Copiar</button>
-        </div>
-        <li>Esto no va a abrir nano con ese archivo, nos movemos con las flechas, no con el mouse, y bajamos hasta donde dice <b>bind-addres</b>, y lo comentamos simplemente poniendole un <b>#</b> al inicio como todos los comentarios que hay en el archivo, le undimos <b>ctrl + o</b> para guardar, <b>enter</b> para confirmar y <b>ctrl + x</b> para salir</li>
-        <li>Reiniciamos el servidor de mysql para que aplique los cambios</li>
-        <div class="codigo">
+      <li>Le pasamos todos los privilegios sobre el servidor</li>
+      <div class="codigo">
+        <pre><code id="a10">GRANT ALL PRIVILEGES ON *.* TO 'nombreUsuariooCreado'@'%' WITH GRANT OPTION;</code></pre>
+        <button onclick="copiar('a10','10')" id="10">Copiar</button>
+      </div>
+    </ul>
+
+    <h2>Configurar puertos y redes para acceso remoto</h2>
+    <ul>
+      <li>
+        salimos de mysql con <b>exit</b> y ejecutamos el siguiente comando para
+        entrar al editor de texto en terminal <b>nano</b> para modificar un
+        archivo de configuración de mysql
+      </li>
+      <div class="codigo">
+        <pre><code id="a11">sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</code></pre>
+        <button onclick="copiar('a11','11')" id="11">Copiar</button>
+      </div>
+      <li>
+        Esto nos va a abrir nano con ese archivo, nos movemos con las flechas, no
+        con el mouse, y bajamos hasta donde dice <b>bind-addres</b>, y lo
+        comentamos simplemente poniendole un <b>#</b> al inicio como todos los
+        comentarios que hay en el archivo, le undimos <b>ctrl + o</b> para
+        guardar, <b>enter</b> para confirmar y <b>ctrl + x</b> para salir
+      </li>
+      <li>Reiniciamos el servidor de mysql para que aplique los cambios</li>
+      <div class="codigo">
         <pre><code id="a12">sudo service mysql restart</code></pre>
         <button onclick="copiar('a12','12')" id="12">Copiar</button>
       </div>
     </ul>
-      <h2>Configurar el puerto que utiliza mysql en la maquina virtual</h2>
-<ul>
-  <li>En azure, en la informaciónde la maquina virtual, a la izquierda en las opciones entramos en <b>redes</b></li>
-  <img src="../../media/img/azure 5.png" alt="" />
-  <li>Seleccionamos en <b>Agregar regla de puerto de entrada</b></li>
-  <ul>
-    <li>En servicio, buscamos y seleccionamos <b>MySQL</b></li>
-    <li>Acción debe estar en permitir</li>
-    <li>Le ponemos un nombre que queramos, una descripción y seleccionamos en <b>Agregar</b></li>
-  </ul>
-</ul>
-<h2>Ya con eso nos podemos conectar con la ip de la maquina virtual y el usuario que creamos, a mysql desde cualquier lugar y aplicación, por ejemplo <b>WorkBench</b> solo ponemos la ip, usuario y contraseña y ya podemos manipular la base de datos</h2>
+    <h2>Configurar el puerto que utiliza MySQL en la maquina virtual</h2>
+    <ul>
+      <li>
+        En azure, en la información de la maquina virtual, a la izquierda en las
+        opciones entramos en <b>redes</b>
+      </li>
+      <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure 5.png" alt="" />
+      <li>Seleccionamos en <b>Agregar regla de puerto de entrada</b></li>
+      <ul>
+        <li>En servicio, buscamos y seleccionamos <b>MySQL</b></li>
+        <li>Acción debe estar en permitir</li>
+        <li>
+          Le ponemos un nombre que queramos, una descripción y seleccionamos en
+          <b>Agregar</b>
+        </li>
+      </ul>
+    </ul>
+    <p class="nota">
+      <b>Nota:</b> Ya con eso nos podemos conectar con la ip de la maquina
+      virtual y el usuario que creamos, a mysql desde cualquier lugar y
+      aplicación, por ejemplo <b>WorkBench</b> solo ponemos la ip, usuario y
+      contraseña y ya podemos manipular la base de datos
+    </p>
+
     <script>
       function copiar(idValor, idBoton) {
         let valor = document.getElementById(idValor).textContent;
