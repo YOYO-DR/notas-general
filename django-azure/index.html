@@ -46,19 +46,19 @@
               >
             </li>
             <li>
-              <a href="#section-4"
-                >Sección 4: Crear el archivo production.py</a
-              >
+              <a href="#section-4">Sección 4: Crear el archivo production.py</a>
             </li>
             <li>
-              <a href="#section-5"
-                >Sección 5: Modificar wsgi.py y manage.py</a
-              >
+              <a href="#section-5">Sección 5: Modificar wsgi.py y manage.py</a>
             </li>
             <li>
               <a href="#section-6"
-                >Sección 6: Crear el archivo startup.sh y crear archivo de requerimientos</a
+                >Sección 6: Crear el archivo startup.sh y crear archivo de
+                requerimientos</a
               >
+            </li>
+            <li>
+              <a href="#section-7">Sección 7: Crear App Service en Azure</a>
             </li>
           </ul>
         </div>
@@ -128,6 +128,12 @@ source env/Scripts/activate
         <li>
           Ya con eso y con el entorno activado, seguimos con la configuración
         </li>
+        <li>En <b>settings.py</b> agregamos la siguiente linea de codigo despues de la variable <b>ALLOWED_HOSTS</b>, la cual sera para la configuración de seguridad sobre el host</li>
+        <div class="codigo">
+          <pre><code id="b1"># configuracion que pasa github
+if 'CODESPACE_NAME' in os.environ:
+    CSRF_TRUSTED_ORIGINS = [f'https://{os.getenv("CODESPACE_NAME")}-8000.{os.getenv("GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN")}']</code></pre><button onclick="copiar('b1','bb1')" id="bb1">Copiar</button>
+        </div>
       </ul>
       <h2><b>Sección 3</b>: Configurar conexión a base de datos en la nube</h2>
       <ul>
@@ -346,30 +352,151 @@ def main():
 
 
 if __name__ == '__main__':
-    main()</code></pre><button onclick="copiar('7','a7')" id="a7">Copiar</button>
+    main()</code></pre>
+          <button onclick="copiar('7','a7')" id="a7">Copiar</button>
         </div>
         <ul>
-          <li>de <b>dotenv</b> importamos la función <b>load_dotenv</b> para decirle al proyecto, que si estamos en desarrollo le diga donde esta el archivo con las variables de entorno necesarias, en este caso, <b>load_dotenv(./.env)</b>, osea, en la carpeta raiz del proyecto, el archivo <b>.env</b></li>
-        <li><b>dotenv</b> es una libreria que debemos instalar por medio de pip, asi: <b>pip install python-dotenv</b></li>
-        <li>Ahi con los if pregunto si estamos en produccion o no, y dependiendo de la respuesta, ejecutara <b>production.py</b> o <b>settings.py</b></li>
+          <li>
+            de <b>dotenv</b> importamos la función <b>load_dotenv</b> para
+            decirle al proyecto, que si estamos en desarrollo le diga donde esta
+            el archivo con las variables de entorno necesarias, en este caso,
+            <b>load_dotenv(./.env)</b>, osea, en la carpeta raiz del proyecto,
+            el archivo <b>.env</b>
+          </li>
+          <li>
+            <b>dotenv</b> es una libreria que debemos instalar por medio de pip,
+            asi: <b>pip install python-dotenv</b>
+          </li>
+          <li>
+            Ahi con los if pregunto si estamos en produccion o no, y dependiendo
+            de la respuesta, ejecutara <b>production.py</b> o <b>settings.py</b>
+          </li>
         </ul>
       </ul>
-      <h2><b>Sección 6</b>: Crear el archivo startup.sh y crear archivo de requerimientos</h2>
+      <h2>
+        <b>Sección 6</b>: Crear el archivo startup.sh y crear archivo de
+        requerimientos
+      </h2>
       <ul>
-        <li>Creamos un archivo llamado <b>startup.sh</b> el cual tendra unos comandos para el despligue, le ponemos:</li>
+        <li>
+          Creamos un archivo llamado <b>startup.sh</b> el cual tendra unos
+          comandos para el despligue, le ponemos:
+        </li>
         <div class="codigo">
           <pre><code id="8">pip install -r requirements.txt
 python manage.py migrate
-gunicorn  config.wsgi</code></pre><button onclick="copiar('8','a8')" id="a8">Copiar</button>
+gunicorn  config.wsgi</code></pre>
+          <button onclick="copiar('8','a8')" id="a8">Copiar</button>
         </div>
-        <li>Instalamos <b>gunicorn</b> con el siguiente comando: <b>pip install gunicorn</b></li>
-        <li>Después de eso, creamos el archivo <b>requirements.txt</b> <i>(exactamente ese nombre)</i> para que el servidor sepa que necesita instalar para que funcione el proyecto</li>
+        <li>
+          Instalamos <b>gunicorn</b> con el siguiente comando:
+          <b>pip install gunicorn</b>
+        </li>
+        <li>
+          Después de eso, creamos el archivo <b>requirements.txt</b>
+          <i>(exactamente ese nombre)</i> para que el servidor sepa que necesita
+          instalar para que funcione el proyecto
+        </li>
         <div class="codigo">
-          <pre><code id="9">pip freeze > requirements.txt</code></pre><button onclick="copiar('9','a9')" id="a9">Copiar</button>
+          <pre><code id="9">pip freeze > requirements.txt</code></pre>
+          <button onclick="copiar('9','a9')" id="a9">Copiar</button>
         </div>
-        <li>Eso creara un archivo con lo requisitos para que funcione el proyecto</li>
-        <li>Ejecutamos el <b>makemigrations</b> y <b>migrate</b> del <b>manage.py</b> después de crear el archivo <b>requirements.txt</b> y no deberia dar problemas con ello</li>
-        <p class="nota"><b>NOTA:</b>Importante que la base de datos este creada y vacia en el servidor de su MySQL para aplicar el <b>migrate</b></p>
+        <li>
+          Eso creara un archivo con lo requisitos para que funcione el proyecto
+        </li>
+        <li>
+          Ejecutamos el <b>makemigrations</b> y <b>migrate</b> del
+          <b>manage.py</b> después de crear el archivo <b>requirements.txt</b> y
+          no deberia dar problemas con ello
+        </li>
+        <li>
+          Y subimos el proyecto a GitHub por medio de git
+          <b>(git add, git commit, git push)</b>
+        </li>
+        <p class="nota">
+          <b>NOTA:</b>Importante que la base de datos este creada y vacia en el
+          servidor de su MySQL para aplicar el <b>migrate</b>
+        </p>
+      </ul>
+      <h2><b>Sección 7</b>: Crear App Service en Azure</h2>
+      <ul>
+        <li>
+          En Azure, vamos al menu de la izquierda y vamos a <b>Apps services</b>
+        </li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-3.png"
+          alt=""
+        />
+        <li>Le undimos en <b>crear</b></li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-4.png"
+          alt=""
+        />
+        <li>Lo configuramos de la siguiente manena</li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-5.png"
+          alt=""
+        />
+        <ul>
+          <li>Seleccionamos la suscripción</li>
+          <li>Creamos o seleccionamos el grupo de recursos</li>
+          <li>Le ponemos el nombre de la aplicación web</li>
+          <li>
+            Seleccionamos en <b>codigo</b> y seleccionamos <b>python 3.10</b>,
+            3.10 porque la versión 3.11 me lanza errores con la utilización de
+            la libreria <b>mysqlclient</b>, igual si quieren lo ponen y prueban,
+            puede que se haya arreglado el error
+          </li>
+          <li>La región en <b>East US</b></li>
+          <li>Y el plan de servicio en <b>B1</b> porque solo será de prueba</li>
+        </ul>
+        <li>Seleccionamos <b>revisar y crear</b> y luego <b>crear</b></li>
+        <li>
+          Esperamos a que se cree y luego undimos en <b>Ir al recurso</b> y
+          veremos lo siguiente
+        </li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-6.png"
+          alt=""
+        />
+        <li>
+          Y si precionamos aqui, podremos acceder a la web, que por ahora no le
+          hemos hecho la implementación
+        </li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-7.png"
+          alt=""
+        />
+        <li>Y nos mostrará esta pagina</li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-8.png"
+          alt=""
+        />
+      </ul>
+      <h2><b>Sección 8</b>: implementación del proyecto con GitHub</h2>
+      <ul>
+        <li>Nos vamos a <b>configuración</b> en la sección de <b>configuración de la aplicación</b></li>
+        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-9.png" alt="">
+        <li>Aqui ira nuestra variable de entorno <b>AZURE_MYSQL_CONNECTIONSTRING</b> con su respectivo valores</li>
+        <li>Undimos en <b>Nueva configuración de la aplicación</b> y agregamos el nombre y valor, recordar que sin espacion <b>al inicio y al final</b>, precionamos aceptar y luego <b>Guardar</b> en la parte superior izquierda</li>
+        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-10.png" alt="">
+        <li>Y luego nos vamos a <b>Centro de implementación</b></li>
+        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-11.png" alt="">
+        <ul>
+          <li>Seleccionamos <b>GitHub</b></li>
+          <li>Enlazamos la cuenta, luego de eso nos devuelve a esta pantalla y seleccionamos nuestra cuenta, en mi caso, <b>YOYO-DR</b></li>
+          <li>Seleccionamos el repositorio de nuestro proyecto</li>
+          <li>Luego la rama en la que tiene la configuración de despligue</li>
+        <li>Luego en <b>Guardar</b></li>
+        </ul>
+        <li>Nos vamos al repositorio del proyecto en github y precionamos en la pestaña de <b>Actions</b>, y esperamos a que acabe el <b>deploy</b></li>
+        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-12.png" alt="">
+        <li>Ya despues del deploy podremos ingresar a la aplicación web y utilizarla</li>
+        <p class="nota"><b>NOTA</b>: Dentro del proyecto debemos realizar un <b>git pull</b> para traer el cambio que hizo GitHub para el deploy, para que después no de problemas cuando subamos un cambio</p>
+        <li>Después de cada deploy, aunque en el <b>Actions</b> diga que ya esta hecho, normalmente se demora unos minutos en cargar la pagina ya que es un plan basico pero si el deploy se hizo bien cargara la pagina</li>
+        <li>El deploy se hará cada vez que hagas un push, y si sale incorrecto, la pagina queda con los cambios del commit anterior</li>
+        <li>Si sale algún error, en esta sección de <b>Secuencia de registro</b> podran ver el posible error el cual no deja funcionar la aplicación web</li>
+        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-13.png" alt="">
       </ul>
     </div>
 
