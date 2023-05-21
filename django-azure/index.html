@@ -60,6 +60,11 @@
             <li>
               <a href="#section-7">Sección 7: Crear App Service en Azure</a>
             </li>
+            <li>
+              <a href="#section-8"
+                >Sección 8: Implementación del proyecto con GitHub</a
+              >
+            </li>
           </ul>
         </div>
       </details>
@@ -128,11 +133,16 @@ source env/Scripts/activate
         <li>
           Ya con eso y con el entorno activado, seguimos con la configuración
         </li>
-        <li>En <b>settings.py</b> agregamos la siguiente linea de codigo despues de la variable <b>ALLOWED_HOSTS</b>, la cual sera para la configuración de seguridad sobre el host</li>
+        <li>
+          En <b>settings.py</b> agregamos la siguiente linea de codigo despues
+          de la variable <b>ALLOWED_HOSTS</b>, la cual sera para la
+          configuración de seguridad sobre el host
+        </li>
         <div class="codigo">
           <pre><code id="b1"># configuracion que pasa github
 if 'CODESPACE_NAME' in os.environ:
-    CSRF_TRUSTED_ORIGINS = [f'https://{os.getenv("CODESPACE_NAME")}-8000.{os.getenv("GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN")}']</code></pre><button onclick="copiar('b1','bb1')" id="bb1">Copiar</button>
+    CSRF_TRUSTED_ORIGINS = [f'https://{os.getenv("CODESPACE_NAME")}-8000.{os.getenv("GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN")}']</code></pre>
+          <button onclick="copiar('b1','bb1')" id="bb1">Copiar</button>
         </div>
       </ul>
       <h2><b>Sección 3</b>: Configurar conexión a base de datos en la nube</h2>
@@ -475,28 +485,78 @@ gunicorn  config.wsgi</code></pre>
       </ul>
       <h2><b>Sección 8</b>: Implementación del proyecto con GitHub</h2>
       <ul>
-        <li>Nos vamos a <b>configuración</b> en la sección de <b>configuración de la aplicación</b></li>
-        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-9.png" alt="">
-        <li>Aqui ira nuestra variable de entorno <b>AZURE_MYSQL_CONNECTIONSTRING</b> con su respectivo valores</li>
-        <li>Undimos en <b>Nueva configuración de la aplicación</b> y agregamos el nombre y valor, recordar que sin espacion <b>al inicio y al final</b>, precionamos aceptar y luego <b>Guardar</b> en la parte superior izquierda</li>
-        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-10.png" alt="">
+        <li>
+          Nos vamos a <b>configuración</b> en la sección de
+          <b>configuración de la aplicación</b>
+        </li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-9.png"
+          alt=""
+        />
+        <li>
+          Aqui ira nuestra variable de entorno
+          <b>AZURE_MYSQL_CONNECTIONSTRING</b> con su respectivo valores
+        </li>
+        <li>
+          Undimos en <b>Nueva configuración de la aplicación</b> y agregamos el
+          nombre y valor, recordar que sin espacion <b>al inicio y al final</b>,
+          precionamos aceptar y luego <b>Guardar</b> en la parte superior
+          izquierda
+        </li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-10.png"
+          alt=""
+        />
         <li>Y luego nos vamos a <b>Centro de implementación</b></li>
-        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-11.png" alt="">
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-11.png"
+          alt=""
+        />
         <ul>
           <li>Seleccionamos <b>GitHub</b></li>
-          <li>Enlazamos la cuenta, luego de eso nos devuelve a esta pantalla y seleccionamos nuestra cuenta, en mi caso, <b>YOYO-DR</b></li>
+          <li>
+            Enlazamos la cuenta, luego de eso nos devuelve a esta pantalla y
+            seleccionamos nuestra cuenta, en mi caso, <b>YOYO-DR</b>
+          </li>
           <li>Seleccionamos el repositorio de nuestro proyecto</li>
           <li>Luego la rama en la que tiene la configuración de despligue</li>
-        <li>Luego en <b>Guardar</b></li>
+          <li>Luego en <b>Guardar</b></li>
         </ul>
-        <li>Nos vamos al repositorio del proyecto en github y precionamos en la pestaña de <b>Actions</b>, y esperamos a que acabe el <b>deploy</b></li>
-        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-12.png" alt="">
-        <li>Ya despues del deploy podremos ingresar a la aplicación web y utilizarla</li>
-        <p class="nota"><b>NOTA</b>: Dentro del proyecto debemos realizar un <b>git pull</b> para traer el cambio que hizo GitHub para el deploy, para que después no de problemas cuando subamos un cambio</p>
-        <li>Después de cada deploy, aunque en el <b>Actions</b> diga que ya esta hecho, normalmente se demora unos minutos en cargar la pagina ya que es un plan basico pero si el deploy se hizo bien cargara la pagina</li>
-        <li>El deploy se hará cada vez que hagas un push, y si sale incorrecto, la pagina queda con los cambios del commit anterior</li>
-        <li>Si sale algún error, en esta sección de <b>Secuencia de registro</b> podran ver el posible error el cual no deja funcionar la aplicación web</li>
-        <img src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-13.png" alt="">
+        <li>
+          Nos vamos al repositorio del proyecto en github y precionamos en la
+          pestaña de <b>Actions</b>, y esperamos a que acabe el <b>deploy</b>
+        </li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-12.png"
+          alt=""
+        />
+        <li>
+          Ya despues del deploy podremos ingresar a la aplicación web y
+          utilizarla
+        </li>
+        <p class="nota">
+          <b>NOTA</b>: Dentro del proyecto debemos realizar un
+          <b>git pull</b> para traer el cambio que hizo GitHub para el deploy,
+          para que después no de problemas cuando subamos un cambio
+        </p>
+        <li>
+          Después de cada deploy, aunque en el <b>Actions</b> diga que ya esta
+          hecho, normalmente se demora unos minutos en cargar la pagina ya que
+          es un plan basico pero si el deploy se hizo bien cargara la pagina
+        </li>
+        <li>
+          El deploy se hará cada vez que hagas un push, y si sale incorrecto, la
+          pagina queda con los cambios del commit anterior
+        </li>
+        <li>
+          Si sale algún error, en esta sección de
+          <b>Secuencia de registro</b> podran ver el posible error el cual no
+          deja funcionar la aplicación web
+        </li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/deploy-13.png"
+          alt=""
+        />
       </ul>
     </div>
 
