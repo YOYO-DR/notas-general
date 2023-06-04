@@ -90,7 +90,7 @@
             </li>
             <li>
               <a href="#video-22"
-                >Video 22: Sobreescritura del metodo dispatch | Vistas basadas
+                >Video 22: Sobreescritura del método dispatch | Vistas basadas
                 en clases</a
               >
             </li>
@@ -102,7 +102,7 @@
             </li>
             <li>
               <a href="#video-24"
-                >Video 24: Sobreescritura del metodo post | vistas basadas en
+                >Video 24: Sobreescritura del método post | vistas basadas en
                 clases</a
               >
             </li>
@@ -2092,7 +2092,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
     <details>
       <summary class="videos-titulo" id="video-22">
         <h2>
-          <i>Video 22</i>: Sobreescritura del metodo dispatch | Vistas basadas
+          <i>Video 22</i>: Sobreescritura del método dispatch | Vistas basadas
           en clases
         </h2>
       </summary>
@@ -2104,7 +2104,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
       >
       <ul>
         <li>
-          Con el metodo <b>dispatch</b> accedo al metodo del como se realizan
+          Con el método <b>dispatch</b> accedo al método del como se realizan
           las peticiónes (get, pos, pull, delete)
         </li>
         <li>Estructura basica del dispatch</li>
@@ -2115,8 +2115,8 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
           <button onclick="copiar('a4','77')" id="77">Copiar</button>
         </div>
         <li>
-          Preguntar que metodo del request se esta realizando, con ese if
-          pregunto que metodo del request se esta realizando, y si es
+          Preguntar que método del request se esta realizando, con ese if
+          pregunto que método del request se esta realizando, y si es
           <b>GET</b>, con esa función redirect envio la página a otra que yo
           quiera, en este caso, a la vista 2 de la app erp, Después de la
           prueba, comentamos para seguir con el curso
@@ -2154,7 +2154,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
           dinamicamente.
         </li>
         <li>
-          Importo el metodo decorador de django y tambien importo la función de
+          Importo el método decorador de django y tambien importo la función de
           verificar login para prueba
         </li>
         <div class="codigo">
@@ -2163,7 +2163,7 @@ from django.contrib.auth.decorators import login_required
 </code></pre>
           <button onclick="copiar('a6','77')" id="77">Copiar</button>
         </div>
-        <li>Antes del <b>dispatch</b>, pongo el metodo asi</li>
+        <li>Antes del <b>dispatch</b>, pongo el método asi</li>
         <div class="codigo">
           <pre><code id="a7">@method_decorator(login_required)</code></pre>
           <button onclick="copiar('a6','78')" id="78">Copiar</button>
@@ -2183,7 +2183,7 @@ from django.contrib.auth.decorators import login_required
     <details>
       <summary class="videos-titulo" id="video-24">
         <h2>
-          <i>Video 24</i>: Sobreescritura del metodo post | vistas basadas en clases
+          <i>Video 24</i>: Sobreescritura del método post | vistas basadas en clases
         </h2>
       </summary>
       <a
@@ -2194,7 +2194,7 @@ from django.contrib.auth.decorators import login_required
       >
       <ul>
         <li>
-          Este metodo envia una respuesta POST y por ejemplo hago un
+          Este método envia una respuesta POST y por ejemplo hago un
           <b>JsonResponse</b> para verlo en el navegador.
         </li>
         <li>
@@ -2203,14 +2203,14 @@ from django.contrib.auth.decorators import login_required
             href="https://chrome.google.com/webstore/detail/tabbed-postman-rest-clien/coohjcphdfgbiolnekdpbcijmhambjff?hl=es"
             >postman</a
           >
-          en el navegador para ver el json en el navegador con el metodo POST
+          en el navegador para ver el json en el navegador con el método POST
         </li>
         <li>Importo el JsonResponse</li>
         <div class="codigo">
           <pre><code id="a7">from django.http import JsonResponse</code></pre>
           <button onclick="copiar('a7','79')" id="79">Copiar</button>
         </div>
-        <li>Sobre escribo el metodo post</li>
+        <li>Sobre escribo el método post</li>
         <div class="codigo">
           <pre><code id="a8">def post(self,request,*args,**kwargs)
   data = {
@@ -2229,14 +2229,14 @@ from django.contrib.auth.decorators import login_required
           <button onclick="copiar('a9','81')" id="81">Copiar</button>
         </div>
         <li>
-          Ante de todas las funciónes, pongo el metodo para quitar la protección
+          Ante de todas las funciónes, pongo el método para quitar la protección
         </li>
         <div class="codigo">
           <pre><code id="b1">@method_decorator(csfr_exempt)</code></pre>
           <button onclick="copiar('b1','82')" id="82">Copiar</button>
         </div>
         <li>
-          Y ahí si recibe el json por el metodo post en la extensión del
+          Y ahí si recibe el json por el método post en la extensión del
           navegador
         </li>
       </ul>
@@ -2297,12 +2297,12 @@ from django.contrib.auth.decorators import login_required
           <li><b>fail():</b> La función fail se ejecuta si hay algun error</li>
           <li><b>always():</b>Siempre se ejecuta</li>
         </ul>
-        <li>Con el metodo de corador csfr_exempt activo:</li>
+        <li>Con el método de corador csfr_exempt activo:</li>
         <div class="codigo">
           <pre><code id="b4">@method_decorator(csfr_exempt)</code></pre>
           <button onclick="copiar('b4','85')" id="85">Copiar</button>
         </div>
-        <li>En el metodo <b>post</b></li>
+        <li>En el método <b>post</b></li>
         <div class="codigo">
           <pre><code id="b5">data={}
 try:
@@ -2907,7 +2907,7 @@ def post(self,request,*args,**kwargs):
           </li>
         </ul>
         <li>
-          Modifico el metodo <b>save</b> de mi clase <b>CategoryForm</b> en mi
+          Modifico el método <b>save</b> de mi clase <b>CategoryForm</b> en mi
           archivo form.py, para validar el formulario desde ahi
         </li>
         <div class="codigo">
@@ -2937,7 +2937,7 @@ def post(self,request,*args,**kwargs):
             los valores, y al final retorno el data
           </li>
         </ul>
-        <li>Modifico el metodo post de mi vista <b>CategoryCreateView</b></li>
+        <li>Modifico el método post de mi vista <b>CategoryCreateView</b></li>
         <div class="codigo">
           <pre><code id="b33">def post(self, request,*args, **kwargs):
     data = {}
@@ -4859,7 +4859,7 @@ LOGIN_URL = '/login/'</code></pre>
         <li>
           Si iniciamos sesión e intentamos entrar de nuevo al login, nos deja
           entrar, pero no deberia porque ya iniciamos sesión, para esto
-          modificamos el metodo <b>dispatch</b> de nuestra vista
+          modificamos el método <b>dispatch</b> de nuestra vista
           <b>LoginFormView</b> para verificar si esta autenticado
         </li>
         <div class="codigo">
@@ -5178,7 +5178,7 @@ class DashboardView(TemplateView):
           <button onclick="copiar('b84','166')" id="166">Copiar</button>
         </div>
         <li>
-          El el <b>views.py</b> de las categorias, importo el metodo decorador
+          El el <b>views.py</b> de las categorias, importo el método decorador
           de django y el login_required
         </li>
         <div class="codigo">
@@ -5192,7 +5192,7 @@ from django.contrib.auth.decorators import login_required</code></pre>
           iniciar sesión para entrar a esas secciones
         </li>
         <ul>
-          <li>Asi se pone el metodo decorador</li>
+          <li>Asi se pone el método decorador</li>
           <div class="codigo">
             <pre><code>@method_decorator(login_required)
 def dispatch(self, request, *args,**kwargs):
@@ -5205,7 +5205,7 @@ def dispatch(self, request, *args,**kwargs):
           <li><b>CategoryDeleteView</b></li>
           <li><b>CategoryFormView</b></li>
           <li>
-            Y en el que no se este utilizando, solo llamamos el metodo dispatch
+            Y en el que no se este utilizando, solo llamamos el método dispatch
           </li>
           <div class="codigo">
             <pre><code id="b86">@method_decorator(login_required)
@@ -5496,7 +5496,7 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre>
           </li>
           <li>
             En la vista <b>CreateView</b> le comentamos la Sobreescritura del
-            metodo <b>post</b>
+            método <b>post</b>
           </li>
         </ul>
         <li>
@@ -5719,7 +5719,7 @@ MEDIA_URL = '/media/'</code></pre>
           llegan, a ver si llegan de forma correcta
         </li>
         <li>
-          Si es asi, descomento todo el post y el metodo <b>save</b> del
+          Si es asi, descomento todo el post y el método <b>save</b> del
           formulario de mi product para que se guarden los valores
         </li>
         <p class="nota">
@@ -5835,7 +5835,7 @@ class TestView(TemplateView):
           <li>Hago las respectivas importaciones a utilizar</li>
           <li>Le pongo los decoradores al distpach</li>
           <li>
-            En el metodo post verifico la acción, le mando los productos según
+            En el método post verifico la acción, le mando los productos según
             el id que reciba el cual sera de una categoria, y buscare todos los
             productos por esa categoria
           </li>

@@ -90,7 +90,7 @@
             </li>
             <li>
               <a href="#video-22"
-                >Video 22: Sobreescritura del metodo dispatch | Vistas basadas
+                >Video 22: Sobreescritura del método dispatch | Vistas basadas
                 en clases</a
               >
             </li>
@@ -102,7 +102,7 @@
             </li>
             <li>
               <a href="#video-24"
-                >Video 24: Sobreescritura del metodo post | vistas basadas en
+                >Video 24: Sobreescritura del método post | vistas basadas en
                 clases</a
               >
             </li>
@@ -207,7 +207,14 @@
             <li>
               <a href="#video-46">Video 46: Personalizando la clase User</a>
             </li>
-            <li><a href="#video-47">Video 47</a></li>
+            <li>
+              <a href="#video-47"
+                >Video 47: Auditoria en mis modelos con django-crum</a
+              >
+            </li>
+            <li>
+              <a href="#video-48">Video 48: Modal | Creando un registro</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -2118,7 +2125,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
     <details>
       <summary class="videos-titulo" id="video-22">
         <h2>
-          <i>Video 22</i>: Sobreescritura del metodo dispatch | Vistas basadas
+          <i>Video 22</i>: Sobreescritura del método dispatch | Vistas basadas
           en clases
         </h2>
       </summary>
@@ -2130,7 +2137,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
       >
       <ul>
         <li>
-          Con el metodo <b>dispatch</b> accedo al metodo del como se realizan
+          Con el método <b>dispatch</b> accedo al método del como se realizan
           las peticiónes (get, pos, pull, delete)
         </li>
         <li>Estructura basica del dispatch</li>
@@ -2141,8 +2148,8 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
           <button onclick="copiar('a4','77')" id="77">Copiar</button>
         </div>
         <li>
-          Preguntar que metodo del request se esta realizando, con ese if
-          pregunto que metodo del request se esta realizando, y si es
+          Preguntar que método del request se esta realizando, con ese if
+          pregunto que método del request se esta realizando, y si es
           <b>GET</b>, con esa función redirect envio la página a otra que yo
           quiera, en este caso, a la vista 2 de la app erp, Después de la
           prueba, comentamos para seguir con el curso
@@ -2182,7 +2189,7 @@ ALTER TABLE tabla AUTO_INCREMENT = 1;
           dinamicamente.
         </li>
         <li>
-          Importo el metodo decorador de django y tambien importo la función de
+          Importo el método decorador de django y tambien importo la función de
           verificar login para prueba
         </li>
         <div class="codigo">
@@ -2191,7 +2198,7 @@ from django.contrib.auth.decorators import login_required
 </code></pre>
           <button onclick="copiar('a6','77')" id="77">Copiar</button>
         </div>
-        <li>Antes del <b>dispatch</b>, pongo el metodo asi</li>
+        <li>Antes del <b>dispatch</b>, pongo el método asi</li>
         <div class="codigo">
           <pre><code id="a7">@method_decorator(login_required)</code></pre>
           <button onclick="copiar('a6','78')" id="78">Copiar</button>
@@ -2213,7 +2220,7 @@ from django.contrib.auth.decorators import login_required
     <details>
       <summary class="videos-titulo" id="video-24">
         <h2>
-          <i>Video 24</i>: Sobreescritura del metodo post | vistas basadas en
+          <i>Video 24</i>: Sobreescritura del método post | vistas basadas en
           clases
         </h2>
       </summary>
@@ -2225,7 +2232,7 @@ from django.contrib.auth.decorators import login_required
       >
       <ul>
         <li>
-          Este metodo envia una respuesta POST y por ejemplo hago un
+          Este método envia una respuesta POST y por ejemplo hago un
           <b>JsonResponse</b> para verlo en el navegador.
         </li>
         <li>
@@ -2234,14 +2241,14 @@ from django.contrib.auth.decorators import login_required
             href="https://chrome.google.com/webstore/detail/tabbed-postman-rest-clien/coohjcphdfgbiolnekdpbcijmhambjff?hl=es"
             >postman</a
           >
-          en el navegador para ver el json en el navegador con el metodo POST
+          en el navegador para ver el json en el navegador con el método POST
         </li>
         <li>Importo el JsonResponse</li>
         <div class="codigo">
           <pre><code id="a7">from django.http import JsonResponse</code></pre>
           <button onclick="copiar('a7','79')" id="79">Copiar</button>
         </div>
-        <li>Sobre escribo el metodo post</li>
+        <li>Sobre escribo el método post</li>
         <div class="codigo">
           <pre><code id="a8">def post(self,request,*args,**kwargs)
   data = {
@@ -2260,14 +2267,14 @@ from django.contrib.auth.decorators import login_required
           <button onclick="copiar('a9','81')" id="81">Copiar</button>
         </div>
         <li>
-          Ante de todas las funciónes, pongo el metodo para quitar la protección
+          Ante de todas las funciónes, pongo el método para quitar la protección
         </li>
         <div class="codigo">
           <pre><code id="b1">@method_decorator(csfr_exempt)</code></pre>
           <button onclick="copiar('b1','82')" id="82">Copiar</button>
         </div>
         <li>
-          Y ahí si recibe el json por el metodo post en la extensión del
+          Y ahí si recibe el json por el método post en la extensión del
           navegador
         </li>
       </ul>
@@ -2330,12 +2337,12 @@ from django.contrib.auth.decorators import login_required
           <li><b>fail():</b> La función fail se ejecuta si hay algun error</li>
           <li><b>always():</b>Siempre se ejecuta</li>
         </ul>
-        <li>Con el metodo de corador csfr_exempt activo:</li>
+        <li>Con el método de corador csfr_exempt activo:</li>
         <div class="codigo">
           <pre><code id="b4">@method_decorator(csfr_exempt)</code></pre>
           <button onclick="copiar('b4','85')" id="85">Copiar</button>
         </div>
-        <li>En el metodo <b>post</b></li>
+        <li>En el método <b>post</b></li>
         <div class="codigo">
           <pre><code id="b5">data={}
 try:
@@ -2948,7 +2955,7 @@ def post(self,request,*args,**kwargs):
           </li>
         </ul>
         <li>
-          Modifico el metodo <b>save</b> de mi clase <b>CategoryForm</b> en mi
+          Modifico el método <b>save</b> de mi clase <b>CategoryForm</b> en mi
           archivo form.py, para validar el formulario desde ahi
         </li>
         <div class="codigo">
@@ -2978,7 +2985,7 @@ def post(self,request,*args,**kwargs):
             los valores, y al final retorno el data
           </li>
         </ul>
-        <li>Modifico el metodo post de mi vista <b>CategoryCreateView</b></li>
+        <li>Modifico el método post de mi vista <b>CategoryCreateView</b></li>
         <div class="codigo">
           <pre><code id="b33">def post(self, request,*args, **kwargs):
     data = {}
@@ -4916,7 +4923,7 @@ LOGIN_URL = '/login/'</code></pre>
         <li>
           Si iniciamos sesión e intentamos entrar de nuevo al login, nos deja
           entrar, pero no deberia porque ya iniciamos sesión, para esto
-          modificamos el metodo <b>dispatch</b> de nuestra vista
+          modificamos el método <b>dispatch</b> de nuestra vista
           <b>LoginFormView</b> para verificar si esta autenticado
         </li>
         <div class="codigo">
@@ -5241,7 +5248,7 @@ class DashboardView(TemplateView):
           <button onclick="copiar('b84','166')" id="166">Copiar</button>
         </div>
         <li>
-          El el <b>views.py</b> de las categorias, importo el metodo decorador
+          El el <b>views.py</b> de las categorias, importo el método decorador
           de django y el login_required
         </li>
         <div class="codigo">
@@ -5255,7 +5262,7 @@ from django.contrib.auth.decorators import login_required</code></pre>
           iniciar sesión para entrar a esas secciones
         </li>
         <ul>
-          <li>Asi se pone el metodo decorador</li>
+          <li>Asi se pone el método decorador</li>
           <div class="codigo">
             <pre><code>@method_decorator(login_required)
 def dispatch(self, request, *args,**kwargs):
@@ -5268,7 +5275,7 @@ def dispatch(self, request, *args,**kwargs):
           <li><b>CategoryDeleteView</b></li>
           <li><b>CategoryFormView</b></li>
           <li>
-            Y en el que no se este utilizando, solo llamamos el metodo dispatch
+            Y en el que no se este utilizando, solo llamamos el método dispatch
           </li>
           <div class="codigo">
             <pre><code id="b86">@method_decorator(login_required)
@@ -5563,7 +5570,7 @@ LOGOUT_REDIRECT_URL = '/login/'</code></pre>
           </li>
           <li>
             En la vista <b>CreateView</b> le comentamos la Sobreescritura del
-            metodo <b>post</b>
+            método <b>post</b>
           </li>
         </ul>
         <li>
@@ -5788,7 +5795,7 @@ MEDIA_URL = '/media/'</code></pre>
           llegan, a ver si llegan de forma correcta
         </li>
         <li>
-          Si es asi, descomento todo el post y el metodo <b>save</b> del
+          Si es asi, descomento todo el post y el método <b>save</b> del
           formulario de mi product para que se guarden los valores
         </li>
         <p class="nota">
@@ -5906,7 +5913,7 @@ class TestView(TemplateView):
           <li>Hago las respectivas importaciones a utilizar</li>
           <li>Le pongo los decoradores al distpach</li>
           <li>
-            En el metodo post verifico la acción, le mando los productos según
+            En el método post verifico la acción, le mando los productos según
             el id que reciba el cual sera de una categoria, y buscare todos los
             productos por esa categoria
           </li>
@@ -6564,9 +6571,7 @@ class BaseModel(models.Model):
 
     <details>
       <summary class="videos-titulo" id="video-48">
-        <h2>
-          <i>Video 48</i>
-        </h2>
+        <h2><i>Video 48</i>: Modal | Creando un registro</h2>
       </summary>
       <a
         target="_blank"
@@ -6574,6 +6579,318 @@ class BaseModel(models.Model):
         href="https://www.youtube.com/watch?v=-lftKKGQ0Ao&list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7&index=48&pp=iAQB"
         >Link del video 48</a
       >
+      <ul>
+        <li>
+          Primero se descarga el proyecto para agregar las modificaciones sobre
+          lo de cliente
+        </li>
+        <li>
+          Seguramente se esta trabajando con Django 4 y puede dar problemas con
+          el proyecto de Algorisoft porque es Django 3, entonces es mejor ver lo
+          cambios y ponerlos manualmente para que funcione bien
+        </li>
+        <li>
+          En el archivo <b>list.html</b> de los templates principales,
+          modificamos la parte del <b>card-footer</b> en el cual estan los 2
+          botones de <b>Nuevo registro</b> y <b>Actualizar</b>, y lo ponemos asi
+        </li>
+        <div class="codigo">
+          <pre><code id="c20">
+            &lt;div class="card-footer"&gt;
+      {% block bottons_list %}
+      &lt;a href="{{create_url}}" class="btn btn-primary" id="btnTest"&gt;
+        &lt;i class="fas fa-plus"&gt;&lt;/i&gt;
+        Nuevo registro
+      &lt;/a&gt;
+      &lt;a href="{{ list_url }}" class="btn btn-success"&gt;
+        &lt;i class="fas fa-sync"&gt;&lt;/i&gt; Actualizar
+      &lt;/a&gt;
+      {% endblock bottons_list %}
+      
+    &lt;/div&gt;
+          </code></pre>
+          <button onclick="copiar('c20','201')" id="201">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            lo que hicimos es crear un bloque para que se puedan modificar los
+            botones, si por ejemplo no se modifica ese bloque, seguira con los
+            botones eso, pero en este caso si vamos a modificar esos botones
+            para utilizar ajax en el modal
+          </li>
+        </ul>
+        <li>
+          En el archivo <b>list.html</b> de los templates del cliente, lo
+          dejamos de la siguiente manera
+        </li>
+        <div class="codigo">
+          <pre><code id="c21">
+            {% extends 'list.html' %} 
+{% load widget_tweaks %} 
+{% load static %} {% block head_list %}
+&lt;script src="{% static 'client/js/list.js' %}"&gt;&lt;/script&gt;
+{% endblock %} 
+{% block columns %}
+&lt;tr&gt;
+  &lt;th scope="col" style="width: 10%"&gt;Nro&lt;/th&gt;
+  &lt;th scope="col" style="width: 15%"&gt;Nombres&lt;/th&gt;
+  &lt;th scope="col" style="width: 15%"&gt;Apellidos&lt;/th&gt;
+  &lt;th scope="col" style="width: 10%"&gt;Dni&lt;/th&gt;
+  &lt;th scope="col" style="width: 15%"&gt;Fecha de nacimiento&lt;/th&gt;
+  &lt;th scope="col" style="width: 15%"&gt;Sexo&lt;/th&gt;
+  &lt;th scope="col" style="width: 20%"&gt;Opciones&lt;/th&gt;
+&lt;/tr&gt;
+{% endblock %} 
+{% block rows %} 
+{% endblock %} 
+{% block bottons_list %} {# Le voy a cambiar los botones para que abra el modal #}
+      &lt;a class="btn btn-primary" id="btnAdd"&gt;
+        &lt;i class="fas fa-plus"&gt;&lt;/i&gt;
+        Nuevo registro
+      &lt;/a&gt;
+      &lt;a href="{{ list_url }}" class="btn btn-success"&gt;
+        &lt;i class="fas fa-sync"&gt;&lt;/i&gt; Actualizar
+      &lt;/a&gt;
+      {% endblock bottons_list %}
+{% block js %}
+&lt;div
+  class="modal fade"
+  id="myModalClient"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+&gt;
+&lt;form action="." method="post" enctype="multipart/form"&gt;
+  &lt;div class="modal-dialog" role="document"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h5 class="modal-title"&gt;Modal Title&lt;/h5&gt;
+        &lt;button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        &gt;
+          &lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        &lt;div class="container-fluid"&gt;
+          &lt;input name="action" type="hidden" value="add"&gt;
+        {% for field in form.visible_fields %}
+      &lt;div class="form-group"&gt;
+        &lt;label for=""&gt;{{field.label}}:&lt;/label&gt;
+        {{field|add_class:'form-control'|attr:'autocomplete:off'}}
+      &lt;/div&gt;
+      {% endfor %}
+      &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button type="submit" class="btn btn-primary btn-flat btn-block"&gt;
+          &lt;i class="fas fa-save"&gt;&lt;/i&gt; Guardar
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+{% endblock %}
+          </code></pre>
+          <button onclick="copiar('c21','202')" id="202">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            Modificamos el bloque de los botones, el cual ponemos los mismos
+            botones pero le quitamos el <b>href</b> al link y el <b>id</b> lo
+            modificamos para luego seleccionar ese boton para el envio con ajax
+            con JQuery
+          </li>
+          <li>
+            En el bloque de javascript o en mi caso lo tengo como js, ponemos el
+            modal de bootstrap con el formulario el cual recorremos y armamos,
+            utilizamos <b>widget_tweaks</b> para ponerle algunos atributos a los
+            inputs
+          </li>
+          <li>
+            ponemos un input invisible, osea de tipo <b>hidden</b> con el valor
+            en <b>add</b> para saber que accion se va a realizar, de igual forma
+            en el javascript vamos a ponerle add o edit segun la accion que
+            estemos haciendo
+          </li>
+        </ul>
+        <li>
+          En el <b>views.py</b> de los clientes, en la vista que tenemos creada,
+          en su método <b>post</b>, en la parte donde preguntamos la accion,
+          agregamos un <b>elif</b> para preguntar si es <b>add</b>, crearemos un
+          registro de cliente <b>Client</b> pasandole los datos que vienen en el
+          <b>post</b> y luego guardando con su método <b>save</b>
+        </li>
+        <div class="codigo">
+          <pre><code id="c22">action = request.POST['action']
+  if action == 'searchdata':
+      data = []
+      for i in Client.objects.all():
+          data.append(i.toJSON())
+  elif action == 'add':
+      cli = Client( 
+          names=request.POST['names'],
+          surnames=request.POST['surnames'],
+          dni=request.POST['dni'],
+          date_birthday=request.POST['date_birthday'],
+          address=request.POST['address'],
+          gender=request.POST['gender']
+      ).save()
+          </code></pre>
+          <button onclick="copiar('c22','203')" id="203">Copiar</button>
+        </div>
+        <li>Y en la funcion <b>get_context_data</b> le paso el formulario</li>
+        <div class="codigo">
+          <pre><code id="c23"># al inicio del archivo, importamos el formulario
+from core.erp.forms import ClientForm
+# en el get_context_data
+context['form']=ClientForm()
+</code></pre>
+          <button onclick="copiar('c23','204')" id="204">Copiar</button>
+        </div>
+        <li>
+          En el <b>list.js</b> en los archivos estaticos de los clientes, lo
+          ponemos de la siguiente manera
+        </li>
+        <div class="codigo">
+          <pre><code id="c24">var tblClient
+function getData() {
+  tblClient=$("#data").DataTable({
+    responsive: true,
+    autoWidth: false,
+    destroy: true,
+    deferRender: true,
+    ajax: {
+      url: window.location.pathname,
+      type: "POST",
+      data: {
+        action: "searchdata",
+      },
+      dataSrc: "",
+    },
+    columns: [
+      { data: "id" },
+      { data: "names" },
+      { data: "surnames" },
+      { data: "dni" },
+      { data: "date_birthday" },
+      { data: "gender" },
+      { data: "id" },
+    ],
+    columnDefs: [
+      {
+        targets: [-1],
+        class: "text-center",
+        orderable: false,
+        render: function (data, type, row) {
+          var buttons =
+            '&lt;a href="#" class="btn btn-warning btn-xs btn-flat"&gt;&lt;i class="fas fa-edit"&gt;&lt;/i&gt;&lt;/a&gt; ';
+          buttons +=
+            '&lt;a href="#" type="button" class="btn btn-danger btn-xs btn-flat"&gt;&lt;i class="fas fa-trash-alt"&gt;&lt;/i&gt;&lt;/a&gt;';
+          return buttons;
+        },
+      },
+    ],
+    initComplete: function (settings, json) {},
+  });
+}
+$(function () {
+  getData(); 
+  
+  $('#btnAdd').on('click', function () {
+    $('input[name="action').val('add'); 
+    $('form')[0].reset() 
+    $("#myModalClient").modal("show");
+  })
+  
+  $("form").on("submit", function (e) {
+    e.preventDefault();
+    var parameters = new FormData(this);
+    submit_with_ajax(
+      window.location.pathname,
+      "Guardar",
+      `¿Desea guardar el cliente?`,
+      parameters,
+      function () {
+        $("#myModalClient").modal("hide");
+        tblClient.ajax.reload()
+    });
+  });
+});</code></pre>
+          <button onclick="copiar('c24','205')" id="205">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            Declaramos la variable <b>tblClient</b> la cual va a tener el
+            DataTable para poder ejecutar alguna de sus funciones luego
+          </li>
+          <li>
+            Creamos la funcion <b>getData</b> la cual la utilizaremos para
+            ejecutar el DataTable
+          </li>
+          <li>
+            Dentro de la función principal, ejecutamos el <b>getData</b> para
+            ejecutar el DataTable
+          </li>
+          <li>
+            Luego, obtenemos el boton de <b>Nuevo registro</b> el cual tiene el
+            id <b>btnAdd</b> y en su evento <b>click</b> ejecutamos ciertas
+            acciones
+          </li>
+          <ul>
+            <li>
+              llamamos el input del action y le ponemos el valor de add, que
+              hace referencia a la creacion de un cliente
+            </li>
+            <li>
+              Seleccionamos todos los formularios, llamandolo con el
+              <b>'form'</b> y como los guarda en un arreglo, asi sea solo 1,
+              accedemos a el y con la funcion <b>reset</b> limpiamos el
+              formulario
+            </li>
+            <li>
+              Seleccionamos el modal, por el id que le pusimos, y con la función
+              <b>modal</b> le pasamos <b>show</b> el cual hara que se muestre
+            </li>
+          </ul>
+          <li>
+            Seleccionamos el formulario y con su evento <b>submit</b> para
+            cuando se vaya a enviar el formulario, ejecutamos lo siguiente:
+          </li>
+          <ul>
+            <li>detenemos su evento predeterminado <b>preventDefault</b></li>
+            <li>obtennemos los datos del formulario</li>
+            <li>
+              y con la funcion que ya tenemos creada de
+              <b>submit_with_ajax</b> le pasamos los datos, y en el parametro de
+              la función, si el envio es correcto, cerramos el modal con el
+              parametro <b>hide</b> y luego para no recargar toda la pagina,
+              solo le decimos al DataTable que guardamos en la variable, que se
+              recargue con el <b>ajax.reload()</b>
+            </li>
+          </ul>
+        </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img
+            src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png"
+            alt=""
+        /></a>
+      </div>
+    </details>
+    <details>
+      <summary class="videos-titulo" id="video-49">
+        <h2>
+          <i>Video 49</i>
+        </h2>
+      </summary>
+      <a target="_blank" class="link-videos" href="">Link del video 49</a>
       <div class="flecha-arriba">
         <a href="#inicio"
           ><img

@@ -133,17 +133,6 @@ source env/Scripts/activate
         <li>
           Ya con eso y con el entorno activado, seguimos con la configuración
         </li>
-        <li>
-          En <b>settings.py</b> agregamos la siguiente linea de codigo despues
-          de la variable <b>ALLOWED_HOSTS</b>, la cual sera para la
-          configuración de seguridad sobre el host
-        </li>
-        <div class="codigo">
-          <pre><code id="b1"># configuracion que pasa github
-if 'CODESPACE_NAME' in os.environ:
-    CSRF_TRUSTED_ORIGINS = [f'https://{os.getenv("CODESPACE_NAME")}-8000.{os.getenv("GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN")}']</code></pre>
-          <button onclick="copiar('b1','bb1')" id="bb1">Copiar</button>
-        </div>
       </ul>
       <h2><b>Sección 3</b>: Configurar conexión a base de datos en la nube</h2>
       <ul>
