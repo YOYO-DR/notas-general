@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <title>Deploy Django Azure</title>
+  </head>
+  <body>
+    <div class="container p-4 bg-dark text-white">
+      <!-- Titulo -->
+      <h1 id="inicio">Deploy de un proyecto de Django en Azure App Service</h1>
+      <!-- Indice -->
+      <p class="nota">
+        <b>Nota:</b> Se requiere una suscripción en Azure para subir el
+        proyecto, en mi caso utilizare una estudiantil por estar en el
+        <b>SENA</b>
+      </p>
+      <details class="details-indice">
+        <summary>
+          <span class="btn btn-outline-secondary rounded p-1 text-white"
+            >Indice</span
+          >
+        </summary>
+        <div class="indice">
+          <ul>
+            <li>
+              <a href="#section-1"
+                >Sección 1: Crear cuenta de almacenamiento en Azure</a
+              >
+            </li>
+            <li>
+              <a href="#section-2">Sección 2: Crear contenedores</a>
+            </li>
+            <li>
+              <a href="#section-3"
+                >Sección 3: Configurar el proyecto de Django</a
+              >
+            </li>
+            <li>
+              <a href="#section-4"
+                >Sección 4: Configurar archivo settings para los datos de Azure
+                Storage</a
+              >
+            </li>
+
+            <li>
+              <a href="#section-5"
+                >Sección 5: Configurar archivos custom_storage y .env</a
+              >
+            </li>
+          </ul>
+        </div>
+      </details>
+      <!-- Descripción -->
+
+      <h2>
+        <b>Sección 1</b>: Crear y configurar cuenta de almacenamiento en Azure
+      </h2>
+      <ul>
+        <li>
+          Para utilizar el almacenamiento en la nube de Azure en Django, vamor a
+          crear una <b>cuenta de almacenamiento</b>
+        </li>
+        <li>
+          buscamos <b>cuentas de almacenamiento</b> en la barra de busqueda de
+          azure, y la seleccionamos
+        </li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure_storage_1.png"
+          alt=""
+        />
+        <li>Le damos en <b>Crear</b></li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure_storage_2.png"
+          alt=""
+        />
+        <li>La configuramos</li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure_storage_3.png"
+          alt=""
+        />
+        <ul>
+          <li>Ponemos la suscripción</li>
+          <li>Creamos o le ponemos su grupo de recursos</li>
+          <li>
+            Le ponemos el nombre a la cuenta, debe ir solo letras, sin espacios,
+            guiones o cualquier otro caracter
+          </li>
+          <li>
+            En rendimiento, como es de prueba, lo dejare en <b>Estándar</b>, que
+            igual rinde bien
+          </li>
+          <li>
+            en <b>Redundancia</b> como es prueba dejaré el más barato que es la
+            <b>LRS</b>
+          </li>
+          <li>Seleccionamos en <b>Revisar</b> y luego en <b>Crear</b></li>
+        </ul>
+      </ul>
+      <h2><b>Sección 2</b>: Crear contenedores</h2>
+      <ul>
+        <li>Accedemos al recurso</li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure_storage_4.png"
+          alt=""
+        />
+        <li>Nos vamos a la sección de <b>Contenedores</b></li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure_storage_5.png"
+          alt=""
+        />
+        <li>
+          Podemos ver un contenedor que viene por defecto, para cada proyecto de
+          Django, le creamos un contenedor de la siguiente manera
+        </li>
+        <img
+          src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure_storage_6.png"
+          alt=""
+        />
+        <ul>
+          <li>
+            Undimos en <b>+ Contenedor</b> y luego ponemos el nombre al
+            contenedor y su tipo, en este caso como será para archivos publicos,
+            lo cambio a <b>Contenedor</b>, si por ejemplo es para archivos
+            privados de usuarios, se deja en <b>Privada</b> y que solo acceda
+            ciertas personas por medio del proyecto
+          </li>
+          <li>
+            Luego le undimos en crea y ya con eso tenemos el contenedor para el
+            proyecto creado
+          </li>
+        </ul>
+      </ul>
+      <h2><b>Sección 3</b>: Configurar el proyecto de Django</h2>
+      <ul>
+        <li>
+          Para probar que funcione correctamente el almacenamiento en azure
+          blobs, utilizaré este <a href="#" target="_blank">proyecto</a> con un
+          modelo para subir imagenes por un formulario y luego que se muestre a
+          un costado
+        </li>
+        <li>
+          El proyecto ya viene con una configuración por si se quiere desplegar
+          en Azure, como lo explico en esta
+          <a
+            href="https://portafolioyoiner.azurewebsites.net/notas/django/3"
+            target="_blank"
+            >nota</a
+          >, en este caso solo mostraré la configuración para que funcione en
+          local o desplegado, osea que utilice el almacenamiento de azure de
+          forma local y en producción
+        </li>
+        <li>
+          Se descomprime el proyecto, y luego lo abrimos con
+          <b>Visual Studio Code</b>, o el editor con el que trabajen, yo lo hago
+          con vsc
+        </li>
+        <li>
+          Abrimos la terminal de <b>Git Bash</b> en la carpeta descomprimida del
+          proyecto, y vamos a crear e instalar el entorno
+        </li>
+        <div class="codigo">
+          <pre><code id="1">python -m venv env && source env/scripts/activate && pip install -r requirements.txt</code></pre>
+          <button onclick="copiar('1','a1')" id="a1">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            El primer comando crea el entorno, el segundo lo activa y el tercero
+            instala las dependencias del proyecto, igualmente instalaremos otras
+            más
+          </li>
+        </ul>
+        <li>
+          En el archivo <b>.env</b> ponemos los valores de la base de datos, sea
+          en la nube o local, el proyecto obtendra los valores de ahi, ya que
+          cuando se quiera subir a un repositorio, no se subira esa información
+          privada
+        </li>
+        <li>Intalamos el paquete de <b>Azure Storage</b> para Django</li>
+        <div class="codigo">
+          <pre><code id="2">pip install django-storages[azure]</code></pre>
+          <button onclick="copiar('2','a2')" id="a2">Copiar</button>
+        </div>
+        <li>
+          En la variable de <b>INSTALLED_APPS</b> del archivo de configuración
+          <b>settings.py</b>, agregamos la app <b>'storages'</b>
+        </li>
+      </ul>
+      <h2>
+        <b>Sección 4</b>: Configurar archivo settings para los datos de Azure
+        Storage
+      </h2>
+      <ul>
+        <li>
+          En la ultima parte del archivo <b>settings.py</b>, agregamos lo
+          siguiente
+        </li>
+        <div class="codigo">
+          <pre><code id="3">if 'WEBSITE_HOSTNAME' in os.environ: 
+    azure_storage_blob = os.environ['AZURE_STORAGE_BLOB']
+    azure_storage_blob_parametros = {parte.split(' = ')[0]:parte.split(' = ')[1] for parte in azure_storage_blob.split('  ')}
+else:
+    azure_storage_blob_parametros = {'account_name':os.environ.get('ACCOUNT_NAME'),
+                                     'container_name':os.environ.get('CONTAINER_NAME'),
+                                     'account_key':os.environ.get('ACCOUNT_KEY')}
+
+AZURE_CONTAINER = azure_storage_blob_parametros['container_name']
+AZURE_ACCOUNT_NAME = azure_storage_blob_parametros['account_name']
+AZURE_ACCOUNT_KEY = azure_storage_blob_parametros['account_key']
+STORAGES = {
+    "default": {"BACKEND": "storages.backends.azure_storage.AzureStorage"},
+    "staticfiles": {"BACKEND": "custom_storage.custom_azure.PublicAzureStaticStorage"},
+    "media": {"BACKEND": "custom_storage.custom_azure.PublicAzureMediaStorage"},
+}
+</code></pre>
+          <button onclick="copiar('3','a3')" id="a3">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            El <b>if</b> es para saber si estamos en producción o no,
+            preguntando si existe la variable de entorno
+            <b>'WEBSITE_HOSTNAME'</b>
+          </li>
+          <li>
+            Si estamos en produccion, extraemos los datos con una cadena de
+            texto la cual esta separada por 2 espacios cada valor y por dos
+            espacios y en medio un igual para saber cual es la clave y el valor,
+            y asi guardarlos en la variable
+            <b>azure_storage_blob_parametros</b> como diccionario
+          </li>
+          <li>
+            Si estamos en desarrollo, osea local, extraemos los datos de nuestro
+            archivo <b>.env</b> que ya vamos a ver como configurar
+          </li>
+          <li>
+            Luego creamos las variable que se guardan en este archivo,<b
+              >AZURE_CONTAINER,AZURE_ACCOUNT_NAME y AZURE_ACCOUNT_KEY</b
+            >
+            que son para poderse conectar al contenedor el cual vamos a guardar
+            y consultar los archivos
+          </li>
+          <li>
+            Sobreescribimos la variable <b>STORAGES</b> para definir quien va a
+            administrar el almacenamiento, el default, el de los archivos
+            estaticos y los media, el cual en el valor, se ve que viene de unas
+            clases que ya vamos a crear, la primera como default si es directa
+            de la libreria
+          </li>
+          <li>
+            Si se quiere desplegar, en el archivo <b>production.py</b>,
+            comentamos o borramos la variable <b>STATICFILES_STORAGE</b> porque
+            ya definimos el almacenamiento predeterminado que es el de Azure
+          </li>
+        </ul>
+      </ul>
+      <h2><b>Sección 5</b>: Configurar archivos custom_storage y .env</h2>
+      <ul>
+        <li>
+          Creamos una carpeta en la raiz del proyecto llamada
+          <b>custom_storage</b> (mismo nivel que el archivo <b>manage.py</b>) y
+          creamos un archivo llamado <b>custom_azure.py</b> o como quieran
+          llamarlo, y dentro ponemos lo siguiente
+        </li>
+        <div class="codigo">
+          <pre><code id="4">from storages.backends.azure_storage import AzureStorage
+from config.settings import azure_storage_blob_parametros
+    
+class PublicAzureStaticStorage(AzureStorage):
+    account_name = azure_storage_blob_parametros['account_name']
+    account_key = azure_storage_blob_parametros['account_key']
+    azure_container = azure_storage_blob_parametros['container_name']
+    location = 'static/'  # ubicación dentro del contenedor
+    expiration_secs = None
+
+# Configuración para los archivos de media
+class PublicAzureMediaStorage(AzureStorage):
+    account_name = azure_storage_blob_parametros['account_name']
+    account_key = azure_storage_blob_parametros['account_key']
+    azure_container = azure_storage_blob_parametros['container_name']
+    location = 'media/'  # ubicación dentro del contenedor
+    expiration_secs = None</code></pre>
+          <button onclick="copiar('4','a4')" id="a4">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            Importamos la clase <b>AzureStorage</b> para configurar donde se van
+            a guardar los archivos media y static
+          </li>
+          <li>
+            Le pasamos el nombre de la cuenta, el key y el nombre del container,
+            que estan dentro de la variable
+            <b>azure_storage_blob_parametros</b> el cual importamos desde la
+            configuración
+          </li>
+          <li>
+            El valor de <b>expiration_secs</b> en <b>None</b> es para que el
+            archivo siempre permanezca
+          </li>
+        </ul>
+        <li>En el archivo <b>.env</b> configuramos las variables para azure</li>
+        <div class="codigo">
+          <pre><code id="5">ACCOUNT_NAME = cuenta_alamacenamiento
+CONTAINER_NAME = nombre_container
+ACCOUNT_KEY=el_key
+#AZURE_STORAGE_BLOB = account_name = cuenta_alamacenamiento  container_name = nombre_container  account_key = el_key
+</code></pre>
+          <button onclick="copiar('5','a5')" id="a5">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            pasamos el nombre de la cuenta, el nombre del contenedor y el key,
+            el cual lo sacamos de la sección <b>Claves de acceso</b> en
+            <b>Seguridad y redes</b>, ahi también nos muestra el nombre de la
+            cuenta de almacenamiento
+          </li>
+          <img
+            src="https://djangoyoiner.blob.core.windows.net/portafolio/media/postfolio/images/azure_storage_7.png"
+            alt=""
+          />
+        </ul>
+        <li>
+          Se reemplaza esos valores en la cadena de texto de conexión por si lo
+          quieren desplegar, ponen exactamente esa, ese nombre en mayuscula es
+          el nombre y el valor, es la cadena, no puede contener espacios, ni al
+          inicio ni al final, solo los que estan dentro, ya que en el settings
+          utiliza esos espacios para poder diferenciar y extraer los valores
+          (como en la <b>sección 8</b> de esta
+          <a
+            href="https://portafolioyoiner.azurewebsites.net/notas/django/3"
+            target="_blank"
+            >nota</a
+          >, cuando agregamos los datos de la conexión con mysql)
+        </li>
+        <li>
+          En el <b>settings.py</b> eliminamos o comentamos la variable
+          <b>MEDIA_ROOT</b> porque vamos a utilizar el almacenamiento de Azure
+        </li>
+        <li>
+          En el modelo, o modelos que tengamos, le hacemos una pequeña
+          modificacion en el valor de <b>upload_to</b>, importando el MEDIA_URL
+          en ese archivo, en este caso, <b>models.py</b>, se lo ponemos asi
+        </li>
+        <div class="codigo">
+          <pre><code id="6">from django.db import models
+from config.settings import MEDIA_URL
+
+class Imagenes(models.Model):
+  nombre = models.CharField(max_length=100,verbose_name='Nombre',null=False,blank=False)
+  imagen = models.ImageField(upload_to=f'{MEDIA_URL}imagenes/%Y/%m',null=False,blank=False)
+
+  def __str__(self):
+    return self.nombre</code></pre>
+          <button onclick="copiar('6','a6')" id="a6">Copiar</button>
+        </div>
+        <p class="nota">
+          <b>NOTA:</b> recomendable que <b>STATIC_URL</b> tenga la <b>"/"</b> al inicio y final, y
+          <b><i>/static/</i></b> y
+          <b>MEDIA_URL</b> la tenga solamente al final
+          <b><i>media/</i></b>
+        </p>
+        <li>
+          Con esto deberia dejar subir archivos, para confirmar vamos a ejecutar
+          el <b>python manage.py collectstatic</b>, esto lo que hará es coger
+          nuestros archivos estaticos, los nuestros y los de django, y subirlos
+          al contenedor y consumirlo desde allá, asi que cada vez que
+          modifiquemos algo en los archivos estaticos, se debe ejecutar este
+          comando
+        </li>
+        <div class="codigo">
+          <pre><code id="7">python manage.py collectstatic</code></pre>
+          <button onclick="copiar('7','a7')" id="a7">Copiar</button>
+        </div>
+        <ul>
+          <li>Les preguntará si subir los archivos, solo escriben Yes</li>
+        </ul>
+        <p class="nota">
+          <b>NOTA:</b> Por si sale algún error, esta son las soluciones que me
+          funcionaron:
+        </p>
+        <ul>
+          <li>
+            Si a la de ejecutar el <b>collectstatic</b> les lanza un
+            <b>ERROR</b>, primero verifiquen que hayan seguido los pasos (Yo
+            segui los pasos 2 veces y funcionó)
+          </li>
+          <li>
+            En las variables de entorno, y en la de <b>PYTHONPATH</b> ponen la
+            ruta de su proyecto (lo explico en la sección 10 de esta
+            <a
+              href="https://portafolioyoiner.azurewebsites.net/notas/django/1"
+              target="_blank"
+              >nota</a
+            >), cierran su editor de texto, la terminal en la que estaban
+            trabajando, luego lo abren, activan el entorno e intentan ekecutar
+            el <b>collectstatic</b> de nuevo y deberia funcionar
+          </li>
+        </ul>
+      </ul>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
