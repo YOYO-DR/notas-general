@@ -215,6 +215,7 @@
             <li><a href="#video-47">Video 47: Auditoria en mis modelos con django-crum</a></li>
             <li><a href="#video-48">Video 48: Modal | Creando un registro</a></li>
             <li><a href="#video-49">Video 49: Modal | Editando un registro</a></li>
+            <li><a href="#video-50">Video 50: Modal | Eliminando un registro</a></li>
           </ul>
         
         
@@ -6890,7 +6891,7 @@ $(function () {
     <details>
       <summary class="videos-titulo" id="video-49">
         <h2>
-          <i>Video 49</i>Modal | Editando un registro
+          <i>Video 49</i>: Modal | Editando un registro
         </h2>
       </summary>
       <a target="_blank" class="link-videos" href="https://youtu.be/gyXFrL0lQsE?list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7">Link del video 49</a>
@@ -6952,6 +6953,66 @@ def toJSON(self):
   item['date_birthday'] = self.date_birthday.strftime('%Y-%m-%d')
   return item
           </code></pre><button onclick="copiar('c27','208')" id="208">Copiar</button>
+        </div>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img class="img-n"
+            src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png"
+            alt=""
+        /></a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="videos-titulo" id="video-50">
+        <h2>
+          <b>Video 50</b>Modal | Eliminando un registro
+        </h2>
+      </summary>
+      <a target="_blank" class="link-videos" href="https://youtu.be/OYMGkw85rRE?list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7">Link del video 50</a>
+      <ul>
+        <li>En el archivo estatico <b>list.js</b> del <b>client</b>, cuando creamos el boton de borrar en el <b>getData</b>, como en el video anterior, le agregamos el atributo <b>rel="delete"</b> para luego agregarle el evento</li>
+        <li>Cuando seleccionamos los botones por su rel en edit, al cierre del parentesis de esa funcion aplicamos otro <b>.on</b> y seleccionamos los de eliminar para agregar ese evento tambien a la tabla, asi</li>
+        <div class="codigo">
+          <pre><code id="c28">
+.on('click', 'a[rel="delete"]', function (e) {
+      var tr = tblClient.cell($(this).closest("td,li")).index(); 
+      var data = tblClient.row(tr.row).data();
+       parameters = new FormData();
+       parameters.append("action","delete")
+       parameters.append("id",data.id);
+      submit_with_ajax(
+        window.location.pathname,
+        "Eliminar",
+        `¿Desea eliminar el cliente ${data.names}?`,
+        parameters,
+        function () {
+          $("#myModalClient").modal("hide");
+          tblClient.ajax.reload();
+        }
+      );
+    })
+</code></pre><button onclick="copiar('c28','209')" id="209">Copiar</button>
+        </div>
+        <ul>
+          <li>Obtenemos la data del tr o li de la misma forma, y creamos una variable <b>parameters</b> para crea un objeto tipo FormData porque ya nuestra funcion <b>submit_with_ajax</b> trabaja recibiendo un FormData</li>
+          <li>Inicializamos el FormData vacio y con la funcion <b>append</b> le pasamos los valores que queramos enviar, en este caso, el action como <b>delete</b> para luego validarlo en la vista, y el <b>id</b> del registro el cual esta en el data del row que obtuvimos y le modificamos los mensajes a la función</li>
+        </ul>
+        <li>En la vista del <b>client</b>, <b>ClientView</b>, en la funcion <b>post</b>, le agregamos un elif para validar si la acción es eliminar</li>
+        <div class="codigo">
+          <pre><code id="c29">
+elif action == 'delete':
+  cli = Client.objects.get(id=request.POST['id'])
+  cli.delete()
+          </code></pre><button onclick="copiar('c29','210')" id="210">Copiar</button>
+        </div>
+        <li>Y en el <b>delete.html</b>, de los templates, le modifico los parametros, en vez de serializarlos, utilizo el <b>FormData</b></li>
+        <div class="codigo">
+          <pre><code id="c30">
+//var parameters = $(this).serializeArray();
+var parameters = new FormData(this); 
+          </code></pre><button onclick="copiar('c30','211')" id="211">Copiar</button>
         </div>
       </ul>
       <div class="flecha-arriba">
