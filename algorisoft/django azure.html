@@ -213,7 +213,8 @@
               <a href="#video-46">Video 46: Personalizando la clase User</a>
             </li>
             <li><a href="#video-47">Video 47: Auditoria en mis modelos con django-crum</a></li>
-            <li><a href="#video-48">Video 47: Modal | Creando un registro</a></li>
+            <li><a href="#video-48">Video 48: Modal | Creando un registro</a></li>
+            <li><a href="#video-49">Video 49: Modal | Editando un registro</a></li>
           </ul>
         
         
@@ -6889,10 +6890,70 @@ $(function () {
     <details>
       <summary class="videos-titulo" id="video-49">
         <h2>
-          <i>Video 49</i>
+          <i>Video 49</i>Modal | Editando un registro
         </h2>
       </summary>
-      <a target="_blank" class="link-videos" href="">Link del video 49</a>
+      <a target="_blank" class="link-videos" href="https://youtu.be/gyXFrL0lQsE?list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7">Link del video 49</a>
+      <ul>
+        <li>En el <b>list.html</b> de los templates del <b>client</b>, el <b>h5</b> con la clase <b>modal-title</b>, agregamos una etiqueta <b>b</b> y dentro de ella una etiqueta <b>i</b> la cual tiene una clase, pero en el javascript lo vamos a modificar según la accion, y un <b>span</b> la cual contendra el titulo</li>
+        <li>Agregamos un <b>input</b> después del input del <b>action</b> con el nombre <b>id</b>, de tipo <b>hidden</b> y con el <b>value</b> en 0, lo utilizaremos para enviar el id de la categoria a modificar</li>
+        <li>En el archivo estatico <b>list.js</b> del <b>client</b>, en su función <b>getData()</b>, en la propiedad <b>columns</b>, al valor de <b>gender</b> lo cambio a <b>gender.name</b> porque le voy a mandar el nombre y id del genero en un diccionario, el cual lo modificaremos en los modelos en la funcion <b>toJSON()</b></li>
+        <li>en el <b>columnDefs</b>, en su valor <b>var buttons</b>, en el que se agrega el botón de modificar, le agregamos el atributo <b>rel=["edit"]</b> para poder diferenciarlo del botón de eliminar</li>
+        <li>Le agregamos el evento a los botones de editar de la siguiente forma</li>
+        <div class="codigo">
+          <pre><code id="c25">
+$('#data tbody').on('click', 'a[rel="edit"]', function (e) {
+    modal_title.find("span").html("Edición de un cliente"); 
+    modal_title.find("i").removeClass().addClass("fas fa-edit");
+    var tr = tblClient.cell($(this).closest("td,li")).index(); 
+    var data = tblClient.row(tr.row).data();
+    $('input[name="id"]').val(data.id) 
+    $('input[name="action"]').val('edit')
+    $('input[name="names"]').val(data.names)
+    $('input[name="surnames"]').val(data.surnames)
+    $('input[name="dni"]').val(data.dni)
+    $('input[name="date_birthday"]').val(data.date_birthday)
+    $('input[name="address"]').val(data.address);
+    $('select[name="gender"]').val(data.gender.id); 
+    $("#myModalClient").modal("show"); 
+  })
+          </code></pre><button onclick="copiar('c25','206')" id="206">Copiar</button>
+        </div>
+        <ul>
+          <li>Obtengo el <b>tbody</b> de la tabla con su id <b>#data</b></li>
+          <li>Le agrego el evento click pero en el segundo parametro especificandole a que enlace, presisamente a los de editar</li>
+          <li>En la función, utilizo la variable que ya tiene el mtitulo del modal y le modifico la <b>span</b> para ponerle el titulo y a la etiqueta <b>i</b> le quito las clases y luego le agrego la clase para el icono de editar</li>
+          <li>en la variable <b>var tr</b> voy a obtener la información de la posición en la cual esta el enlace o botón editar, en la función <b>closest</b> le paso <b>td,li</b> porque cuando esta en tamaño de telefono, dataTable va a cambia de tr a li y con el index obtengo un objeto con la información de esa fila, en este caso, necesito el id del <b>row</b></li>
+          <li>En la variable <b>var data</b>, con la función <b>row</b> de la variable la cual estoy ejecutando el dataTable, obtengo la fila pasandole el id de la fila, la cual esta en la variable tr y con la funcion data, obtengo un objeto con la información de la tabla</li>
+          <li>Luego llamo cada input del formulario y le pongo los valores de la categoria, y al input invisible, <b>action</b> le pongo <b>edit</b>, para decirle a la vista que voy a modificar una categoria</li>
+          <li>En el <b>select</b> del genero, al valor le pongo <b>data.gender.id</b> porque en el modelo, en ese valor le voy a pasar un objeto en el cual el id es el valor o choise del genero, y el name el nombre del genero, por eso en las columnas accediamos al valor <b>name</b></li>
+          <li>Y luego al modal le aplicamos un <b>modal("show")</b> para presentarlo</li>
+        </ul>
+        <li>En la vista del cliente de <b>ClientView</b>, en la función <b>post</b>, agregamos otro elif para verificar si el <b>action</b> es <b>edit</b>, obtenemos la categoria por su id, y modificamos pasandole los valores, quedaria asi</li>
+        <div class="codigo">
+          <pre><code id="c26">
+elif action == 'edit': 
+  cli = Client.objects.get(id=request.POST['id']) 
+  cli.names=request.POST['names'] 
+  cli.surnames=request.POST['surnames'] 
+  cli.dni=request.POST['dni'] 
+  cli.date_birthday=request.POST['date_birthday'] 
+  cli.address=request.POST['address'] 
+  cli.gender=request.POST['gender'] 
+  cli.save() 
+          </code></pre><button onclick="copiar('c26','207')" id="207">Copiar</button>
+        </div>
+        <li>En el archivo <b>models.py</b> donde esta en modelo <b>Client</b>, modificamos su función <b>toJSON</b> para que en el <b>gender</b> retorne un diccionario donde el id sea el nombre del gender y el name sea el nombre del choice el cual es como el verbose_name, la función quedaria asi</li>
+        <div class="codigo">
+          <pre><code id="c27">
+def toJSON(self):
+  item = model_to_dict(self)
+  item['gender'] = {'id':self.gender,'name':self.get_gender_display()} 
+  item['date_birthday'] = self.date_birthday.strftime('%Y-%m-%d')
+  return item
+          </code></pre><button onclick="copiar('c27','208')" id="208">Copiar</button>
+        </div>
+      </ul>
       <div class="flecha-arriba">
         <a href="#inicio"
           ><img class="img-n"
