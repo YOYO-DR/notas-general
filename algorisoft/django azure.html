@@ -7024,6 +7024,147 @@ var parameters = new FormData(this);
       </div>
     </details>
     
+<details>
+      <summary class="videos-titulo" id="video-51">
+        <h2>
+          <b>Video 51</b>: Autocomplete con Ajax
+        </h2>
+      </summary>
+      <a target="_blank" class="link-videos" href="https://youtu.be/eYlVwGgsEFw?list=PLxm9hnvxnn-j5ZDOgQS63UIBxQytPdCG7">Link del video 51</a>
+      <ul>
+        <li>En la página de <a href="https://jqueryui.com/autocomplete/" target="_blank">Jquery-ui</a> descargamos la libreria, para trabajar con su Autocomplete, las ponemos en los <b>static</b></li>
+        <li>En el archivo <b>test.html</b> importamos los css y js de la libreria, lo agregamos en el bloquee <b>head</b></li>
+        <div class="codigo">
+          <pre><code id="c31">&lt;link rel="stylesheet" href="{% static 'libs/jquery-ui-1.12.1/jquery-ui.min.css' %}"&gt;
+&lt;script src="{% static 'libs/jquery-ui-1.12.1/jquery-ui.min.js' %}"&gt;&lt;/script&gt;
+</code></pre><button onclick="copiar('c31','212')" id="212">Copiar</button>
+        </div>
+        <li>Como se ve el la documentación, en el código de ejemplo, se necesita un input para hacer el auto complete, asi que en el formulario del test en el <b>form.py</b>, en la clase <b>TestForm</b></li>
+        <div class="codigo">
+          <pre><code id="c32">search = CharField(widget=TextInput(attrs={'class':'form-control','placeholder':'Ingrese una descripción'}))</code></pre><button onclick="copiar('c32','213')" id="213">Copiar</button>
+        </div>
+        <ul>
+          <li>Le decimos que va a ser un <b>CharField</b> y su widget sera in <b>TextInput</b></li>
+          <li>En sus atributos le ponemos una clase de bootstrap, y un placeholder</li>
+        </ul>
+        <li>En el <b>test.html</b>, agregamos ese input, exactamente igual que el anterios de productos, y pues le ponemos el <b>.search</b> que es el input de buscar</li>
+        <div class="codigo">
+          <pre><code id="c33">&lt;div class="form-group"&gt;
+        &lt;label for=""&gt;Buscador:&lt;/label&gt;
+        {{form.search}}
+      &lt;/div&gt;</code></pre><button onclick="copiar('c33','214')" id="214">Copiar</button>
+        </div>
+        <li>Dentro de la función principal de Ajax, en el bloque de los scripts, pegamos la función de autocomplete y la lista para probar, ponemos despues del <b>select_product.on("change")</b></li>
+        <div class="codigo">
+          <pre><code id="c34">//input buscador
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+  $( 'input[name="search"]' ).autocomplete({
+      source: availableTags
+    });</code></pre><button onclick="copiar('c34','215')" id="215">Copiar</button>
+        </div>
+        <ul>
+          <li>El <b>'input[name="search"]'</b> es el input que pusimos en la clase, recordar que el name de los inputs es el nombre de la variable de la clase en cuestión</li>
+          <li>Si probamos escribiendo, nos va a autocompletar</li>
+        </ul>
+        <li>Aparte del <b>source</b>, puede recibir diferentes parametros</li>
+        <ul>
+          <li>el <b>delay</b>, que recibe una cantidad de milisegundos para esperar a mostrar datos cuando la persona escribe, para que cuando se hagan peticiones no se sature el servidor</li>
+          <li>el <b>minLength</b>, que recibe la cantidad minima de caracteres para empezar a buscar</li>
+          <li>el <b>select</b> recibe una funcion la cual se le pasan 2 valores, el cual es el evento, y el valor seleccionado, se ejecuta cuando la persona selecciona un valor de la busqueda, y podemos imprimir ese valor, es un diccionario,si viene del servidro, imprimira u obtendremos todos sus atributos,, y accedemos al objeto del valor seleccionado en un key <b>item</b></li>
+          <div class="codigo">
+            <pre><code id="c35">select: function(event,ui){
+        console.log(ui.item)
+      }</code></pre><button onclick="copiar('c35','216')" id="216">Copiar</button>
+          </div>
+        </ul>
+        <li>En el atributo <b>source</b>, como ahora vamos a hacer una petición para obtener los valores, le ponemos una función, la cual se le pasan 2 valores, un <b>request</b> y un <b>response</b>, en el request estara la palabra escrita del usuario, y el response sera una funcion la cual le pasaremos la data que retorne el servidor para podelos manipular en el atributo <b>select</b></li>
+        <li>En el post de la vista del test, agregamos un <b>action</b> el cual será para retornar, en este caso, las categorias según la bsqueda</li>
+        <div class="codigo">
+          <pre><code id="c36">if action=="autocomplete":
+  data=[]
+  for i in Category.objects.filter(name__icontains=request.POST['term'])[0:10]:
+     item=i.toJSON()
+     item['value']=i.name
+     data.append(item)</code></pre><button onclick="copiar('c36','217')" id="217">Copiar</button>
+        </div>
+        <ul>
+          <li>Buscamos las categorias por su nombre y sin importar las minusculas, solo que lo contenga <b>name__icontains</b>, y le pasamos el termino a buscar que lo enviaremos por el post como <b>term</b></li>
+          <li>Le pasamos solo 10 valores <b>[0:10]</b> para no saturar</li>
+          <li>Cuando miramos en la consola, cuando se imprimio el objeto del valor seleccionado, estaba un key de <b>value</b>, que lo necesita autocomplete para mostrarlo, entonces por eso, cada valor retornado en el arreglo data, le agregamos un key de <b>value</b> y ahi le ponemos el nombre</li>
+        </ul>
+        <li>En el atributo <b>source</b> del <b>autocomplete</b>, ahora le ponemos una función</li>
+        <div class="codigo">
+          <pre><code id="c37">source: function(request,response){
+        $.ajax({
+            url: window.location.pathname, 
+            type: "POST",
+            data: {
+              'action':'autocomplete',
+              "term":request.term
+            }, 
+            dataType: "json",
+          })
+            .done(function (data) {
+              //para que lo obtenga cuando lo seleccione en el select:function(){}
+              response(data)
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+              //alert(`${textStatus} : ${errorThrown}`);
+            })
+            .always(function () {
+            });
+      },</code></pre><button onclick="copiar('c37','218')" id="218">Copiar</button>
+        </div>
+        <ul>
+          <li>La función recibe 2 parametros, el <b>request</b> y el <b>response</b></li>
+          <li>La <b>url</b>  del ajax será la vista actual</li>
+          <li>En la <b>data</b> del ajax, le pasamos el <b>action</b> y el <b>term</b> el cual viene del request en su key <b>term</b>, que es las palabras que estará escribiendo el usuario</li>
+          <li>En la función <b>.done(data)</b> le pongo la función <b>response</b> el cual le pasara los datos al atributo <b>select</b> para manipular el objeto seleccionado</li>
+        </ul>
+        <li>Ya de esta forma, cuando busquemos un categoria, se imprimirá en la consola cuando se seleccione, y si vemos, retorna los valores de la categoria, y 2 atributos que son de update y create del usuario, y no queremos eso, la funcion <b>toJSON</b> del modelos de Categorias, modificamos la función</li>
+        <div class="codigo">
+          <pre><code id="c38">def toJSON(self):
+  item = model_to_dict(self, exclude=['user_creation','user_updated'])
+  return item</code></pre><button onclick="copiar('c38','219')" id="219">Copiar</button>
+        </div>
+        <ul>
+          <li>En el <b>model_to_dict</b>, le pasamos un arreglo con los nombres de los atributos a excluir, estos son del modelo base el cual hereda este</li>
+        </ul>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+                  ><img class="img-n"
+            src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png"
+            alt=""
+        /></a>
+      </div>
+    </details>
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       function copiar(idValor, idBoton) {
@@ -7047,3 +7188,26 @@ var parameters = new FormData(this);
     </script>
   </body>
 </html>
+
+
+
+
+<!-- Base -->
+<details>
+      <summary class="videos-titulo" id="video-#">
+        <h2>
+          <b>Video #</b>: Titulo
+        </h2>
+      </summary>
+      <a target="_blank" class="link-videos" href="https://linkvide.com">Link del video #</a>
+      <ul>
+        <li>Datos</li>
+      </ul>
+      <div class="flecha-arriba">
+        <a href="#inicio"
+          ><img class="img-n"
+            src="https://djangoyoiner.blob.core.windows.net/portafolio/static/media/img/deslizar-hacia-arriba.png"
+            alt=""
+        /></a>
+      </div>
+    </details>
