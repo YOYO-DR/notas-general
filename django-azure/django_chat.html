@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <title>Django chat</title>
+  </head>
+  <body>
+    <div class="container p-4 bg-dark text-white">
+      <!-- Titulo -->
+      <h1 id="inicio">Crear un chat en tiempo real con Django</h1>
+      <!-- Indice -->
+      <p class="nota">
+        <b>Nota:</b> Se requiere una suscripción en Azure para subir el
+        proyecto, en mi caso utilizare una estudiantil por estar en el
+        <b>SENA</b>
+      </p>
+      <details class="details-indice">
+        <summary>
+          <span class="btn btn-outline-secondary rounded p-1 text-white"
+            >Indice</span
+          >
+        </summary>
+        <div class="indice">
+          <ul>
+            <li>
+              <a href="#section-1">Sección 1: Crear proyecto de Django</a>
+            </li>
+          </ul>
+        </div>
+      </details>
+      <!-- Descripción -->
+
+      <h2><b>Sección 1</b>: Crear proyecto de Django</h2>
+      <ul>
+        <li>
+          Crean el proyecto de Django, como lo pienso desplegar en Azure, ya
+          tengo este
+          <a
+            href="https://drive.google.com/file/d/1M-oMP3GVDr4fEPY0cu_JjsBYZ0y1gupk/view?usp=drive_link"
+            target="_blank"
+            >proyecto</a
+          >
+          preparado, esta solo con la configuración para desplegarlo en Azure y
+          esta trabajando con la base de datos de <b>sqlite3</b>, ya si quiere
+          se le pone una con Mysql o Postgres
+        </li>
+        <li>
+          <a
+            href="https://portafolioyoiner.azurewebsites.net/notas/django/3"
+            target="_blank"
+            >Este</a
+          >
+          es la nota para saber como configurar un despliegue de Django en azure
+        </li>
+        <li>Creamos un entorno virtual y lo activamos</li>
+        <div class="codigo">
+          <pre><code id="1">python -m venv env</code></pre>
+          <button onclick="copiar('1','a1')" id="a1">Copiar</button>
+        </div>
+        <li>Lo activamos</li>
+        <div class="codigo">
+          <pre><code id="2"># en bash
+source env/Scripts/activate
+# en windows
+.\env\Scripts\activate
+</code></pre>
+          <button onclick="copiar('2','a2')" id="a2">Copiar</button>
+        </div>
+        <li>Instalamos lo requerido</li>
+        <div class="codigo">
+          <pre><code id="3"># si creo el proyecto de 0
+pip install django && pip install channels==3.0.5 pytz==2023.3
+# si utilizo el que yo voy a utilizar
+pip install -r requirements.txt
+pip install channels==3.0.5 pytz==2023.3
+</code></pre>
+          <button onclick="copiar('3','a3')" id="a3">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            El paquete <b>channels</b> es el que utilizaremos para el servidor
+            asíncrono y administrar los mensajes del chat
+          </li>
+          <li>El paquete <b>pytz</b> es para manipular fechas</li>
+        </ul>
+        <li>Guardamos los requerimientos</li>
+        <div class="codigo">
+          <pre><code id="4">pip freeze > requirements.txt</code></pre>
+          <button onclick="copiar('4','a4')" id="a4">Copiar</button>
+        </div>
+        <li>
+          Creo un archivo en la raiz del proyecto, llamado
+          <b>requirements_w.txt</b> y pego todo lo que tiene el archivo
+          <b>requirements.txt</b>, porque utilizare requirements_w.txt para
+          instalar los requerimientos en un entorno en windows, y
+          requirements.txt le comento el paquete
+          <b># twisted-iocpsupport==1.0.4</b> porque ese paquete no se necesita
+          en Ubuntu en el despliegue, y donde se intente instalar nos lanzara
+          error, lo dejo activo en el requirements_w.txt
+        </li>
+      </ul>
+      <h2><b>Sección 2</b>: Crear app de usuario</h2>
+      <ul>
+        <li>
+          Creamos una carpeta llamada <b>apps</b> en la raiz del proyecto y ahi
+          crearemos nuestras apps
+        </li>
+        <li>
+          Desde la terminal, entramos a la carpeta y creamos la app de usuario
+          para hacerahíel inicio de sesión y registro básico
+        </li>
+        <div class="codigo">
+          <pre><code id="5">cd apps/
+python ../manage.py startapp user
+cd ..
+</code></pre>
+          <button onclick="copiar('5','a5')" id="a5">Copiar</button>
+        </div>
+        <li>
+          En la app de user, en su archivo <b>apps.py</b>, como lo metimos en
+          una carpeta, debemos ponerle <b>'apps.user'</b> en el <b>name</b> y
+         asímismo, en la variable <b>INSTALLED_APPS</b> del archivo
+          <b>settings.py</b> de la carpeta de configuración (en mi caso, config)
+        </li>
+      </ul>
+      <h2><b>Sección 3</b>: Crear vista de inicio de sesión</h2>
+      <ul>
+        <li>
+          En el archivo <b>views.py</b> vamos a importar las clase de
+          <b>FormView</b>, la clase de <b>AuthenticationForm</b> y la función
+          <b>login</b> para iniciarle sesión para crear nuestra vista de inicio
+          de sesión
+        </li>
+        <div class="codigo">
+          <pre><code id="6">from django.views.generic import FormView
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login</code></pre>
+          <button onclick="copiar('6','a6')" id="a6">Copiar</button>
+        </div>
+        <li>Ya luego creamos la clase</li>
+        <div class="codigo">
+          <pre><code id="7">class IniciarSesion(FormView):
+    template_name="user/iniciar_sesion.html"
+    form_class=AuthenticationForm
+    success_url="/"
+
+    def form_valid(self, form) :
+        login(self,form.get_user())
+        return HttpResponseRedirect(self.success_url)</code></pre>
+          <button onclick="copiar('7','a7')" id="a7">Copiar</button>
+        </div>
+        <ul>
+          <li>Creamos la clase heredando de FormView</li>
+          <li>
+            El <b>template_name</b> le ponemosasíporque va a estar dentro de
+            una carpeta <b>user</b> de los templates para separar sus archivos
+            HTML, el cual ahora crearemos
+          </li>
+          <li>
+            En el <b>form_class</b> ponemos la clase donde esta el formulario
+            para autenticar al usuario
+          </li>
+          <li>
+            El <b>success_url</b> es para redireccionarlo, en este caso lo
+            mandamos al inicio del proyecto, el cual lanzará un 404 porque no
+            tenemos nada ahi, cuando creemos el chat, el cual será el inicio, lo
+            redireccionaremos ahí
+          </li>
+          <li>
+            La función <b>form_valid</b> se ejecuta cuando el formulario es
+            correcto o si el usuario ingreso correctamente las credenciales, si
+            es correcto, le iniciamos sesión con la funcion
+            <b>login</b> pasandole el <b>self</b> y el usuario, el cual nos lo
+            proporciona la función <b>form.get_user()</b>
+          </li>
+        </ul>
+        <li>
+          En la carpeta <b>templates</b> creamos un archivo HTML llamado
+          <b>base.html</b>, lo utilizaremos como plantilla, y como utilizaremos
+          <b>Bootstrap</b> para maquetar rápidamente,ahílo importaremos,
+          antes de importarlo, lo descargamos de su
+          <a
+            href="https://getbootstrap.com/docs/5.3/getting-started/download/"
+            target="_blank"
+            >página oficial</a
+          >. Creamos una carpetea llamada <b>libs</b> en la carpeta
+          <b>static</b> la cual guardaremos el paquete de bootstrap
+          descomprimido, en mi caso a la carpeta de bootstrap le quito el
+          <i>dist</i> y solo dejo el nombre de la version, en mi caso es la
+          <b>5.3</b>, dentro de ella habrá 2 carpetas, css y js, la cual
+          importamos los archivos necesario, quedaria asi:
+        </li>
+        <div class="codigo">
+          <pre><code id="8">{% load static %}
+&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;title&gt;Django chat&lt;/title&gt;
+    &lt;link rel="icon" href="{% static 'media/img/favicon.png' %}"&gt;
+    &lt;link
+      href="{% static 'libs/bootstrap-5.3/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    /&gt;
+    {% block head %}{% endblock head %}
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand" href="/"&gt;Chat&lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+      &lt;ul class="navbar-nav ms-auto"&gt;
+        {% if not user.is_authenticated %}
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link" href="#"&gt;Iniciar sesión&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link" href="#"&gt;Registro&lt;/a&gt;
+        &lt;/li&gt;
+        {% else %}
+        &lt;li class="nav-item"&gt;
+          &lt;a class="nav-link" href="#"&gt;Cerrar sesión&lt;/a&gt;
+        &lt;/li&gt;
+        {% endif %}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+    &lt;div class="container p-4"&gt;{% block content %}{% endblock content %}&lt;/div&gt;
+
+    &lt;script
+      src=" {% static 'libs/bootstrap-5.3/js/bootstrap.bundle.min.js' %}"
+    &gt;&lt;/script&gt;
+    {% block js %}{% endblock js %}
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+          <button onclick="copiar('8','a8')" id="a8">Copiar</button>
+        </div>
+        <ul>
+          <li>
+            En el head importamos el css de bootstrap, y al final del body
+            importamos el js de bootstrap
+          </li>
+          <li>
+            El bloque <b>head</b> será por si alguna plantilla al heredar
+            necesita importar algunos estilos, y el bloque <b>js</b> si necesita
+            importar algún js, se pone despues de las importaciones de librerias
+            para que las librerias no sobreescriban algo del js que pongamos
+          </li>
+          <li>
+            En el bloque <b>content</b> pondremos todo el contenido cuando los
+            demás templates lo hereden
+          </li>
+          <li>
+            En ese navbar (el cúal es un componente que nos ofrece <a href="https://getbootstrap.com/docs/5.3/components/navbar/" target="_blank">bootstrap</a>)
+            hacemos algunos <b>if</b> preguntando si el usuario NO esta
+            autenticado, si es asi, le mostramos el inicio de sesión y el
+            registro, de lo contrario (si esta autenticado) le mostramos el
+            cerrar sesión
+          </li>
+        </ul>
+        <li>
+          Instalamos un paquete para poner atributos al html,
+          específicamente a nuestros inputs
+        </li>
+        <div class="codigo">
+          <pre><code id="9">pip install django-widget-tweaks
+pip freeze > requirements.txt
+</code></pre>
+          <button onclick="copiar('9','a9')" id="a9">Copiar</button>
+        </div>
+        <ul>
+          <li>Recordar que debemos siempre guardar los paquetes</li>
+          <li>En el INSTALLED_APPS lo agregamos como <b>'widget_tweaks'</b></li>
+        </ul>
+        <li>
+          En la carpeta <b>templates</b>, creamos la carpeta <b>user</b> la cúal
+          tendrá nuestros html de las vistas del usuario
+        </li>
+        <li>Creamos el html para iniciar sesión (iniciar_sesion.html)</li>
+        <div class="codigo">
+          <pre><code id="10">{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+&lt;h1&gt;Iniciar sesión&lt;/h1&gt;
+&lt;form action="." method="post" class="col-12 col-md-4 border rounded p-3"&gt;
+  {% csrf_token %}
+  {% if form.errors %}
+    {% for field in form.visible_fields %}
+      {% for error in field.errors %}
+        &lt;p class="border rounded p-1"&gt;{{field.label}}: &lt;span class="text-danger"&gt;{{error}}&lt;/span&gt;&lt;/p&gt;
+      {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+      &lt;p class="text-danger border rounded p-1"&gt;{{error}}&lt;/p&gt;
+    {% endfor %}
+  {% endif %}
+  &lt;div class="form-group mb-3"&gt;
+  {% for field in form.visible_fields %}
+    &lt;label for="{{field.id_for_label}}"&gt;{{field.label}}:&lt;/label&gt;
+    {{field|add_class:"form-control mb-3"}}
+    {% endfor %}
+  &lt;/div&gt;
+  &lt;div class="d-flex flex-column"&gt;
+    &lt;button type="submit" class="btn btn-success"&gt;Iniciar sesión&lt;/button&gt;
+    &lt;a class="link" href="#"&gt;Registrese&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+{% endblock content %}</code></pre>
+          <button onclick="copiar('10','a10')" id="a10">Copiar</button>
+        </div>
+        <ul>
+          <li>Heredamos de la plantilla que creamos <b>base.html</b> y cargamos el paquete de <b>widget_tweaks</b></li>
+          <li>En el <b>form</b> le ponemos que sea método post, la petición vista actual y algunas clases de bootstrap</li>
+          <li>El <b>{% csrf_token %}</b> siempre para la seguridad</li>
+          <li>Preguntamos si hay errores en el formulario, ya sean de comprobación (Minimo de caracteres o si va vacio) el cual estan en <b>form.visible_fields</b> y luego las verificaciones que no son de los inputs (Si la contraseña es incorrecta o el usuario no existe) el cual estan en <b>form.non_field_errors</b> y los ponemos en un simple parrafo con algunas clases para presentación</li>
+          <li>Recorremos cada input del formulario (form.visible_fields) y le ponemos su label y su input, el cual gracias a <b>widget_tweaks</b> podemos agregarle las clases de bootstrap para los inputs</li>
+          <li>Ya luego abajo el botón para iniciar sesión y el link para ir hacia el registro el cual ya despues lo pondremos</li>
+        </ul>
+        <li>Ya teniendo el html y la vista, crearemos un archivo llamado <b>urls.py</b> en la app de <b>user</b> para poner las rutas del <b>views.py</b>, y le ponemos lo siguiente</li>
+        <div class="codigo">
+          <pre><code id="11">from django.urls import path
+from .views import IniciarSesion
+
+urlpatterns = [
+  path("iniciarsesion/",IniciarSesion.as_view(),name="iniciarseion")
+]</code></pre><button onclick="copiar('11','a11')" id="a11">Copiar</button>
+        </div>
+        <ul>
+        <li>Importamos la clase para las urls y la clase nuestra para iniciar sesión, y luego la ponemos en el urlpatterns con un name para identificarlo</li>
+      </ul>
+      <li>En el archivo <b>urls.py</b> de la carpeta de configuración, incluimos las urls de la app user</li>
+      <div class="codigo">
+        <pre><code id="12">from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path("user/",include('apps.user.urls'))
+]</code></pre><button onclick="copiar('12','a12')" id="a12">Copiar</button>
+      </div>
+      <ul>
+        <li>Importamos <b>include</b> del mismo paquete de donde viene el path para incluir la app de user</li>
+        <li>La ruta le ponemos <b>user</b> y en el include, recordar que metimos las apps en una carpeta llamada <b>apps</b> y por eso le anteponemos <b>apps</b> en el include</li>
+      </ul>
+      <li>Si corremos el servidor (python manage.py runserver) y nos vamos a la ruta <b>user/iniciarsesion</b> ya nos debe cargar el formulario</li>
+      <p class="nota"><b>NOTA:</b> En la variable <b>LANGUAGE_CODE</b> poner de valor <b>'es-419'</b> para que aparezca los valores en español si así se desea, y puede crear un usuario con el <b>python manage.py createsuperuser</b></p>
+      
+      </ul>
+      
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -604,7 +604,7 @@ date_joined = models.DateField(default=datetime.now, verbose_name='Fecha')</code
           fechas, si por ejemplo se sube una imagen el <b>10/02/2023</b>, Django
           creara una carpeta (dentro de MEDIA_ROOT/avatar), con el año actual
           (2023), luego dentro, una carpeta con el mes en que se subio la imagen
-          (02), y luego una carpeta con el número del dia (10), y ahi almacenara
+          (02), y luego una carpeta con el número del dia (10), yahíalmacenara
           la imagen, pero sin los <b>/%Y/%m/%d</b>, lo almacenara en la carpeta
           que le digamos en <b>upload_to</b>
         </li>
@@ -1103,7 +1103,7 @@ for i in obj:
           <b>ssh</b>
         </li>
         <li>
-          Agrego mis archivos ahi en el repositorio clonado pero sin el entorno
+          Agrego mis archivosahíen el repositorio clonado pero sin el entorno
           (<b>env</b>)
         </li>
         <li>
@@ -1445,7 +1445,7 @@ urlpatterns = [
         <ul>
           <li>
             AL mismo nivel de la carpeta de configuración, creo una carpeta con
-            el nombre <b>templates</b>, ahi estaran mis archivos
+            el nombre <b>templates</b>,ahíestaran mis archivos
             <b>html</b> principales
           </li>
           <div class="codigo">
@@ -1485,7 +1485,7 @@ urlpatterns = [
           creamos, utilizamos la función <b>render</b> para utilizar el
           <b>html</b>. La función, como siempre, debe recibir y retornar un
           <b>request</b>, la variable <b>data</b> va a contener valores que
-          queramos mostrar en el html, en el cual desde ahi llamaremos ese
+          queramos mostrar en el html, en el cual desdeahíllamaremos ese
           valor, con una sintaxis, la cual la función <b>render</b>, renderiza
           ese html, en el segundo parametro del render, debemos poner el nombre
           del html el cual vamos a renderizar, y el <b>data</b> de tercer
@@ -2332,7 +2332,7 @@ from django.contrib.auth.decorators import login_required
           <li><b>data:</b> La petición que voy a realizar</li>
           <li><b>dataType:</b> Tipo de archivo</li>
           <li>
-            <b>clone():</b> La función clone siempre se ejecuta, ahi le paso la
+            <b>clone():</b> La función clone siempre se ejecuta,ahíle paso la
             data que me devuelve el servidor (en este caso, la vista
             category_list)
           </li>
@@ -2386,7 +2386,7 @@ return JsonResponse(data)
         </div>
         <ul>
           <li>
-            Al model_to_dict le paso el self, porque ahi es donde estan todos
+            Al model_to_dict le paso el self, porqueahíes donde estan todos
             los valores de la tabla, porque hacerlo manual seria normal en
             proyectos pequeños, pero en un proyecto grande ya no es eficiente,
             para eso esta esta función para los modelos
@@ -3058,7 +3058,7 @@ def post(self,request,*args,**kwargs):
             <button onclick="copiar('b35','117')" id="117">Copiar</button>
           </div>
           <li>
-            Ahi en ese archivo creamos una función para leer los errores que nos
+           ahíen ese archivo creamos una función para leer los errores que nos
             retorna el post y ponerlos en una alerta, en la función comparamos
             si llega como objeto, si llega asi, lo recorremos, de lo contrario
             solo lo ponemosen una etiqueta p porque si no es objeto, es un
@@ -3461,7 +3461,7 @@ return false;
         <ul>
           <li>
             tiene la misma forma, la diferencia es que no tendria campos de
-            formulario, solo la confirmación, pero ahi se envia el
+            formulario, solo la confirmación, peroahíse envia el
             <b>csfr_token</b> para la seguridad, pero si quiero, no le envio
             parametros, pero tendria que en el <b>dispatch</b> debo poner el
             decorador <b>csfr_exempt</b> para que no necesite enviarle
@@ -3805,14 +3805,14 @@ except Exception as e:
             la comenté
           </li>
           <li>
-            En los template los reorganiza, ahi si copie y peqgue porque cambio
+            En los template los reorganiza,ahísi copie y peqgue porque cambio
             unas cosas del header, pero como tengo mi carpeta static diferente
             un poco las rutas, copie, pegué pero revise los llamados a los
             archivos estaticos para ver que se llamaran correctamente
           </li>
           <li>
             Y creo un archivo <b>layout.html</b> para cambiar de vista
-            rapidamente, la cual ya van a heredar form.html, list.html y
+            rápidamente, la cual ya van a heredar form.html, list.html y
             delete.html
           </li>
         </ul>
@@ -4652,7 +4652,7 @@ urlpatterns = [
           <button onclick="copiar('b60','142')" id="142">Copiar</button>
         </div>
         <li>
-          Ahi ya podemos probar que si intentamos guardar, no guardar pero
+         ahíya podemos probar que si intentamos guardar, no guardar pero
           retorna a la vista de las categorias, y si intetnamos enviar un dato
           repetido nos lanza la alarma porque solo comentamos la petición ajax y
           no la verificación de los errores con las alertas
@@ -4731,7 +4731,7 @@ urlpatterns = [
           </li>
           <li>
             Tambien puedo crear un error o excepción manual mente pero no se
-            guarda en el <b>form.errors</b> porque ahi debo guardar los errores
+            guarda en el <b>form.errors</b> porqueahídebo guardar los errores
             de formulario, para otro tipo de error, creo la excepción o la
             guardo de la siguiente forma
           </li>
@@ -5200,7 +5200,7 @@ urlpatterns = [
         </li>
         <li>
           En la app <b>erp</b>, en su carpeta <b>views</b> crea una carpeta
-          llamada <b>dashboard</b> y ahi un <b>views.py</b> para crear la vista
+          llamada <b>dashboard</b> yahíun <b>views.py</b> para crear la vista
           del dashboard
         </li>
         <div class="codigo">
@@ -6191,7 +6191,7 @@ products = ModelChoiceField(queryset=Product.objects.none(),widget=Select(attrs=
           </li>
           <li>
             en la data, la cual es la info de los productos según la categoria,
-            ahi le paso en otra clase, llamada data, la información de la
+           ahíle paso en otra clase, llamada data, la información de la
             categoria segun el producto, el cual visualizaremos en la consola de
             la pagina si se desea
           </li>
@@ -6427,7 +6427,7 @@ admin.site.register(User)</code></pre>
         </li>
         <li>
           Fuera de las apps, pero dentro de la carpeta <b>core</b>, creo un
-          archivo para ese modelo base, <b>models.py</b> y ahi lo creo de la
+          archivo para ese modelo base, <b>models.py</b> yahílo creo de la
           siguiente manera
         </li>
         <div class="codigo">
@@ -7113,7 +7113,7 @@ var parameters = new FormData(this);
         <ul>
           <li>Buscamos las categorias por su nombre y sin importar las minusculas, solo que lo contenga <b>name__icontains</b>, y le pasamos el termino a buscar que lo enviaremos por el post como <b>term</b></li>
           <li>Le pasamos solo 10 valores <b>[0:10]</b> para no saturar</li>
-          <li>Cuando miramos en la consola, cuando se imprimio el objeto del valor seleccionado, estaba un key de <b>value</b>, que lo necesita autocomplete para mostrarlo, entonces por eso, cada valor retornado en el arreglo data, le agregamos un key de <b>value</b> y ahi le ponemos el nombre</li>
+          <li>Cuando miramos en la consola, cuando se imprimio el objeto del valor seleccionado, estaba un key de <b>value</b>, que lo necesita autocomplete para mostrarlo, entonces por eso, cada valor retornado en el arreglo data, le agregamos un key de <b>value</b> yahíle ponemos el nombre</li>
         </ul>
         <li>En el atributo <b>source</b> del <b>autocomplete</b>, ahora le ponemos una función</li>
         <div class="codigo">
