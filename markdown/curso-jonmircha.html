@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown</title>
+</head>
+<body>
+  <h1>Markdown</h1>
+  <h2><b>Sección 1</b>: Introducción</h2>
+  <ul>
+    <li><strong>Markdown (.md)</strong> es la estandar para documentación y ahora hasta para páginas o sitios estaticos. Como en <strong>HTML</strong> el documento principal es <i>index.html</i>, en markdown es <strong>README.md</strong></li>
+  </ul>
+  <h2><b>Sección 2</b>: Parrafos, cursiva y negritas</h2>
+  <ul>
+    <li>Los <strong>parrafos</strong> son solo texto plano en <b>md</b>, sin etiquetas ni nada</li>
+
+    <li>Las <strong>cursivas</strong> se escriben con guiones bajos a los lados</li>
+    <div class="codigo">
+      <pre><code>_Esto es una cursiva enn md_</code></pre>
+      <button>Copiar</button>
+    </div>
+
+    <li>Las <strong>negritas</strong> se escriben con 2 asteriscos a los lados</li>
+    <div class="codigo">
+      <pre><code>**Esto es una negrita enn md**</code></pre>
+      <button>Copiar</button>
+    </div>
+  </ul>
+  <h2><b>Sección 3</b>: Encabezados</h2>
+  <ul>
+    <li>Los encabezados son como los <strong>h1</strong>en <strong>HTMl</strong>, y se escriben con el signo de numeral (#), dependiendo del nivel, se agrega otro, son 6 niveles, osea hasta 6 numerales</li>
+    <div class="codigo">
+      <pre><code># Encabezado 1
+## Encabezado 2
+### Encabezado 3
+      </code></pre>
+      <button>Copiar</button>
+    </div>
+  </ul>
+  <h2><b>Sección 4</b>: Enlaces</h2>
+  <ul>
+    <li>Un enlace normal es con corchetes [] el nombre del link, y el link en parentesis ()</li>
+    <div class="codigo">
+      <pre><code>[Youtube](https://youtube.com)</code></pre>
+      <button>Copiar</button>
+    </div>
+    <li>Para los enlaces internos o anclas, se utilizan los encabezados, por ejemplo el encabezado <i>## hola mundo</i> y quiero ir hacia el, pondria el link <i>[link interno](#hola-mundo)</i> markdown los espacios los lee como guiones, y borra el espacio inicial, y no importa el nivel del encabezado, en el ancla se utiliza un numeral (#), y si estas utilizando <strong>Visual Studio Code</strong> en los parentesis te va a autocompletar los encabezados para que lo seleccione</li>
+  </ul>
+</body>
+</html>
