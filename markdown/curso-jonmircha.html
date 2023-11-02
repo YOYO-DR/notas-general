@@ -10,8 +10,9 @@
   <h2><b>Sección 1</b>: Introducción</h2>
   <ul>
     <li><strong>Markdown (.md)</strong> es la estandar para documentación y ahora hasta para páginas o sitios estaticos. Como en <strong>HTML</strong> el documento principal es <i>index.html</i>, en markdown es <strong>README.md</strong></li>
+    <li>Para comentar en markdown es igual que en HTML <i>&lt;!-- comentario --&gt;</i></li>
   </ul>
-  <h2><b>Sección 2</b>: Parrafos, cursiva y negritas</h2>
+  <h2><b>Sección 2</b>: Parrafos, cursiva, negritas y tachado</h2>
   <ul>
     <li>Los <strong>parrafos</strong> son solo texto plano en <b>md</b>, sin etiquetas ni nada</li>
 
@@ -24,6 +25,11 @@
     <li>Las <strong>negritas</strong> se escriben con 2 asteriscos a los lados</li>
     <div class="codigo">
       <pre><code>**Esto es una negrita enn md**</code></pre>
+      <button>Copiar</button>
+    </div>
+    <li>Los textos <strong>tachados</strong> se escriben con 2 virguilillas (~)  a los lados</li>
+    <div class="codigo">
+      <pre><code>~~Esto es un texto tachado md~~</code></pre>
       <button>Copiar</button>
     </div>
   </ul>
@@ -47,5 +53,104 @@
     </div>
     <li>Para los enlaces internos o anclas, se utilizan los encabezados, por ejemplo el encabezado <i>## hola mundo</i> y quiero ir hacia el, pondria el link <i>[link interno](#hola-mundo)</i> markdown los espacios los lee como guiones, y borra el espacio inicial, y no importa el nivel del encabezado, en el ancla se utiliza un numeral (#), y si estas utilizando <strong>Visual Studio Code</strong> en los parentesis te va a autocompletar los encabezados para que lo seleccione</li>
   </ul>
+  <h2><b>Sección 5</b>: Imagenes</h2>
+  <ul>
+    <li>Las imagenes se escriben como los enlaces solo que se les antepone un signo de admiracion de cierre (!)</li>
+    <div class="codigo">
+      <pre><code>![hola](https://link-imagen.png)</code></pre>
+      <button>Copiar</button>
+    </div>
+    <li>Puede ser un link de internet, o si esta dentro del proyecto, la ruta</li>
+    <div class="codigo">
+      <pre><code>![hola-ruta](img/imagen.png)</code></pre>
+      <button>Copiar</button>
+    </div>
+  </ul>
+  <h2><b>Sección 6</b>: Divisiones</h2>
+    <ul>
+      <li>Para hacer lineas divisoras, se utilizan 3 guines medios <i>---</i>, eso será como un <strong>&lt;hr&gt;</strong> en <strong>HTML</strong></li>
+    </ul>
+    <h2><b>Sección 7</b>: Listas</h2>
+    <ul>
+      <li><strong>Listas ordenadas</strong></li>
+      <li>Se ponen 1. en cada linea, pero el interprete pondra la lista ordenada (1,2,3,4,5), la buena practica seria poner solo 1. en cada elemento de la lista, porque tambien lee si se pone 1. 2. 3. pero es mejor solo 1. que lo interpreta igual</li>
+      <div class="codigo">
+        <pre><code>1. yoiner
+1. duran
+1. rios
+</code></pre>
+<button>Copiar</button>
+      </div>
+      <li><strong>Listas desordenadas</strong></li>
+      <li>Se pueden hacer con asteriscos (*) o guiones (-)</li>
+      <div class="codigo">
+        <pre><code>- yoiner
+- duran
+- rios
+</code></pre>
+      </div>
+      <li><strong>Sublistas</strong></li>
+      <li>Las sublistas se hacen con tabulaciones</li>
+      <div class="codigo">
+        <pre><code>1. yoiner
+    1. duran
+    1. re pro
+        1. rios pro</code></pre>
+      </div>
+      <li>En la visualizacion se nota que Markdown va haciento las tabulaciones, en las listas desordenadas hasta cambia el estilo de las viñetas sublistas</li>
+    </ul>
+    <h2><b>Sección 8</b>: Citas</h2>
+    <ul>
+      <li>Por ejemplo en HTML se utiliza la etiqueta &lt;cite&gt; para citar, el markdow se utiliza el mayor que (>)</li>
+      <div class="codigo">
+        <pre><code>> hola mundo, cita en linea</code></pre>
+        <button>Copiar</button>
+      </div>
+      <li>Para una cita en bloque, se utiliza varios (>)</li>
+      <div class="codigo">
+        <pre><code>> cita
+> en
+> bloque
+</code></pre>
+        <button>Copiar</button>
+      </div>
+    </ul>
+    <h2><b>Sección 9</b>: Tablas</h2>
+    <ul>
+      <li>Utilizamos el signo pleca (|) para crear las tablas, para decirle a markdown que vamos a crear una tabla, despues de la primera fila, creamos otra fila con solo guiones</li>
+      <div class="codigo">
+        <pre><code>|nombre|apellido|numero|
+|---|---|---|
+|yoiner|duran|12345678|
+        </code></pre><button>Copiar</button>
+      </div>
+    </ul>
+    <h2><b>Sección 10</b>: Codigos</h2>
+    <ul>
+      <li>Para escribir codigo en linea, utilizamos el acento grave (``)</li>
+      <div class="codigo">
+        <pre><code>`console.log("hola mundo")`</code></pre>
+        <button>Copiar</button>
+      </div>
+      <li>Para escribir codigo en bloque utilizamos 3 acentos graves, y utilizando este modo, podemos decirle que lenguaje es y ayudara pintando la sintaxis, al inicio pegado al acento grave se pone la extension del lenguaje a escribir</li>
+      <div class="codigo">
+        <pre><code>```py
+def sumar(a+b):
+  return a+b
+```</code></pre>
+        <button>Copiar</button>
+      </div>
+    </ul>
+    <h2><b>Sección 10</b>: Mostrar codigo de Markdown</h2>
+    <ul>
+      <li>Se antepone un (\) en cada signo/sintaxis de markdown</li>
+      <div class="codigo">
+        <pre><code>\*\*negrita - mostrar codigo\*\*
+
+\_cursiva\_
+
+\# encabezado</code></pre><button>Copiar</button>
+      </div>
+    </ul>
 </body>
 </html>

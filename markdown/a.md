@@ -4,11 +4,13 @@ _Que se dice socio_
 ---
 **_Que se dice socio_**
 ---
+~~Tachado~~
+---
 ### eo socio
 ---
 [portafolio](https://portafolioyoiner.azurewebsites.net)
 ---
-![Yo!](https://djangoyoiner.blob.core.windows.net/portafolio/static/portfolio/perfil.png)
+![Yo!](../django-azure/media/img/deploy-14.png)
 ---
 1. yoiner
 1. duran
@@ -54,10 +56,33 @@ function suma(a,b){
   return a+b;
 }
 ```
+`console.log("hola mundo")`
 # fin
 ```py
 def sumar(a+b):
   return a+b
+```
+---
+```cpp
+#include <iostream>
+
+int suma(int numero1, int numero2) {
+    return numero1 + numero2;
+}
+
+int main() {
+    int num1 = 5;
+    int num2 = 7;
+    int resultado = suma(num1, num2);
+
+    std::cout << "La suma de " << num1 << " y " << num2 << " es: " << resultado << std::endl;
+
+    return 0;
+```
+---
+```html
+<h1>Holi</h1>
+<p>Re pro</p>
 ```
 ---
 <!-- Esto es un comentario
